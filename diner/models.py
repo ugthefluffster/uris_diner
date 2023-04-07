@@ -17,7 +17,7 @@ class Dish(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
 
-class Items(models.Model):
+class Item(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, blank=False)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=False)
     amount = models.IntegerField(blank=False, default=1)
