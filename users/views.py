@@ -15,6 +15,8 @@ def user_signup(request):
             new_user = authenticate(request, 
                 username = request.POST['username'],
                 password = request.POST['password1'])
+            new_user_cart = Cart(user = new_user)
+            new_user_cart.save()
             login(request, new_user)
             return redirect('all_dishes')
     return render(request, 'users/signup.html', {'form':form})
