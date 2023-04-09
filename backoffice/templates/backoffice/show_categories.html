@@ -1,0 +1,10 @@
+{% extends 'backoffice/layout.html' %}
+{% block title %}Show Categories{% endblock title %}
+{% block backoffice-content %}
+<a href="">add category</a>
+{% for category in all_categories %}
+    <p>Name: {{category.name}}</p>
+    <a href="">edit category</a>
+{% endfor %}
+{% endblock backoffice-content %}
+

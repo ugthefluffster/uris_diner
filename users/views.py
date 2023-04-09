@@ -22,7 +22,6 @@ def user_signup(request):
     return render(request, 'users/signup.html', {'form':form})
 
 def user_login(request):
-    # why shouldn't staff be able to log in through here?
     if request.user.is_authenticated:
         return redirect('all_dishes')
     form = AuthenticationForm()
@@ -31,9 +30,12 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            if request.POST['next']:
+                return redirect(request.POST['next'])
             return redirect('all_dishes')
     return render(request, 'users/login.html', {'form':form})
 
+@login_required(login_url='user_login')
 def user_logout(request):
     logout(request)
     return redirect('main')

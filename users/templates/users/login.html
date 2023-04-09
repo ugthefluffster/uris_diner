@@ -5,6 +5,7 @@
 <form action="{% url 'user_login' %}" method="POST" novalidate>
     {% csrf_token %}
     {{form}}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
     <input type="submit" value="Enter">
 </form>
 {% endblock users-content %}

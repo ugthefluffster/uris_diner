@@ -1,6 +1,11 @@
 {% extends 'backoffice/layout.html' %}
 {% block title %}Staff Login{% endblock title %}
 {% block backoffice-content %}
-
+<form action="{% url 'backoffice_login' %}" method="POST" novalidate>
+    {% csrf_token %}
+    {{form}}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+    <input type="submit" value="Enter">
+</form>
 {% endblock backoffice-content %}
 

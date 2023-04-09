@@ -25,6 +25,11 @@ class Cart(models.Model):
 
     def __str__(self):
         return f"{self.user.username}-{self.id}"
+    
+    @property
+    def total_to_pay(self):
+        total = sum(item.dish.price*item.amount for item in self.item_set.all())
+        return total
 
 class Item(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, blank=False)
@@ -40,8 +45,3 @@ class Delivery(models.Model):
     comment = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     order = models.OneToOneField(Cart, primary_key=True, on_delete=models.CASCADE)
-
-    @property
-    def total_to_pay(self):
-        total = sum(item.dish.price*item.amount for item in self.order.item_set.all())
-        return total
