@@ -1,0 +1,12 @@
+{% extends 'users/layout.html' %}
+{% block title %}Info{% endblock title %}
+{% block users-content %}
+{{request.user.username}}
+
+<form action="{% url 'change_user_info' %}" method="POST" novalidate>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="ok">
+</form>
+
+{% endblock users-content %}
