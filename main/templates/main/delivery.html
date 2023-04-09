@@ -1,5 +1,15 @@
 {% extends 'main/layout.html' %}
 {% block title %}Delivery{% endblock title %}
 {% block main-content %}
-
+{{request.user.username}}
+{% for delivery in open_deliveries %}
+<div>
+    {{delivery.created}}
+    {{delivery.order_id}}
+    {% for item in  delivery.order.item_set.all %}
+        {{item.dish}} {{item.amount}}
+    {% endfor %}
+    total: {{delivery.total_to_pay}}
+</div>
+{% endfor %}
 {% endblock main-content %}

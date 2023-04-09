@@ -1,5 +1,9 @@
 {% extends 'main/layout.html' %}
 {% block title %}Order{% endblock title %}
 {% block main-content %}
-
+<form action="{% url 'fill_order' %}" method="POST" novalidate>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Send">
+</form>
 {% endblock main-content %}

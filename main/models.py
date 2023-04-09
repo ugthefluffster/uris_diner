@@ -11,7 +11,7 @@ class Category(models.Model):
 class Dish(models.Model):
     name = models.CharField(max_length=500, blank=False)
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=False)
-    description = models.TextField()
+    description = models.TextField(blank=False)
     image = models.CharField(max_length=500)
     is_gluten_free = models.BooleanField(default=False)
     is_vegeterian = models.BooleanField(default=False)
@@ -37,6 +37,11 @@ class Item(models.Model):
 class Delivery(models.Model):
     is_delivered = models.BooleanField(default=False)
     address = models.CharField(max_length=500, blank=False)
-    comment = models.TextField()
+    comment = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     order = models.OneToOneField(Cart, primary_key=True, on_delete=models.CASCADE)
+
+    @property
+    def total_to_pay(self):
+        total = sum(item.dish.price*item.amount for item in self.order.item_set.all())
+        return total
