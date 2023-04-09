@@ -1,7 +1,7 @@
-{% extends 'diner/layout.html' %} 
+{% extends 'main/layout.html' %} 
 {% block title %}Dishes{% endblock title %} 
 
-{% block diner-content %}
+{% block main-content %}
 <div>
   <h4>Categories:</h4>
   {% for category in categories_list %} 
@@ -20,4 +20,4 @@
     </form>
   {% endfor %}
 </div>
-{% endblock diner-content %}
+{% endblock main-content %}

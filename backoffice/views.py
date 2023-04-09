@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from diner.models import *
+from main.models import *
 from django.contrib.admin.views.decorators import staff_member_required
 
 

@@ -1,6 +1,6 @@
-{% extends 'diner/layout.html' %}
+{% extends 'cart/layout.html' %}
 {% block title %}Cart{% endblock title %}
-{% block diner-content %}
+{% block cart-content %}
 
 {% for item in cart.item_set.all %}
 
@@ -20,4 +20,4 @@
 {% endfor %}
 <a href="{% url 'fill_order' %}">make order</a>
 
-{% endblock diner-content %}
+{% endblock cart-content %}
