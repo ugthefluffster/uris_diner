@@ -1,5 +1,12 @@
 {% extends 'base_layout.html' %}
 {% block content %}
+<a href="{% url 'all_dishes' %}">Menu</a>
+
+{% if request.user.username %}
+    <a href="{% url 'user_logout' %}">Log out</a>
+    <a href="{% url 'show_user_info' %}">Info</a>
+    <a href="{% url 'user_history' %}">History</a>
+{% endif %}
 
 {% block main-content %}
 {% endblock main-content %}

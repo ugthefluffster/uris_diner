@@ -2,7 +2,10 @@
 {% block title %}History{% endblock title %}
 {% block users-content %}
 {{request.user.username}}
-{% for  in  %}
-    
+{% for order in past_orders %}
+    <div>
+        {{order.delivery.created}}
+        {{order.item_set.all}}
+    </div>
 {% endfor %}
 {% endblock users-content %}

@@ -1,6 +1,11 @@
 {% extends 'main/layout.html' %}
 {% block title %}Main{% endblock title %}
-
 {% block main-content %}
-
+<h2>Welcome to Uri's Diner</h2>
+{% if request.user.username %}
+    <h3>Hello, {{request.user.username}}</h3>
+{% else %}
+    <a href="{% url 'user_login' %}">Log In</a>
+    <a href="{% url 'user_signup' %}">Sign up</a>
+{% endif %}
 {% endblock main-content %}
