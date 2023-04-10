@@ -1,0 +1,11 @@
+{% extends 'dishes/layout.html' %}
+{% block title %}Manage Dishes{% endblock title %}
+{% block dishes-content %}
+{{dish.name}}
+<form action="{% url 'delete_dish' id=dish.id %}" method="POST">
+    {% csrf_token %}
+    <p>are you sure you want to delete this dish?</p>
+    <input type="submit" value="Yes"> <a href="{% url 'show_dishes' %}"><button type="button">No</button></a>
+</form>
+{% endblock dishes-content %}
+

@@ -1,0 +1,10 @@
+{% extends 'dishes/layout.html' %}
+{% block title %}Manage Dishes{% endblock title %}
+{% block dishes-content %}
+<form action="{% url 'edit_dish' id=dish.id %}" method="POST" novalidate>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="ok">
+</form>
+{% endblock dishes-content %}
+
