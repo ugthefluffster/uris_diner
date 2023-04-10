@@ -7,12 +7,12 @@ def main(request):
     return render(request, 'main/main.html')
 
 def all_dishes(request):
-    categories_list = Category.objects.all()
+    categories_list = Category.objects.filter(is_deleted=False)
     show_categories = categories_list
     return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
 
 def category_dishes(request, category_id):
-    categories_list = Category.objects.all()
+    categories_list = Category.objects.filter(is_deleted=False)
     show_categories = [Category.objects.get(id=category_id)]
     return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
 

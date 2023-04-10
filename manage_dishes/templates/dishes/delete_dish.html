@@ -5,6 +5,7 @@
 <form action="{% url 'delete_dish' id=dish.id %}" method="POST">
     {% csrf_token %}
     <p>are you sure you want to delete this dish?</p>
+    <p>(Information is preserved in database for archival integrity, but is otherwise inaccessible to staff and cannot be retrieved)</p>
     <input type="submit" value="Yes"> <a href="{% url 'show_dishes' %}"><button type="button">No</button></a>
 </form>
 {% endblock dishes-content %}

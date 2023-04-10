@@ -5,9 +5,11 @@
 {% for category in all_categories %}
     <p>{{category.name}}:</p>
     {% for dish in category.dish_set.all %}
-        <p>Name: {{dish.name}}</p>
-        <a href="{% url 'edit_dish' id=dish.id %}">edit dish</a>
-        <a href="{% url 'delete_dish' id=dish.id %}">delete dish</a>
+        {% if dish.is_deleted == False %}
+            <p>Name: {{dish.name}}</p>
+            <a href="{% url 'edit_dish' id=dish.id %}">edit dish</a>
+            <a href="{% url 'delete_dish' id=dish.id %}">delete dish</a>
+        {% endif %}
     {% endfor %}
 {% endfor %}
 

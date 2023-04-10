@@ -5,7 +5,7 @@ from .forms import DishForm
 
 @staff_member_required(login_url='backoffice_login')
 def show_dishes(request):
-    all_categories = Category.objects.all()
+    all_categories = Category.objects.filter(is_deleted=False)
     return render(request, 'dishes/show_dishes.html', {'all_categories':all_categories})
 
 @staff_member_required(login_url='backoffice_login')
@@ -33,6 +33,7 @@ def edit_dish(request, id):
 def delete_dish(request, id):
     dish = Dish.objects.get(id=id)
     if request.method == 'POST':
-        dish.delete()
+        dish.is_deleted = True
+        dish.save()
         return redirect('show_dishes')
     return render(request, 'dishes/delete_dish.html', {'dish':dish})

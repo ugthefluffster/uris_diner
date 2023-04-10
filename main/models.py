@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=200, blank=False, unique=True)
     image = models.CharField(max_length=500)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -16,6 +17,7 @@ class Dish(models.Model):
     is_gluten_free = models.BooleanField(default=False)
     is_vegeterian = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

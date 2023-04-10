@@ -5,7 +5,7 @@ from .forms import CategoryForm
 
 @staff_member_required(login_url='backoffice_login')
 def show_categories(request):
-    all_categories = Category.objects.all()
+    all_categories = Category.objects.filter(is_deleted=False)
     return render(request, 'categories/show_categories.html', {'all_categories':all_categories})
 
 @staff_member_required(login_url='backoffice_login')
@@ -33,7 +33,11 @@ def edit_category(request, id):
 def delete_category(request, id):
     category = Category.objects.get(id=id)
     if request.method == 'POST':
-        category.delete()
+        category.is_deleted = True
+        category.save()
+        for dish in category.dish_set.all():
+            dish.is_deleted = True
+            dish.save()
         return redirect('show_categories')
     return render(request, 'categories/delete_category.html', {'category':category})
 
