@@ -47,14 +47,9 @@ def show_user_info(request):
 @login_required(login_url='user_login')
 def change_user_info(request):
     user = request.user
-    form = ChangeInfoForm(
-        instance=user,
-        data={
-            "email":user.email, 
-            "first_name":user.first_name, 
-            "last_name":user.last_name})
+    form = ChangeInfoForm(instance=user)
     if request.method=='POST':
-        form=ChangeInfoForm(instance=user, data=request.POST)
+        form=ChangeInfoForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             return redirect('show_user_info')
