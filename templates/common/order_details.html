@@ -1,4 +1,5 @@
 <div>
+    <h5>Order number: {{order.delivery.order_id}}</h5>
     <div>Made in {{order.delivery.created}}</div>
     <div>Sent to {{order.delivery.address}}</div>
         {% for item in order.item_set.all %}
@@ -8,6 +9,6 @@
                 </div>
             </div>
         {% endfor %}
-    <div>Comments: {{order.delivery.comment}}</div>
     <div>Total: {{order.total_to_pay}}$</div>
+    <div>Comments: {{order.delivery.comment}}</div>
 </div>

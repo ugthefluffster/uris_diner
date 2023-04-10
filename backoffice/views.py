@@ -25,9 +25,15 @@ def backoffice_logout(request):
 
 @staff_member_required(login_url='backoffice_login')
 def manage_orders(request):
-    all_orders = Cart.objects.all()
+    orders_list = sorted(Cart.objects.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created)
     if request.method == 'POST':
         fulfilled_order = Delivery.objects.get(order_id=request.POST['order_id'])
         fulfilled_order.is_delivered = True
         fulfilled_order.save()
-    return render(request, 'backoffice/manage_orders.html', {'all_orders':all_orders})
+        return redirect('manage_orders')
+    return render(request, 'backoffice/manage_orders.html', {'orders_list':orders_list, 'page':'Open Orders'})
+
+@staff_member_required(login_url='backoffice_login')
+def show_orders_history(request):
+    orders_list = sorted(Cart.objects.filter(delivery__is_delivered=True), key=lambda order: order.delivery.created, reverse=True)
+    return render(request, 'backoffice/manage_orders.html', {'orders_list':orders_list, 'page':'Orders History'})

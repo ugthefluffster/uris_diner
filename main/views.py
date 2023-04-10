@@ -35,5 +35,6 @@ def fill_order(request):
 
 @login_required(login_url='user_login')
 def show_delivery(request):
-    open_deliveries = Delivery.objects.filter(order__user=request.user).filter(is_delivered=False)    
-    return render(request, 'main/delivery.html', {'open_deliveries':open_deliveries})
+    open_orders = Delivery.objects.filter(order__user=request.user).filter(is_delivered=False)  
+    open_orders = sorted(request.user.cart_set.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created)   
+    return render(request, 'main/delivery.html', {'open_orders':open_orders})

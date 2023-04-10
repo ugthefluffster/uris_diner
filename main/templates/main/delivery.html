@@ -1,15 +1,8 @@
 {% extends 'main/layout.html' %}
 {% block title %}Delivery{% endblock title %}
 {% block main-content %}
-{{request.user.username}}
-{% for delivery in open_deliveries %}
-<div>
-    {{delivery.created}}
-    {{delivery.order_id}}
-    {% for item in  delivery.order.item_set.all %}
-        {{item.dish}} {{item.amount}}
-    {% endfor %}
-    total: {{delivery.order.total_to_pay}}
-</div>
+<h4>Your active orders information</h4>
+{% for order in open_orders %}
+    {% include 'common/order_details.html' %}
 {% endfor %}
 {% endblock main-content %}

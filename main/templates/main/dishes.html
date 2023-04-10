@@ -16,7 +16,7 @@
     <h4>{{category.name}}</h4>
     {% for dish in category.dish_set.all %} 
       {% if dish.is_deleted == False %}
-        {{dish.name}} 
+        {% include 'common/dish_details.html' %}
         <form action="{% url 'add_to_cart' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="dish_id" value="{{dish.id}}">

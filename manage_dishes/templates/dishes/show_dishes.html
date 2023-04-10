@@ -1,12 +1,13 @@
 {% extends 'dishes/layout.html' %}
 {% block title %}Manage Dishes{% endblock title %}
 {% block dishes-content %}
+
 <a href="{% url 'add_dish' %}">add dish</a>
 {% for category in all_categories %}
-    <p>{{category.name}}:</p>
+    <h4>{{category.name}}:</h4>
     {% for dish in category.dish_set.all %}
         {% if dish.is_deleted == False %}
-            <p>Name: {{dish.name}}</p>
+            {% include 'common/dish_details.html' %}
             <a href="{% url 'edit_dish' id=dish.id %}">edit dish</a>
             <a href="{% url 'delete_dish' id=dish.id %}">delete dish</a>
         {% endif %}

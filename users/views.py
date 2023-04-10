@@ -69,5 +69,5 @@ def change_user_password(request):
 
 @login_required(login_url='user_login')
 def user_history(request):
-    past_orders = request.user.cart_set.filter(delivery__is_delivered=True) 
+    past_orders = sorted(request.user.cart_set.filter(delivery__is_delivered=True), key=lambda order: order.delivery.created, reverse=True) 
     return render(request, 'users/history.html', {'past_orders':past_orders})

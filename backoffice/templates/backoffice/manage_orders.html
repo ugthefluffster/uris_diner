@@ -1,13 +1,14 @@
 {% extends 'backoffice/layout.html' %}
 {% block title %}Manage Orders{% endblock title %}
 {% block backoffice-content %}
-
-{% for order in all_orders %}
+<h3>{{page}}</h3>
+{% for order in orders_list %}
+    <div>Made by: {{order.user.first_name}} {{order.user.last_name}}</div>
     {% include 'common/order_details.html' %}
     {% if order.delivery.is_delivered is False %}
     <form action="{% url 'manage_orders' %}" method="POST">
         {% csrf_token %}
-        <input type="hidden" name="order_id" value="{{delivery.order_id}}">
+        <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">
         <input type="submit" value="fulfill">
     </form>
     {% endif %}

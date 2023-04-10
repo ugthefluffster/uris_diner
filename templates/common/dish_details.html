@@ -1,0 +1,10 @@
+<div>{{dish.name}}</div>
+<div>{{dish.price}}$</div>
+<div>{{dish.image}}</div>
+<div>{{dish.description}}</div>
+{% if dish.is_gluten_free %}
+    <div>Gluten free</div>
+{% endif %}
+{% if dish.is_vegeterian %}
+    <div>Vegeterian</div>
+{% endif %}
