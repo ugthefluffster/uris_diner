@@ -6,7 +6,8 @@
 <div>First name: {{request.user.first_name}}</div>
 <div>Last name: {{request.user.last_name}}</div>
 <div>Email address: {{request.user.email}}</div>
-
+<a href="{% url 'change_user_info' %}">Change user info</a>
+<a href="{% url 'change_user_password' %}">Change password</a>
 
 
 {% endblock users-content %}

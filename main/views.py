@@ -7,15 +7,14 @@ def main(request):
     return render(request, 'main/main.html')
 
 def all_dishes(request):
-    dishes_list = Dish.objects.all()
     categories_list = Category.objects.all()
-    return render(request, 'main/dishes.html', {'dishes_list':dishes_list, 'categories_list':categories_list})
+    show_categories = categories_list
+    return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
 
 def category_dishes(request, category_id):
-    chosen_category = Category.objects.get(id=category_id)
-    dishes_list = chosen_category.dish_set.all()
     categories_list = Category.objects.all()
-    return render(request, 'main/dishes.html', {'dishes_list':dishes_list, 'categories_list':categories_list})
+    show_categories = [Category.objects.get(id=category_id)]
+    return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
 
 @login_required(login_url='user_login')
 def fill_order(request):

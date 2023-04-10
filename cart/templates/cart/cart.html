@@ -19,6 +19,9 @@
     
 {% endfor %}
 <p>total: {{cart.total_to_pay}}</p>
-<a href="{% url 'fill_order' %}">make order</a>
+{% if cart.total_to_pay > 0 %}
+    <a href="{% url 'fill_order' %}">make order</a> 
+{% endif %}
+
 
 {% endblock cart-content %}

@@ -1,6 +1,10 @@
 {% extends 'base_layout.html' %}
 {% block content %}
 
+{% if request.user.is_staff == True %}
+    {% include 'users/user_menu.html' %}
+{% endif %}
+
 {% block backoffice-content %}
 {% endblock backoffice-content %}
 

@@ -1,6 +1,10 @@
 {% extends 'base_layout.html' %}
 {% block content %}
 
+{% if request.user.username %}
+    {% include 'users/user_menu.html' %}
+{% endif %}
+
 {% block users-content %}
 {% endblock users-content %}
 
