@@ -6,7 +6,7 @@ from main.models import *
 
 def backoffice_login(request):
     if request.user.is_authenticated and request.user.is_staff==True:
-        return redirect('manage_deliveries')
+        return redirect('manage_orders')
     form = AuthenticationForm()
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -15,7 +15,7 @@ def backoffice_login(request):
             login(request, user)
             if request.POST['next']:
                 return redirect(request.POST['next'])
-            return redirect('manage_deliveries')
+            return redirect('manage_orders')
     return render(request, 'backoffice/staff_login.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
@@ -24,10 +24,10 @@ def backoffice_logout(request):
     return redirect('main')
 
 @staff_member_required(login_url='backoffice_login')
-def manage_deliveries(request):
-    all_deliveries = Delivery.objects.all()
+def manage_orders(request):
+    all_orders = Cart.objects.all()
     if request.method == 'POST':
-        fulfilled_delivery = Delivery.objects.get(order_id=request.POST['order_id'])
-        fulfilled_delivery.is_delivered = True
-        fulfilled_delivery.save()
-    return render(request, 'backoffice/manage_deliveries.html', {'all_deliveries':all_deliveries})
+        fulfilled_order = Delivery.objects.get(order_id=request.POST['order_id'])
+        fulfilled_order.is_delivered = True
+        fulfilled_order.save()
+    return render(request, 'backoffice/manage_orders.html', {'all_orders':all_orders})

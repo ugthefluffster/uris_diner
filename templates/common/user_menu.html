@@ -2,7 +2,7 @@
 logged in as {{request.user.username}}
 <a href="{% url 'all_dishes' %}">Menu</a>
 {% if request.user.is_staff == True %}
-    <a href="{% url 'manage_deliveries' %}">Manage Deliveries</a>
+    <a href="{% url 'manage_orders' %}">Manage Orders</a>
     <a href="{% url 'show_categories' %}">Manage Categories</a>
     <a href="{% url 'show_dishes' %}">Manage Dishes</a>
 {% else %}

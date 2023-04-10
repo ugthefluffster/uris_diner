@@ -1,0 +1,17 @@
+{% extends 'backoffice/layout.html' %}
+{% block title %}Manage Orders{% endblock title %}
+{% block backoffice-content %}
+
+{% for order in all_orders %}
+    {% include 'common/order_details.html' %}
+    {% if order.delivery.is_delivered is False %}
+    <form action="{% url 'manage_orders' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="order_id" value="{{delivery.order_id}}">
+        <input type="submit" value="fulfill">
+    </form>
+    {% endif %}
+{% endfor %}
+
+{% endblock backoffice-content %}
+

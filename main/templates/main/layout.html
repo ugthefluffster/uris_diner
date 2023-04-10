@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if request.user.username %}
-    {% include 'users/user_menu.html' %}
+    {% include 'common/user_menu.html' %}
 {% else %}
     <a href="{% url 'user_login' %}">Log In</a>
     <a href="{% url 'user_signup' %}">Sign up</a>

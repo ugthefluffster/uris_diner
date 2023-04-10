@@ -6,13 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="{% static 'styles/materialize.css' %}" />
-    <link rel="stylesheet" href="{% static 'styles/custom.css' %}" /> -->
+  <link rel="stylesheet" href="{% static 'styles/custom.css' %}" /> 
+  <link type="text/css"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet" media="screen,projection" />
+   <script type="text/javascript"
+    src="{% static 'js/materialize.js' %}"></script> -->
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
     {% block content %} {% endblock content %}
-    <!-- <script
-      type="text/javascript"
-      src="{% static 'js/materialize.js' %}"></script> -->
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        M.AutoInit();
+      });
+    </script> -->
   </body>
 </html>

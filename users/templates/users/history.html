@@ -1,11 +1,8 @@
 {% extends 'users/layout.html' %}
 {% block title %}History{% endblock title %}
 {% block users-content %}
-{{request.user.username}}
+<h4>Your order history</h4>
 {% for order in past_orders %}
-    <div>
-        {{order.delivery.created}}
-        {{order.item_set.all}}
-    </div>
+    {% include 'common/order_details.html' %}
 {% endfor %}
 {% endblock users-content %}

@@ -40,6 +40,11 @@ class Item(models.Model):
 
     def __str__(self):
         return f"{self.cart} {self.dish.name}({self.amount})"
+    
+    @property
+    def item_total(self):
+        total = self.amount * self.dish.price
+        return total
 
 class Delivery(models.Model):
     is_delivered = models.BooleanField(default=False)

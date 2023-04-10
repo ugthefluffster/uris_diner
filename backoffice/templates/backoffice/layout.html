@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if request.user.is_staff == True %}
-    {% include 'users/user_menu.html' %}
+    {% include 'common/user_menu.html' %}
 {% endif %}
 
 {% block backoffice-content %}
