@@ -1,0 +1,10 @@
+{% extends 'dishes/layout.html' %}
+{% block title %}Manage Dishes{% endblock title %}
+{% block dishes-content %}
+<a href="">add dish</a>
+{% for dish in all_dishes %}
+    <p>Name: {{dish.name}}</p>
+    <a href="">edit dish</a>
+{% endfor %}
+{% endblock dishes-content %}
+

@@ -31,36 +31,3 @@ def manage_deliveries(request):
         fulfilled_delivery.is_delivered = True
         fulfilled_delivery.save()
     return render(request, 'backoffice/manage_deliveries.html', {'all_deliveries':all_deliveries})
-
-@staff_member_required(login_url='backoffice_login')
-def show_categories(request):
-    all_categories = Category.objects.all()
-    return render(request, 'backoffice/show_categories.html', {'all_categories':all_categories})
-
-@staff_member_required(login_url='backoffice_login')
-def add_category(request):
-    pass
-
-@staff_member_required(login_url='backoffice_login')
-def edit_category(request):
-    pass
-
-@staff_member_required(login_url='backoffice_login')
-def delete_category(request):
-    pass
-
-@staff_member_required(login_url='backoffice_login')
-def show_dishes(request):
-    return render(request, 'backoffice/show_dishes.html')
-
-@staff_member_required(login_url='backoffice_login')
-def add_dish(request):
-    pass
-
-@staff_member_required(login_url='backoffice_login')
-def edit_dish(request):
-    pass
-
-@staff_member_required(login_url='backoffice_login')
-def delete_dish(request):
-    pass

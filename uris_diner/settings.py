@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'users',
     'main',
     'cart',
-    'backoffice'
+    'backoffice',
+    'manage_categories',
+    'manage_dishes'
 ]
 
 MIDDLEWARE = [
