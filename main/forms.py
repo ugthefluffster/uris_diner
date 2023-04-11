@@ -1,5 +1,11 @@
 from django import forms
+from django.forms import ModelForm
+from main.models import *
 
-class OrderForm(forms.Form):
-    address = forms.CharField(max_length=500, required=True)
-    comment = forms.CharField(widget=forms.Textarea(), required=False)
+class OrderForm(ModelForm):
+    class Meta:
+        model = Delivery
+        fields = ['address', 'comment']
+        widgets = {
+            'comment': forms.Textarea()
+        }

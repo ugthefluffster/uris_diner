@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from main.models import *
 from .forms import *
+from cart.forms import ItemAmountForm
 
 def main(request):
     return render(request, 'main/main.html')
@@ -9,7 +10,12 @@ def main(request):
 def all_dishes(request):
     categories_list = Category.objects.filter(is_deleted=False)
     show_categories = categories_list
-    return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
+    form = ItemAmountForm()
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'main/dishes.html', {
+        'categories_list':categories_list, 
+        'show_categories':show_categories,
+        'form':rendered_form})
 
 def category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)

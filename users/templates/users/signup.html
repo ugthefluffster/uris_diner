@@ -1,8 +1,7 @@
 {% extends 'users/layout.html' %} 
 {% block title %}Singup{% endblock title %} 
 {% block users-content %}
-<!-- !!!bad -->
-<!-- validate first_name, last_name, email -->
+<!-- !!!good -->
 <form action="{% url 'user_signup' %}" method="POST" novalidate>
   	{% csrf_token %} 
 	{{form}}

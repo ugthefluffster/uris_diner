@@ -37,7 +37,7 @@ class Cart(models.Model):
 class Item(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, blank=False)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=False)
-    amount = models.IntegerField(blank=False, default=1, validators=[MinValueValidator(1), MaxValueValidator(99)])
+    amount = models.IntegerField(blank=False, default=1)
 
     def __str__(self):
         return f"{self.cart} {self.dish.name}({self.amount})"
