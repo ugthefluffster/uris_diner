@@ -1,6 +1,8 @@
 {% extends 'categories/layout.html' %}
 {% block title %}Show Categories{% endblock title %}
 {% block categories-content %}
+<!-- !!!bad -->
+<!-- make image a load image file -->
 <form action="{% url 'edit_category' id=category.id %}" method="POST" novalidate>
     {% csrf_token %}
     {{form}}

@@ -3,14 +3,15 @@
 {% block cart-content %}
 
 {% for item in cart.item_set.all %}
-
+<!-- !!!good -->
     <form action="{% url 'delete_cart_item' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="item_id" value="{{item.id}}">
         {{item.dish.name}} {{item.dish.price}}$ <input type="submit" value="remove">
     </form>
-
-    <form action="{% url 'change_cart_item' %}" method="POST">
+<!-- !!!bad -->
+<!-- implement min value and max value validation on amount -->
+    <form action="{% url 'change_cart_item' %}" method="POST" novalidate>
         {% csrf_token %}
         <input type="hidden" name="item_id" value="{{item.id}}">
         <input type="number" name="amount" min="1" max="99" value="{{item.amount}}">

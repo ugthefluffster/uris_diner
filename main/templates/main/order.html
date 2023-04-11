@@ -1,6 +1,8 @@
 {% extends 'main/layout.html' %}
 {% block title %}Order{% endblock title %}
 {% block main-content %}
+<!-- !!!bad -->
+<!-- change to modelform based on delivery -->
 <form action="{% url 'fill_order' %}" method="POST" novalidate>
     {% csrf_token %}
     {{form}}

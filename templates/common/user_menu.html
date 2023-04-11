@@ -10,7 +10,7 @@ logged in as {{request.user.username}}
     <a href="{% url 'show_cart' %}">My Cart</a>
     <a href="{% url 'show_delivery' %}">My Orders</a>
     <a href="{% url 'user_history' %}">My History</a>
-    <a href="{% url 'show_user_info' %}">Profile</a>
 {% endif %}
+<a href="{% url 'show_user_info' %}">Profile</a>
 <a href="{% url 'user_logout' %}">Log out</a>
 </div>
