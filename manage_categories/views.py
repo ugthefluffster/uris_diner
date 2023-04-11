@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
 from main.models import *
-from .forms import CategoryForm
+from main.forms import *
 
 @staff_member_required(login_url='backoffice_login')
 def show_categories(request):

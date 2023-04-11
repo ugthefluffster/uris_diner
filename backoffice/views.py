@@ -1,8 +1,8 @@
-from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
 from main.models import *
+from main.forms import *
 
 def backoffice_login(request):
     if request.user.is_authenticated and request.user.is_staff==True:

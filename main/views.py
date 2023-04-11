@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from main.models import *
-from .forms import *
-from cart.forms import ItemAmountForm
+from main.forms import *
 
 def main(request):
     return render(request, 'main/main.html')

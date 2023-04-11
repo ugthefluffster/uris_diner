@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from main.models import *
 from django.contrib.auth.decorators import login_required
-from .forms import ItemAmountForm
+from main.models import *
+from main.forms import *
 
 @login_required(login_url='user_login')
 def add_to_cart(request):
