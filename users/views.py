@@ -19,7 +19,8 @@ def user_signup(request):
             new_user_cart.save()
             login(request, new_user)
             return redirect('all_dishes')
-    return render(request, 'users/signup.html', {'form':form})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'users/signup.html', {'form':rendered_form})
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -33,7 +34,8 @@ def user_login(request):
             if request.POST['next']:
                 return redirect(request.POST['next'])
             return redirect('all_dishes')
-    return render(request, 'users/login.html', {'form':form})
+    rendered_form = form.render('main/form_templates/login_form.html')
+    return render(request, 'users/login.html', {'form':rendered_form})
 
 @login_required(login_url='user_login')
 def user_logout(request):
@@ -53,7 +55,8 @@ def change_user_info(request):
         if form.is_valid():
             form.save()
             return redirect('show_user_info')
-    return render(request, 'users/change_info.html', {'form':form})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'users/change_info.html', {'form':rendered_form})
 
 @login_required(login_url='user_login')
 def change_user_password(request):
@@ -65,7 +68,8 @@ def change_user_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect('show_user_info')
-    return render(request, 'users/change_password.html', {'form':form})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'users/change_password.html', {'form':rendered_form})
 
 @login_required(login_url='user_login')
 def user_history(request):

@@ -16,7 +16,8 @@ def backoffice_login(request):
             if request.POST['next']:
                 return redirect(request.POST['next'])
             return redirect('manage_orders')
-    return render(request, 'backoffice/staff_login.html', {'form':form})
+    rendered_form = form.render('main/form_templates/login_form.html')
+    return render(request, 'backoffice/staff_login.html', {'form':rendered_form})
 
 @staff_member_required(login_url='backoffice_login')
 def backoffice_logout(request):

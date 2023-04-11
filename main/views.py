@@ -31,7 +31,8 @@ def fill_order(request):
             new_cart = Cart(user = request.user)
             new_cart.save()
             return redirect('show_delivery')
-    return render(request, 'main/order.html', {'form':form})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'main/order.html', {'form':rendered_form})
 
 @login_required(login_url='user_login')
 def show_delivery(request):

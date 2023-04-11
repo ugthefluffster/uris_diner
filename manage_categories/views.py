@@ -16,7 +16,8 @@ def add_category(request):
         if form.is_valid():
             form.save()
             return redirect('show_categories')
-    return render(request, 'categories/add_category.html', {'form':form})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'categories/add_category.html', {'form':rendered_form})
 
 @staff_member_required(login_url='backoffice_login')
 def edit_category(request, id):
