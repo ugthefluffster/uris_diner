@@ -7,7 +7,7 @@ logged in as {{request.user.username}}
     <a href="{% url 'show_categories' %}">Manage Categories</a>
     <a href="{% url 'show_dishes' %}">Manage Dishes</a>
 {% else %}
-    <a href="{% url 'show_cart' %}">My Cart</a>
+    <a href="{% url 'show_cart' %}">My Cart ({{request.user.cart_set.last.item_set.all|length}})</a>
     <a href="{% url 'show_delivery' %}">My Orders</a>
     <a href="{% url 'user_history' %}">My History</a>
 {% endif %}

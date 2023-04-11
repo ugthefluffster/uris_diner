@@ -49,6 +49,6 @@ class Item(models.Model):
 class Delivery(models.Model):
     is_delivered = models.BooleanField(default=False)
     address = models.CharField(max_length=500, blank=False)
-    comment = models.CharField(max_length=500, blank=False)
+    comment = models.CharField(max_length=500, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     order = models.OneToOneField(Cart, primary_key=True, on_delete=models.CASCADE)
