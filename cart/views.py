@@ -9,8 +9,8 @@ def add_to_cart(request):
         cart = request.user.cart_set.last()
         new_item = Item(
             dish = dish, 
-            cart=cart,
-            amount=request.POST['amount'])
+            cart = cart,
+            amount = request.POST['amount'])
         new_item.save()
     return redirect('all_dishes')
 

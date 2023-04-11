@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Category(models.Model):
-    name = models.CharField(max_length=200, blank=False, unique=True)
+    name = models.CharField(max_length=100, blank=False, unique=True)
     image = models.CharField(max_length=500)
     is_deleted = models.BooleanField(default=False)
 
@@ -10,7 +11,7 @@ class Category(models.Model):
         return self.name
 
 class Dish(models.Model):
-    name = models.CharField(max_length=500, blank=False)
+    name = models.CharField(max_length=200, blank=False)
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=False)
     description = models.TextField(blank=False)
     image = models.CharField(max_length=500)
@@ -36,7 +37,7 @@ class Cart(models.Model):
 class Item(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, blank=False)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, blank=False)
-    amount = models.IntegerField(blank=False, default=1)
+    amount = models.IntegerField(blank=False, default=1, validators=[MinValueValidator(1), MaxValueValidator(99)])
 
     def __str__(self):
         return f"{self.cart} {self.dish.name}({self.amount})"
@@ -49,6 +50,6 @@ class Item(models.Model):
 class Delivery(models.Model):
     is_delivered = models.BooleanField(default=False)
     address = models.CharField(max_length=500, blank=False)
-    comment = models.TextField(blank=True)
+    comment = models.CharField(max_length=500, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     order = models.OneToOneField(Cart, primary_key=True, on_delete=models.CASCADE)

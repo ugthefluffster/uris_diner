@@ -28,7 +28,8 @@ def edit_dish(request, id):
         if form.is_valid():
             form.save()
             return redirect('show_dishes')
-    return render(request, 'dishes/edit_dish.html', {'form':form, 'dish':dish})
+    rendered_form = form.render('main/form_templates/input_form.html')
+    return render(request, 'dishes/edit_dish.html', {'form':rendered_form, 'dish':dish})
 
 @staff_member_required(login_url='backoffice_login')
 def delete_dish(request, id):
