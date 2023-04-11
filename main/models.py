@@ -26,11 +26,11 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
 
     def __str__(self):
-        return f"{self.user.username}-{self.id}"
+        return f"{self.id}_{self.user.username}"
     
     @property
     def total_to_pay(self):
-        total = sum(item.dish.price*item.amount for item in self.item_set.all())
+        total = sum(item.item_total for item in self.item_set.all())
         return total
 
 class Item(models.Model):
