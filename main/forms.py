@@ -27,12 +27,18 @@ class OrderForm(ModelForm):
 class DishForm(ModelForm):
     class Meta:
         model = Dish
-        fields = ['name', 'price', 'description', 'image', 'is_gluten_free', 'is_vegeterian', 'category']
+        fields = ['name', 'price', 'description', 'is_gluten_free', 'is_vegeterian', 'category', 'image_Url', 'image_file']
+        help_texts = {
+            'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
+        }
 
 class CategoryForm(ModelForm):
     class Meta:
         model = Category
-        fields = ['name', 'image']
+        fields = ['name', 'image_Url', 'image_file']
+        help_texts = {
+            'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
+        }
 
 class ItemAmountForm(forms.Form):
     amount = forms.IntegerField(max_value=99, min_value=1, initial=1)

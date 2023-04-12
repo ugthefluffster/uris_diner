@@ -12,7 +12,7 @@ def show_dishes(request):
 def add_dish(request):
     form = DishForm()
     if request.method == 'POST':
-        form = DishForm(request.POST)
+        form = DishForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('show_dishes')
@@ -24,7 +24,7 @@ def edit_dish(request, id):
     dish = Dish.objects.get(id=id)
     form = DishForm(instance=dish)
     if request.method == 'POST':
-        form = DishForm(request.POST, instance=dish)
+        form = DishForm(request.POST, request.FILES, instance=dish)
         if form.is_valid():
             form.save()
             return redirect('show_dishes')

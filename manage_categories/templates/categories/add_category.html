@@ -1,9 +1,8 @@
 {% extends 'categories/layout.html' %}
 {% block title %}Show Categories{% endblock title %}
 {% block categories-content %}
-<!-- !!!bad -->
-<!-- make image a load image file -->
-<form action="{% url 'add_category' %}" method="POST" novalidate>
+<!-- !!!good -->
+<form action="{% url 'add_category' %}" method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{form}}
     <input type="submit" value="add">

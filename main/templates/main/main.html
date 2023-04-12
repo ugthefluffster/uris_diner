@@ -3,7 +3,6 @@
 {% block content %}
 
 <h2>Welcome to Uri's Diner</h2>
-
 <div>
 {% if request.user.username %}
     <h3>Hello, {{request.user.username}}</h3>
@@ -14,5 +13,4 @@
 </div>
 <div><a href="{% url 'all_dishes' %}">Go to restaurant</a></div>
 <div><a href="{% url 'backoffice_login' %}">For staff only</a></div>
-
 {% endblock content %}

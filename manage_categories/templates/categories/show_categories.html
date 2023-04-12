@@ -4,6 +4,13 @@
 <a href="{% url 'add_category' %}">add category</a>
 {% for category in all_categories %}
     <p>Name: {{category.name}}</p>
+    <div>
+        {% if category.image_file %}
+            <img src="/{{category.image_file}}" alt="">
+        {% else %}
+            <img src="{{category.image_Url}}" alt="">
+        {% endif %}
+    </div>
     <a href="{% url 'edit_category' id=category.id %}">edit category</a>
     <a href="{% url 'delete_category' id=category.id %}">delete category</a>
 {% endfor %}

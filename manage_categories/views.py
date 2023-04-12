@@ -12,7 +12,7 @@ def show_categories(request):
 def add_category(request):
     form = CategoryForm()
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('show_categories')
@@ -24,7 +24,7 @@ def edit_category(request, id):
     category = Category.objects.get(id=id)
     form = CategoryForm(instance=category)
     if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=category)
+        form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid():
             form.save()
             return redirect('show_categories')
