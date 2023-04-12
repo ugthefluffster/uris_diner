@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from main.models import *
 from main.forms import *
 
 def main(request):
+    # messages.info(request, 'Hi there')
     return render(request, 'main/main.html')
 
 def all_dishes(request):

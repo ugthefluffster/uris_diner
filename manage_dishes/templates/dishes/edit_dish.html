@@ -1,8 +1,7 @@
 {% extends 'dishes/layout.html' %}
 {% block title %}Manage Dishes{% endblock title %}
 {% block dishes-content %}
-<!-- !!!bad -->
-<!-- deleted categories appear in category options -->
+<!-- !!!good -->
 <form action="{% url 'edit_dish' id=dish.id %}" method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{form}}

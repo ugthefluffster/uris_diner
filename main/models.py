@@ -22,7 +22,7 @@ class Dish(models.Model):
     description = models.TextField(blank=False)
     is_gluten_free = models.BooleanField(default=False)
     is_vegeterian = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, limit_choices_to={'is_deleted':False})
     is_deleted = models.BooleanField(default=False)
     image_Url = models.CharField(max_length=1000, null=True, blank=True)
     image_file = models.ImageField(upload_to=dish_image_path, null=True, blank=True)
