@@ -3,7 +3,6 @@
 {% block backoffice-content %}
 <h3>{{page}}</h3>
 {% for order in orders_list %}
-    <div>Made by: {{order.user.first_name}} {{order.user.last_name}}</div>
     {% include 'common/order_details.html' %}
     {% if order.delivery.is_delivered is False %}
     <!-- !!!good -->

@@ -5,7 +5,6 @@ from main.models import *
 from main.forms import *
 
 def main(request):
-    # messages.info(request, 'Hi there')
     return render(request, 'main/main.html')
 
 def all_dishes(request):
@@ -37,6 +36,8 @@ def fill_order(request):
             new_delivery.save()
             new_cart = Cart(user = request.user)
             new_cart.save()
+            messages.info(request, 
+                f'Thank you {request.user.first_name.title()}! Your order number {new_delivery.order_id} have been recieved and is on its way.')
             return redirect('show_delivery')
     rendered_form = form.render('main/form_templates/input_form.html')
     return render(request, 'main/order.html', {'form':rendered_form})

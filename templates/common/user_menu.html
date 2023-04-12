@@ -1,5 +1,5 @@
 <div>
-logged in as {{request.user.username}}
+logged in as <strong>{{request.user.username}}</strong>
 <a href="{% url 'all_dishes' %}">Menu</a>
 {% if request.user.is_staff == True %}
     <a href="{% url 'manage_orders' %}">Open Orders</a>

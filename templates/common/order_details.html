@@ -1,5 +1,8 @@
 <div>
-    <h5>Order number: {{order.delivery.order_id}}</h5>
+    <div><strong>Order number: {{order.delivery.order_id}}</strong></div>
+    {% if request.user.is_staff %}
+        <div>Made by: {{order.user.first_name|title}} {{order.user.last_name|title}}</div>
+    {% endif %}
     <div>Made in {{order.delivery.created}}</div>
     <div>Sent to {{order.delivery.address}}</div>
         {% for item in order.item_set.all %}

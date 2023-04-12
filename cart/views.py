@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from main.models import *
 from main.forms import *
 
@@ -9,12 +10,14 @@ def add_to_cart(request):
         form = ItemAmountForm(request.POST)
         if form.is_valid():
             dish = Dish.objects.get(id=request.POST['dish_id'])
+            amount = request.POST['amount']
             cart = request.user.cart_set.last()
             new_item = Item(
                 dish = dish, 
                 cart = cart,
-                amount = request.POST['amount'])
+                amount = amount)
             new_item.save()
+            messages.info(request, f'{amount} X {dish.name} added to cart')
     return redirect('all_dishes')
 
 @login_required(login_url='user_login')
