@@ -11,11 +11,10 @@ def all_dishes(request):
     categories_list = Category.objects.filter(is_deleted=False)
     show_categories = categories_list
     form = ItemAmountForm()
-    rendered_form = form.render('main/form_templates/input_form.html')
     return render(request, 'main/dishes.html', {
         'categories_list':categories_list, 
         'show_categories':show_categories,
-        'form':rendered_form})
+        'form':form})
 
 def category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)
@@ -39,8 +38,7 @@ def fill_order(request):
             messages.info(request, 
                 f'Thank you {request.user.first_name.title()}! Your order number {new_delivery.order_id} have been recieved and is on its way.')
             return redirect('show_delivery')
-    rendered_form = form.render('main/form_templates/input_form.html')
-    return render(request, 'main/order.html', {'form':rendered_form})
+    return render(request, 'main/order.html', {'form':form})
 
 @login_required(login_url='user_login')
 def show_delivery(request):

@@ -16,8 +16,7 @@ def add_category(request):
         if form.is_valid():
             form.save()
             return redirect('show_categories')
-    rendered_form = form.render('main/form_templates/input_form.html')
-    return render(request, 'categories/add_category.html', {'form':rendered_form})
+    return render(request, 'categories/add_category.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
 def edit_category(request, id):
@@ -28,8 +27,7 @@ def edit_category(request, id):
         if form.is_valid():
             form.save()
             return redirect('show_categories')
-    rendered_form = form.render('main/form_templates/input_form.html')
-    return render(request, 'categories/edit_category.html', {'form':rendered_form, 'category':category})
+    return render(request, 'categories/edit_category.html', {'form':form, 'category':category})
 
 @staff_member_required(login_url='backoffice_login')
 def delete_category(request, id):

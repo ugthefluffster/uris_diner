@@ -1,12 +1,12 @@
 {% for field in form %}
+<div 
+{% if field.help_text %}
+    class="tolltipped" data-position="right" data-tooltip="{{field.help_text}}"
+{% endif %}
+>
     <div class="input-field">
         {{field.label_tag}} {{field}}
     </div>
-    {% if field.help_text %}
-        <div>
-            {{field.help_text}}
-        </div>
-    {% endif %}
     {% for error in field.errors %}
         <div>
             {{error}}

@@ -16,8 +16,8 @@ def add_dish(request):
         if form.is_valid():
             form.save()
             return redirect('show_dishes')
-    rendered_form = form.render('main/form_templates/input_form.html')
-    return render(request, 'dishes/add_dish.html', {'form':rendered_form})
+
+    return render(request, 'dishes/add_dish.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
 def edit_dish(request, id):
@@ -28,8 +28,7 @@ def edit_dish(request, id):
         if form.is_valid():
             form.save()
             return redirect('show_dishes')
-    rendered_form = form.render('main/form_templates/input_form.html')
-    return render(request, 'dishes/edit_dish.html', {'form':rendered_form, 'dish':dish})
+    return render(request, 'dishes/edit_dish.html', {'form':form, 'dish':dish})
 
 @staff_member_required(login_url='backoffice_login')
 def delete_dish(request, id):

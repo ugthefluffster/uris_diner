@@ -1,20 +1,59 @@
 {% for field in form %}
-    <div class="input-field">
-        {{field.label_tag}} {{field}}
-    </div>
-    {% if field.help_text %}
-        <div>
-            {{field.help_text}}
-        </div>
-    {% endif %}
-    {% for error in field.errors %}
-        <div>
-            {{error}}
-        </div>
-    {% endfor %}
-{% endfor %}
+
+	<div 
+		{% if field.help_text %}
+		class="tooltipped" data-position="bottom" data-tooltip="{{field.help_text}}"
+		{% endif %}
+	>
+		{% if field.widget_type == 'checkbox' %}
+			<p>
+				<label>
+					<input type="checkbox" class="filled-in" name="{{field.name}}"
+					{% if field.initial == True %}    
+						checked="checked"              
+					{% endif %}/>
+					<span>{{field.label}}</span>
+				</label>
+			</p>
+			
+		{% elif field.widget_type == 'select' %}
+			<div>
+				{{field.label_tag}} {{field}}
+			</div>
+
+		{% elif field.widget_type == 'file' %}
+			{% if form.instance.id != None %}
+				<p>Current image:</p>
+				<div>
+					{% if form.instance.image_file %}
+						<img src="/{{form.instance.image_file}}" alt="">
+					{% else %}
+						<img src="{{form.instance.image_Url}}" alt="">
+					{% endif %}
+				</div>
+			{% endif %}
+			<div class="file-field input-field">
+				<div class="btn my-btn"><span>{{field.label}}</span></div>
+					{{field}}
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+
+		{% else %}
+			<div class="input-field">
+				{{field.label_tag}} {{field}}
+			</div>
+
+		{% endif %}
+
+		{% for error in field.errors %}
+		<div class="red-text">{{error}}</div>
+		{% endfor %} 
+	</div>
+
+{% endfor %} 
+
 {% for error in form.non_field_errors %}
-    <div>
-        {{error}}
-    </div>
+  <div>{{error}}</div>
 {% endfor %}
