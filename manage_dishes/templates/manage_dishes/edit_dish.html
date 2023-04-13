@@ -1,5 +1,4 @@
 {% extends 'layouts/manage_dishes.html' %}
-{% block title %}Manage Dishes{% endblock title %}
 {% block dishes-content %}
 <!-- !!!good -->
 <form action="{% url 'edit_dish' id=dish.id %}" method="POST" enctype="multipart/form-data" novalidate>

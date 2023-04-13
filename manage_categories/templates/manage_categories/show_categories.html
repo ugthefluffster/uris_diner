@@ -1,5 +1,4 @@
 {% extends 'layouts/manage_categories.html' %}
-{% block title %}Show Categories{% endblock title %}
 {% block categories-content %}
 <a href="{% url 'add_category' %}">add category</a>
 {% for category in all_categories %}

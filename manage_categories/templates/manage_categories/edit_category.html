@@ -1,5 +1,4 @@
 {% extends 'layouts/manage_categories.html' %}
-{% block title %}Show Categories{% endblock title %}
 {% block categories-content %}
 <!-- !!!good -->
 <form action="{% url 'edit_category' id=category.id %}" method="POST" enctype="multipart/form-data" novalidate>
