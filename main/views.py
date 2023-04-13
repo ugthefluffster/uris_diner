@@ -5,7 +5,7 @@ from main.models import *
 from main.forms import *
 
 def main(request):
-    return render(request, 'main/main.html')
+    return render(request, 'main/landing.html')
 
 def all_dishes(request):
     categories_list = Category.objects.filter(is_deleted=False)

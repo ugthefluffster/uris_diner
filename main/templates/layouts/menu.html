@@ -1,6 +1,6 @@
-{% extends 'main/layout.html' %} 
+{% extends 'layouts/base_layout.html' %} 
 {% block title %}Menu{% endblock title %} 
-{% block main-content %}
+{% block content %}
 
 {% if messages %}
   <div class="messages">
@@ -23,4 +23,4 @@
 {% block menu-content %}  
 {% endblock menu-content %}
 
-{% endblock main-content %}
+{% endblock content %}

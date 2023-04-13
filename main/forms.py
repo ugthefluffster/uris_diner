@@ -4,13 +4,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
 
 class CustomPasswordChangeForm(PasswordChangeForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     
 class CustomUserCreationForm(UserCreationForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)
     last_name = forms.CharField(label="Last name", max_length=150, required=True)
     email = forms.EmailField(label="Email address", required=True)
@@ -18,7 +18,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields +("email", "first_name", "last_name")
 
 class ChangeInfoForm(forms.ModelForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)
     last_name = forms.CharField(label="Last name", max_length=150, required=True)
     email = forms.EmailField(label="Email address", required=True)
@@ -27,14 +27,14 @@ class ChangeInfoForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email"]
 
 class OrderForm(ModelForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     class Meta:
         model = Delivery
         fields = ['address', 'comment']
         widgets = {'comment': forms.Textarea()}
 
 class DishForm(ModelForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     class Meta:
         model = Dish
         fields = ['name', 'price', 'description', 'is_gluten_free', 'is_vegeterian', 'category', 'image_file', 'image_Url']
@@ -52,7 +52,7 @@ class DishForm(ModelForm):
         }
 
 class CategoryForm(ModelForm):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     class Meta:
         model = Category
         fields = ['name', 'image_file', 'image_Url']
@@ -64,5 +64,5 @@ class CategoryForm(ModelForm):
         }
 
 class ItemAmountForm(forms.Form):
-    template_name = "main/form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     amount = forms.IntegerField(max_value=99, min_value=1, initial=1)
