@@ -9,17 +9,20 @@ def main(request):
 
 def all_dishes(request):
     categories_list = Category.objects.filter(is_deleted=False)
-    show_categories = categories_list
     form = ItemAmountForm()
-    return render(request, 'main/dishes.html', {
+    return render(request, 'main/all_dishes.html', {
         'categories_list':categories_list, 
-        'show_categories':show_categories,
         'form':form})
 
 def category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)
-    show_categories = [Category.objects.get(id=category_id)]
-    return render(request, 'main/dishes.html', {'categories_list':categories_list, 'show_categories':show_categories})
+    category = Category.objects.get(id=category_id)
+    show_dishes = Dish.objects.filter(category=category, is_deleted=False)
+    form = ItemAmountForm()
+    return render(request, 'main/category_dishes.html', {
+        'categories_list':categories_list, 
+        'show_dishes':show_dishes, 
+        'form':form})
 
 @login_required(login_url='user_login')
 def fill_order(request):

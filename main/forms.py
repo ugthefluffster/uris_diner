@@ -3,6 +3,12 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from main.models import *
 
+class CustomAuthenticationForm(AuthenticationForm):
+    template_name = "main/form_templates/input_form.html"
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    template_name = "main/form_templates/input_form.html"
+    
 class CustomUserCreationForm(UserCreationForm):
     template_name = "main/form_templates/input_form.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)

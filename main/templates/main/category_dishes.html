@@ -1,0 +1,31 @@
+{% extends 'main/menu_layout.html' %} 
+{% block title %}Menu{% endblock title %} 
+
+{% block menu-content %}
+
+<div>
+  <h4>Dishes:</h4>
+    {% for dish in show_dishes %} 
+      <a class="modal-trigger" href="#{{dish.name}}">
+        <h5>{{dish.name}}</h5>
+      <div>
+        {% if dish.image_file %}
+            <img src="/{{dish.image_file}}" alt="">
+        {% else %}
+            <img src="{{dish.image_Url}}" alt="">
+        {% endif %}
+      </div>
+    </a>
+      <div id="{{dish.name}}" class="modal">
+        {% include 'common/dish_details.html' %}
+        <!-- !!!good -->
+        <form action="{% url 'add_to_cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="dish_id" value="{{dish.id}}">
+            {{form}}
+            <input type="submit" value="add">
+        </form>
+      </div>
+    {% endfor %}
+</div>
+{% endblock menu-content %}

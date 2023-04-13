@@ -24,9 +24,9 @@ def user_signup(request):
 def user_login(request):
     if request.user.is_authenticated:
         return redirect('all_dishes')
-    form = AuthenticationForm()
+    form = CustomAuthenticationForm()
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -58,9 +58,9 @@ def change_user_info(request):
 @login_required(login_url='user_login')
 def change_user_password(request):
     user = request.user
-    form = PasswordChangeForm(user)
+    form = CustomPasswordChangeForm(user)
     if request.method=='POST':
-        form = PasswordChangeForm(user, data=request.POST)
+        form = CustomPasswordChangeForm(user, data=request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
