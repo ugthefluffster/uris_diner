@@ -14,7 +14,7 @@
 
 <div>
   <h4>Categories:</h4>
-  <a href="{% url 'all_dishes' %}">All Dishes</a>
+  <a href="{% url 'all_dishes' %}">All Categories</a>
   {% for category in categories_list %} 
     <a href="{% url 'category_dishes' category_id=category.id %}">{{category}} </a>
   {% endfor %}
