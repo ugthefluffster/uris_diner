@@ -6,7 +6,7 @@ from main.forms import *
 @staff_member_required(login_url='backoffice_login')
 def show_categories(request):
     all_categories = Category.objects.filter(is_deleted=False)
-    return render(request, 'categories/show_categories.html', {'all_categories':all_categories})
+    return render(request, 'manage_categories/show_categories.html', {'all_categories':all_categories})
 
 @staff_member_required(login_url='backoffice_login')
 def add_category(request):
@@ -16,7 +16,7 @@ def add_category(request):
         if form.is_valid():
             form.save()
             return redirect('show_categories')
-    return render(request, 'categories/add_category.html', {'form':form})
+    return render(request, 'manage_categories/add_category.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
 def edit_category(request, id):
@@ -27,7 +27,7 @@ def edit_category(request, id):
         if form.is_valid():
             form.save()
             return redirect('show_categories')
-    return render(request, 'categories/edit_category.html', {'form':form, 'category':category})
+    return render(request, 'manage_categories/edit_category.html', {'form':form, 'category':category})
 
 @staff_member_required(login_url='backoffice_login')
 def delete_category(request, id):
@@ -39,5 +39,5 @@ def delete_category(request, id):
             dish.is_deleted = True
             dish.save()
         return redirect('show_categories')
-    return render(request, 'categories/delete_category.html', {'category':category})
+    return render(request, 'manage_categories/delete_category.html', {'category':category})
 

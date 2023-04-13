@@ -7,9 +7,9 @@ from main.forms import *
 def backoffice_login(request):
     if request.user.is_authenticated and request.user.is_staff==True:
         return redirect('manage_orders')
-    form = AuthenticationForm()
+    form = CustomAuthenticationForm()
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)

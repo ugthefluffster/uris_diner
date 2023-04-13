@@ -6,7 +6,8 @@
 <div>
   <h4>Dishes:</h4>
   {% for category in categories_list %}
-    <h4><a href="{% url 'category_dishes' category_id=category.id %}">{{category.name}} </a></h4>
+  <a href="{% url 'category_dishes' category_id=category.id %}">
+    <h4>{{category.name}} </h4>
     <div>
       {% if category.image_file %}
           <img src="/{{category.image_file}}" alt="">
@@ -14,6 +15,7 @@
           <img src="{{category.image_Url}}" alt="">
       {% endif %}
   </div>
+</a>
   {% endfor %}
 
 </div>
