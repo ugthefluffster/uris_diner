@@ -2,39 +2,39 @@
   background-image: url("../images/background.jpg");
 } */
 
-main {
+/* main {
   padding-left: 300px;
-}
+} */
 
-@media only screen and (max-width: 992px) {
+/* @media only screen and (max-width: 992px) {
   main {
     padding-left: 0;
   }
-}
+} */
 
-#toast-container {
+/* #toast-container {
   top: 0%;
   left: 45vw;
   right: auto;
-}
+} */
 
-.toast {
+/* .toast {
   background-color: #448aff;
-}
+} */
 
-.collection a.collection-item {
+/* .collection a.collection-item {
   color: rgba(0, 0, 0, 0.87);
-}
+} */
 
-.no-link {
+/* .no-link {
   cursor: default;
-}
+} */
 
-.sidenav .divider {
+/* .sidenav .divider {
   margin: 0px 0 0 0;
-}
+} */
 
-.my-btn {
+/* .my-btn {
   background-color: #1565c0;
 }
 .my-btn:hover {
@@ -52,47 +52,47 @@ main {
 }
 .notice-btn:focus {
   background-color: #ef5350;
-}
+} */
 
 /* label color */
-.input-field label {
+/* .input-field label {
   color: #000;
-}
+} */
 /* label focus color */
-.input-field input[type="text"]:focus + label {
+/* .input-field input[type="text"]:focus + label {
   color: #000;
-}
+} */
 /* label underline focus color */
-.input-field input:focus,
+/* .input-field input:focus,
 textarea.materialize-textarea:focus {
   border-bottom: 1px solid #000 !important;
   box-shadow: 0 1px 0 0 #000 !important;
-}
+} */
 /* valid color */
-.input-field input[type="text"].valid {
+/* .input-field input[type="text"].valid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
-}
+} */
 /* invalid color */
-.input-field input[type="text"].invalid {
+/* .input-field input[type="text"].invalid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
-}
-/* icon prefix focus color */
+} */
+/* icon prefix focus color
 .input-field .prefix.active {
   color: #000;
-}
+} */
 
-[type="checkbox"]:checked + span:not(.lever):before {
+/* [type="checkbox"]:checked + span:not(.lever):before {
   border-right: 2px solid black;
   border-bottom: 2px solid black;
-}
+} */
 
-.material-tooltip {
+/* .material-tooltip {
   text-align: left;
-}
+} */
 
-label {
+/* label {
   font-size: initial;
   color:initial;
-}
+} */
