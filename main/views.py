@@ -22,6 +22,7 @@ def category_dishes(request, category_id):
     return render(request, 'main/category_dishes.html', {
         'categories_list':categories_list, 
         'show_dishes':show_dishes, 
+        'category': category,
         'form':form})
 
 @login_required(login_url='user_login')

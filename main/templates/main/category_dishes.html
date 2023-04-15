@@ -3,13 +3,13 @@
 {% block menu-content %}
 
 <div>
-  <h4>Dishes:</h4>
+  <h4>{{category.name}}</h4>
     {% for dish in show_dishes %} 
       <a class="modal-trigger" href="#{{dish.name}}">
         <h5>{{dish.name}}</h5>
       <div>
         {% if dish.image_file %}
-            <img src="/{{dish.image_file}}" alt="">
+            <img src="{{dish.image_file.url}}" alt="">
         {% else %}
             <img src="{{dish.image_Url}}" alt="">
         {% endif %}

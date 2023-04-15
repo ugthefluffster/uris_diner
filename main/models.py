@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 def category_image_path(instance, filename):
-    return f'static/images/categories/{instance.name}.{filename.split(".")[-1]}'
+    return f'categories/{instance.name}.{filename.split(".")[-1]}'
 
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=False, unique=True)
@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.name
 
 def dish_image_path(instance, filename):
-    return f'static/images/dishes/{instance.category.name}/{instance.name}.{filename.split(".")[-1]}'
+    return f'dishes/{instance.category.name}/{instance.name}.{filename.split(".")[-1]}'
 
 class Dish(models.Model):
     name = models.CharField(max_length=200, blank=False)

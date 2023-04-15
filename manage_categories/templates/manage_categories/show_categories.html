@@ -5,7 +5,7 @@
     <p>Name: {{category.name}}</p>
     <div>
         {% if category.image_file %}
-            <img src="/{{category.image_file}}" alt="">
+            <img src="{{category.image_file.url}}" alt="">
         {% else %}
             <img src="{{category.image_Url}}" alt="">
         {% endif %}

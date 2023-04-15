@@ -26,7 +26,7 @@
 				<p>Current image:</p>
 				<div>
 					{% if form.instance.image_file %}
-						<img src="/{{form.instance.image_file}}" alt="">
+						<img src="{{form.instance.image_file.url}}" alt="">
 					{% else %}
 						<img src="{{form.instance.image_Url}}" alt="">
 					{% endif %}

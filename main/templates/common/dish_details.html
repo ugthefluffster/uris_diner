@@ -3,7 +3,7 @@
 <div>{{dish.price}}$</div>
 <div>
     {% if dish.image_file %}
-        <img src="/{{dish.image_file}}" alt="">
+        <img src="{{dish.image_file.url}}" alt="">
     {% else %}
         <img src="{{dish.image_Url}}" alt="">
     {% endif %}
