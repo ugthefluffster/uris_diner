@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'cart',
     'backoffice',
     'manage_categories',
-    'manage_dishes'
+    'manage_dishes',
+    'django.forms'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'uris_diner.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'

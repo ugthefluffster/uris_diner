@@ -5,9 +5,9 @@
     <p>Name: {{category.name}}</p>
     <div>
         {% if category.image_file %}
-            <img src="{{category.image_file.url}}" alt="">
+            <img src="{{category.image_file.url}}" alt="{{category.name}}">
         {% else %}
-            <img src="{{category.image_Url}}" alt="">
+            <img src="{{category.image_Url}}" alt="{{category.name}}">
         {% endif %}
     </div>
     <a href="{% url 'edit_category' id=category.id %}">edit category</a>

@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
-    template_name = "form_templates/input_form.html"
+    # template_name = "form_templates/input_form.html"
+    pass
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     template_name = "form_templates/input_form.html"
@@ -39,7 +40,7 @@ class DishForm(ModelForm):
         model = Dish
         fields = ['name', 'price', 'description', 'is_gluten_free', 'is_vegeterian', 'category', 'image_file', 'image_Url']
         labels = {
-            'is_gluten_free': 'Fluten free',
+            'is_gluten_free': 'Gluten free',
             'is_vegeterian': 'Vegeterian'
         }
         help_texts = {

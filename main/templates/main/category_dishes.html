@@ -9,9 +9,9 @@
         <h5>{{dish.name}}</h5>
       <div>
         {% if dish.image_file %}
-            <img src="{{dish.image_file.url}}" alt="">
+            <img src="{{dish.image_file.url}}" alt="{{dish.name}}">
         {% else %}
-            <img src="{{dish.image_Url}}" alt="">
+            <img src="{{dish.image_Url}}" alt="{{dish.name}}">
         {% endif %}
       </div>
     </a>
