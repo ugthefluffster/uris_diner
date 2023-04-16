@@ -5,7 +5,7 @@
 {% for order in orders_list %}
     {% include 'common/order_details.html' %}
     {% if order.delivery.is_delivered is False %}
-    <!-- !!!good -->
+    
     <form action="{% url 'manage_orders' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">

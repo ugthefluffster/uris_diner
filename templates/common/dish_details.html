@@ -1,17 +1,21 @@
 {% load static %}
-<div>{{dish.name}}</div>
-<div>{{dish.price}}$</div>
-<div>
-    {% if dish.image_file %}
-        <img src="{{dish.image_file.url}}" alt="{{dish.name}}">
-    {% else %}
-        <img src="{{dish.image_Url}}" alt="{{dish.name}}">
+<img class="dish-img big" 
+{% if dish.image_file %}
+  src="{{dish.image_file.url}}"
+{% else %}
+  src="{{dish.image_Url}}"
+{% endif %}
+ alt="{{dish.name}}">
+<div class="dish-text">
+  <h5>{{dish.name}}</h5>
+  <p>{{dish.price}}₪</p>
+  <p>{{dish.description}}</p>
+  <div>
+    {% if dish.is_gluten_free %}
+      <span class="new badge orange" data-badge-caption="Gluten free"><i class="tiny material-icons">do_not_disturb</i></span>
     {% endif %}
+    {% if dish.is_vegeterian %}
+      <span class="new badge green" data-badge-caption="Vegeterian"><i class="tiny material-icons">spa</i></span>
+    {% endif %}
+  </div>
 </div>
-<div>{{dish.description}}</div>
-{% if dish.is_gluten_free %}
-    <div>Gluten free</div>
-{% endif %}
-{% if dish.is_vegeterian %}
-    <div>Vegeterian</div>
-{% endif %}

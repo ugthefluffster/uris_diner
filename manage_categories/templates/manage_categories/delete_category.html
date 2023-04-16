@@ -1,7 +1,7 @@
 {% extends 'layouts/manage_categories.html' %}
 {% block categories-content %}
 {{category.name}}
-<!-- !!!good -->
+
 <form action="{% url 'delete_category' id=category.id %}" method="POST">
     {% csrf_token %}
     <p>are you sure you want to delete this category and all of its dishes?</p>

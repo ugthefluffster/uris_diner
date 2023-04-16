@@ -1,30 +1,61 @@
-{% extends 'layouts/menu.html' %} 
+{% extends 'layouts/menu.html' %}
 
 {% block menu-content %}
 
 <div>
   <h4>{{category.name}}</h4>
-    {% for dish in show_dishes %} 
-      <a class="modal-trigger" href="#{{dish.name}}">
+  <ul class="collection">
+    {% for dish in show_dishes %}
+    <a class="modal-trigger collection-item" href="#{{dish.name}}">
+      <img class="dish-img" {% if dish.image_file %}
+        src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
+        {% endif %} alt="{{dish.name}}">
+      <div class="dish-text">
         <h5>{{dish.name}}</h5>
-      <div>
-        {% if dish.image_file %}
-            <img src="{{dish.image_file.url}}" alt="{{dish.name}}">
-        {% else %}
-            <img src="{{dish.image_Url}}" alt="{{dish.name}}">
-        {% endif %}
+        <p>{{dish.price}}₪</p>
+        <div>
+          {% if dish.is_gluten_free %}
+          <span class="new badge orange" data-badge-caption="Gluten free"><i
+              class="tiny material-icons">do_not_disturb</i></span>
+          {% endif %}
+          {% if dish.is_vegeterian %}
+          <span class="new badge green" data-badge-caption="Vegeterian"><i
+              class="tiny material-icons">spa</i></span>
+          {% endif %}
+        </div>
       </div>
     </a>
-      <div id="{{dish.name}}" class="modal">
-        {% include 'common/dish_details.html' %}
-        <!-- !!!good -->
-        <form action="{% url 'add_to_cart' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="dish_id" value="{{dish.id}}">
-            {{form}}
-            <input type="submit" value="add">
-        </form>
+    <div id="{{dish.name}}" class="modal">
+      <div class="modal-content">
+        <img class="dish-img big" {% if dish.image_file %}
+          src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
+          {% endif %} alt="{{dish.name}}">
+        <div class="dish-text">
+          <h5>{{dish.name}}</h5>
+          <p>{{dish.price}}₪</p>
+          <p>{{dish.description}}</p>
+          <div>
+            {% if dish.is_gluten_free %}
+            <span class="new badge orange" data-badge-caption="Gluten free"><i
+                class="tiny material-icons">do_not_disturb</i></span>
+            {% endif %}
+            {% if dish.is_vegeterian %}
+            <span class="new badge green" data-badge-caption="Vegeterian"><i
+                class="tiny material-icons">spa</i></span>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <form action="{% url 'add_to_cart' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="dish_id" value="{{dish.id}}">
+              {{form}}
+                <input class="btn" type="submit" value="add">
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
     {% endfor %}
+  </ul>
 </div>
 {% endblock menu-content %}

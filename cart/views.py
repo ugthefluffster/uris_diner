@@ -33,6 +33,7 @@ def change_cart_item(request):
             item = Item.objects.get(id=request.POST['item_id'])
             item.amount = request.POST['amount']
             item.save()
+            messages.info(request, f'{item.dish.name} amount changed to {item.amount}')
     return redirect('show_cart')
 
 @login_required(login_url='user_login')
@@ -40,4 +41,5 @@ def delete_cart_item(request):
     if request.method == 'POST':
         item = Item.objects.get(id=request.POST['item_id'])
         item.delete()
+        messages.info(request, f'{item.dish.name} X {item.amount} removed from cart')
     return redirect('show_cart')

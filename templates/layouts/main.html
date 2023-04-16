@@ -1,12 +1,9 @@
 {% extends 'layouts/base_layout.html' %}
 {% block content %}
 
-{% if request.user.username %}
-    {% include 'common/user_menu.html' %}
-{% else %}
-    <a href="{% url 'user_login' %}">Log In</a>
-    <a href="{% url 'user_signup' %}">Sign up</a>
-{% endif %}
+{% include 'common/navbar.html' %}
+
+{% include 'common/messages.html' %}
 
 {% block main-content %}
 {% endblock main-content %}

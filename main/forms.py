@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
-    # template_name = "form_templates/input_form.html"
+    template_name = "form_templates/input_form.html"
     pass
 
 class CustomPasswordChangeForm(PasswordChangeForm):
@@ -32,7 +32,7 @@ class OrderForm(ModelForm):
     class Meta:
         model = Delivery
         fields = ['address', 'comment']
-        widgets = {'comment': forms.Textarea()}
+        widgets = {'comment': forms.Textarea(attrs={'class':'materialize-textarea'})}
 
 class DishForm(ModelForm):
     template_name = "form_templates/input_form.html"
@@ -65,5 +65,5 @@ class CategoryForm(ModelForm):
         }
 
 class ItemAmountForm(forms.Form):
-    template_name = "form_templates/input_form.html"
+    template_name = "form_templates/ItemAmountForm.html"
     amount = forms.IntegerField(max_value=99, min_value=1, initial=1)

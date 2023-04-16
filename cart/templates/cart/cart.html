@@ -2,27 +2,68 @@
 {% block title %}Cart{% endblock title %}
 {% block cart-content %}
 
-{% for item in cart.item_set.all %}
-<!-- !!!good -->
-    <form action="{% url 'delete_cart_item' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="item_id" value="{{item.id}}">
-        {{item.dish.name}} {{item.dish.price}}$ amount: {{item.amount}}
-        <div><input type="submit" value="remove"></div>
-    </form>
-<!-- !!!good -->
-    <form action="{% url 'change_cart_item' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="item_id" value="{{item.id}}">
-        <input type="number" name="amount" min="1" max="99" value="{{item.amount}}">
-        <input type="submit" value="change amount">
-    </form>
-    
-{% endfor %}
-<p>total: {{cart.total_to_pay}}$</p>
-{% if cart.total_to_pay > 0 %}
-    <a href="{% url 'fill_order' %}">make order</a> 
-{% endif %}
+<div class="container">
 
+  <div class="row center-align">
+    <h4>Cart</h4>
+  </div>
+
+  {% if cart.total_to_pay > 0 %}
+  <div class="row">
+    <div class="col l6 offset-l3">
+      <ul class="collection">
+        {% for item in cart.item_set.all %}
+
+        <li class="collection-item">
+          <strong>{{item.dish.name}}</strong> X {{item.amount}}
+
+          <form class="secondary-content" action="{% url 'delete_cart_item' %}"
+            method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" value="{{item.id}}">
+            {{item.item_total}}₪
+            <button class="btn-small btn-flat" type="submit">Remove</button>
+          </form>
+
+          <form action="{% url 'change_cart_item' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" value="{{item.id}}">
+            <div class="row">
+              <div class="col">
+                <input type="number" name="amount" min="1" max="99"
+                  value="{{item.amount}}">
+              </div>
+              <div class="col">
+                <input class="btn btn-small" type="submit"
+                  value="change amount">
+              </div>
+            </div>
+          </form>
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col l6 offset-l3 center-align">
+      <h5>Total: {{cart.total_to_pay}}₪</h5>
+      <div class="section">
+        <a class="btn" href="{% url 'fill_order' %}">make order</a>
+      </div>
+
+      {% else %}
+      <div class="row center-align">
+        <div class="section">
+          <h6>Your cart is empty.</h6>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
 
 {% endblock cart-content %}

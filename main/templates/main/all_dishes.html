@@ -1,21 +1,22 @@
-{% extends 'layouts/menu.html' %} 
+{% extends 'layouts/menu.html' %}
 
 {% block menu-content %}
 
 <div>
-  <h4>Categories:</h4>
   {% for category in categories_list %}
-  <a href="{% url 'category_dishes' category_id=category.id %}">
-    <h4>{{category.name}} </h4>
-    <div>
-      {% if category.image_file %}
-          <img src="{{category.image_file.url}}" alt="{{category.name}}">
-      {% else %}
-          <img src="{{category.image_Url}}" alt="{{category.name}}">
-      {% endif %}
-  </div>
-</a>
-  {% endfor %}
 
+  <div class="card hoverable">
+    <a href="{% url 'category_dishes' category_id=category.id %}">
+      <div class="card-image">
+        <img class="category-img" {% if category.image_file %}
+          src="{{category.image_file.url}}" {% else %}
+          src="{{category.image_Url}}" {% endif %} alt="{{category.name}}">
+        <span class="card-title">{{category.name}} </span>
+      </div>
+    </a>
+  </div>
+
+  {% endfor %}
 </div>
+
 {% endblock menu-content %}

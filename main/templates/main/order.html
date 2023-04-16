@@ -1,10 +1,22 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Order{% endblock title %}
 {% block main-content %}
-<!-- !!!good -->
-<form action="{% url 'fill_order' %}" method="POST" novalidate>
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Send">
-</form>
+
+<div class="row">
+  <div class="col s4 offset-s4">
+    <div class="section">
+      <div class="card">
+        <div class="card-content center-align">
+          <strong class="card-title">Order information</strong>
+          <form action="{% url 'fill_order' %}" method="POST" novalidate>
+            {% csrf_token %}
+            {{form}}
+            <input class="btn" type="submit" value="Send">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock main-content %}

@@ -1,3 +1,32 @@
+.category-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.dish-img {
+  height: 100px;
+  width: 100px;
+  vertical-align: top;
+  object-fit: cover;
+}
+
+.dish-img.big {
+  height: 300px;
+  width: 300px;
+}
+
+.dish-text {
+  display: inline-block;
+}
+
+.dish-text h5, p {
+  margin-top: 0px;
+}
+
+
+
 /* .bg {
   background-image: url("../images/background.jpg");
 } */

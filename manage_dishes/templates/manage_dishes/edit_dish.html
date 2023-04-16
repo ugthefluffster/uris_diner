@@ -1,6 +1,6 @@
 {% extends 'layouts/manage_dishes.html' %}
 {% block dishes-content %}
-<!-- !!!good -->
+
 <form action="{% url 'edit_dish' id=dish.id %}" method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{form}}

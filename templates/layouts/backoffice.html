@@ -1,9 +1,7 @@
 {% extends 'layouts/base_layout.html' %}
 {% block content %}
 
-{% if request.user.is_staff == True %}
-    {% include 'common/user_menu.html' %}
-{% endif %}
+{% include 'common/navbar.html' %}
 
 {% block backoffice-content %}
 {% endblock backoffice-content %}

@@ -1,9 +1,7 @@
 {% extends 'layouts/base_layout.html' %}
 {% block content %}
 
-{% if request.user.username %}
-    {% include 'common/user_menu.html' %}
-{% endif %}
+{% include 'common/navbar.html' %}
 
 {% block users-content %}
 {% endblock users-content %}
