@@ -1,11 +1,28 @@
-{% extends 'layouts/users.html' %} 
-{% block title %}Singup{% endblock title %} 
+{% extends 'layouts/users.html' %}
+{% block title %}Singup{% endblock title %}
 {% block users-content %}
 
-<form action="{% url 'user_signup' %}" method="POST" novalidate>
-  	{% csrf_token %} 
-	{{form}}
- 	<input type="submit" value="Create" />
-</form>
+<div class="col l6 offset-l3">
+  <div class="section">
+    <div class="card">
+      <div class="card-content">
+        <div class="center-align">
+          <strong class="card-title">Signup</strong>
+        </div>
+        <form action="{% url 'user_signup' %}" method="POST" novalidate>
+          {% csrf_token %}
+          {{form}}
+          <div class="row">
+            <div class="col l12 center-align">
+              <input class="btn" type="submit" value="Create user" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 {% endblock users-content %}

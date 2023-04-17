@@ -1,10 +1,24 @@
 {% extends 'layouts/manage_dishes.html' %}
 {% block dishes-content %}
 
-<form action="{% url 'edit_dish' id=dish.id %}" method="POST" enctype="multipart/form-data" novalidate>
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="ok">
-</form>
-{% endblock dishes-content %}
 
+
+
+<div class="col l10 offset-l1">
+  <div class="section">
+    <div class="card">
+      <div class="card-content">
+        <div class="center-align">
+          <strong class="card-title">Add dish</strong>
+        </div>
+        <form action="{% url 'edit_dish' id=dish.id %}" method="POST"
+          enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          {{form}}
+          <input class="btn" type="submit" value="ok">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock dishes-content %}

@@ -3,7 +3,10 @@
 
 {% include 'common/navbar.html' %}
 
-{% block users-content %}
-{% endblock users-content %}
-
+<div class="container">
+  <div class="row">
+    {% block users-content %}
+    {% endblock users-content %}
+  </div>
+</div>
 {% endblock content %}

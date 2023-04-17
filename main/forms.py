@@ -4,14 +4,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/general.html"
     pass
 
 class CustomPasswordChangeForm(PasswordChangeForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/general.html"
     
 class CustomUserCreationForm(UserCreationForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/CustomUserCreationForm.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)
     last_name = forms.CharField(label="Last name", max_length=150, required=True)
     email = forms.EmailField(label="Email address", required=True)
@@ -19,7 +19,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields +("email", "first_name", "last_name")
 
 class ChangeInfoForm(forms.ModelForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/general.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)
     last_name = forms.CharField(label="Last name", max_length=150, required=True)
     email = forms.EmailField(label="Email address", required=True)
@@ -28,14 +28,14 @@ class ChangeInfoForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email"]
 
 class OrderForm(ModelForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/general.html"
     class Meta:
         model = Delivery
         fields = ['address', 'comment']
         widgets = {'comment': forms.Textarea(attrs={'class':'materialize-textarea'})}
 
 class DishForm(ModelForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/DishForm.html"
     class Meta:
         model = Dish
         fields = ['name', 'price', 'description', 'is_gluten_free', 'is_vegeterian', 'category', 'image_file', 'image_Url']
@@ -47,13 +47,12 @@ class DishForm(ModelForm):
             'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
         }
         widgets = {
-            'category': forms.Select(attrs={'class':'browser-default'}),
             'description': forms.Textarea(attrs={'class':'materialize-textarea'}),
             'image_file': forms.FileInput()
         }
 
 class CategoryForm(ModelForm):
-    template_name = "form_templates/input_form.html"
+    template_name = "forms/general.html"
     class Meta:
         model = Category
         fields = ['name', 'image_file', 'image_Url']
@@ -65,5 +64,5 @@ class CategoryForm(ModelForm):
         }
 
 class ItemAmountForm(forms.Form):
-    template_name = "form_templates/ItemAmountForm.html"
+    template_name = "forms/ItemAmountForm.html"
     amount = forms.IntegerField(max_value=99, min_value=1, initial=1)
