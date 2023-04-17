@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'main',
-    'cart',
     'backoffice',
     'manage_categories',
     'manage_dishes',

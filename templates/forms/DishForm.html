@@ -63,11 +63,9 @@
 
 <div class="row">
   <div class="col l12">
-
     {% if form.instance.id != None %}
-    <p>Current image:</p>
+    <div class="section"><p>Current image:</p></div>
     <div>
-
       {% if form.instance.image_file %}
       <img class="dish-img big" src="{{form.instance.image_file.url}}" alt="">
       {% else %}
@@ -91,7 +89,7 @@
 <div class="row">
   <div class="col l12">
     <div class="input-field tooltipped" data-position="bottom"
-    data-tooltip="{{form.image_Url.help_text}}"
+    data-tooltip="{{form.image_Url.help_text}}">
       {{form.image_Url.label_tag}} {{form.image_Url}}
       {% for error in form.image_Url.errors %}
       <div class="red-text">{{error}}</div>

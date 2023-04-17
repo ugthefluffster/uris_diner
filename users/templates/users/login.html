@@ -2,37 +2,29 @@
 {% block title %}Login{% endblock title %}
 {% block users-content %}
 
-<!-- <form action="{% url 'user_login' %}" method="POST" novalidate>
-    {% csrf_token %}
-    {{form}}
-    <input type="hidden" name="next" value="{{request.GET.next}}">
-    <input class="btn" type="submit" value="Enter">
-</form>
-<div>
-  Don't have a user? <a href="{% url 'user_signup' %}">Sign up</a>
-</div> -->
-
-  <div class="col l4 offset-l4">
-    <div class="section">
-      <div class="card">
-        <div class="card-content">
-          <div class="center-align">
+<div class="col l4 offset-l4">
+  <div class="section">
+    <div class="card">
+      <div class="card-content">
+        <div class="center-align">
           <strong class="card-title">Login</strong>
         </div>
-          <form action="{% url 'user_login' %}" method="POST" novalidate>
-            {% csrf_token %}
-            {{form}}
-            <input type="hidden" name="next" value="{{request.GET.next}}">
+        <form action="{% url 'user_login' %}" method="POST" novalidate>
+          {% csrf_token %}
+          {{form}}
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          <div class="row center-align">
             <input class="btn" type="submit" value="Enter">
+          </div>
         </form>
-        <div class="section">
-        <p>
-          Don't have a user? <a href="{% url 'user_signup' %}">Sign up</a>
-        </p>
-      </div>
+        <div class="section center-align">
+          <p>
+            Don't have a user? <a href="{% url 'user_signup' %}">Sign up</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% endblock users-content %}

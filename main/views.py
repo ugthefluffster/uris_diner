@@ -49,3 +49,43 @@ def show_delivery(request):
     open_orders = Delivery.objects.filter(order__user=request.user).filter(is_delivered=False)  
     open_orders = sorted(request.user.cart_set.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created)   
     return render(request, 'main/delivery.html', {'open_orders':open_orders})
+
+@login_required(login_url='user_login')
+def add_to_cart(request):
+    if request.method == 'POST':
+        form = ItemAmountForm(request.POST)
+        if form.is_valid():
+            dish = Dish.objects.get(id=request.POST['dish_id'])
+            amount = request.POST['amount']
+            cart = request.user.cart_set.last()
+            new_item = Item(
+                dish = dish, 
+                cart = cart,
+                amount = amount)
+            new_item.save()
+            messages.info(request, f'{amount} X {dish.name} added to cart')
+    return redirect('all_dishes')
+
+@login_required(login_url='user_login')
+def show_cart(request):
+    cart = request.user.cart_set.last()
+    return render(request, 'main/cart.html', {'cart':cart})
+
+@login_required(login_url='user_login')
+def change_cart_item(request):
+    if request.method == 'POST':
+        form = ItemAmountForm(request.POST)
+        if form.is_valid():
+            item = Item.objects.get(id=request.POST['item_id'])
+            item.amount = request.POST['amount']
+            item.save()
+            messages.info(request, f'{item.dish.name} amount changed to {item.amount}')
+    return redirect('show_cart')
+
+@login_required(login_url='user_login')
+def delete_cart_item(request):
+    if request.method == 'POST':
+        item = Item.objects.get(id=request.POST['item_id'])
+        item.delete()
+        messages.info(request, f'{item.dish.name} X {item.amount} removed from cart')
+    return redirect('show_cart')

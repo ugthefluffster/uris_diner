@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
-    template_name = "forms/general.html"
+    template_name = "forms/CustomAuthenticationForm.html"
     pass
 
 class CustomPasswordChangeForm(PasswordChangeForm):
