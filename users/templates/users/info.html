@@ -2,12 +2,34 @@
 {% block title %}Info{% endblock title %}
 {% block users-content %}
 
-<div>username: {{request.user.username}}</div>
-<div>First name: {{request.user.first_name|title}}</div>
-<div>Last name: {{request.user.last_name|title}}</div>
-<div>Email address: {{request.user.email}}</div>
-<a href="{% url 'change_user_info' %}">Change user info</a>
-<a href="{% url 'change_user_password' %}">Change password</a>
+<div class="col l6 offset-l3">
+  <div class="section">
+    <div class="card">
+      <div class="card-content">
+        <div class="row center-align">
+          <strong class="card-title">User information</strong>
+        </div>
+        <div class="row">
+          <div class="col l10 offset-l2">
+          <h6><strong>Username:</strong> {{request.user.username}}</h6>
+          <h6><strong>First name:</strong> {{request.user.first_name|title}}
+          </h6>
+          <h6><strong>Last name:</strong> {{request.user.last_name|title}}</h6>
+          <h6><strong>Email address:</strong> {{request.user.email}}</h6>
+        </div>
+      </div>
+        <div class="row center-align">
+          <a class="btn" href="{% url 'change_user_info' %}">Change user
+            info</a>
+          <a class="btn" href="{% url 'change_user_password' %}">Change
+            password</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 {% endblock users-content %}

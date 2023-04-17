@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
+from django.contrib import messages
 from main.models import *
 from main.forms import *
 
@@ -18,6 +19,7 @@ def user_signup(request):
             new_user_cart = Cart(user = new_user)
             new_user_cart.save()
             login(request, new_user)
+            messages.info(request, f"User '{new_user.username}' created! You can now place orders.")
             return redirect('all_dishes')
     return render(request, 'users/signup.html', {'form':form})
 
@@ -52,6 +54,7 @@ def change_user_info(request):
         form=ChangeInfoForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
+            messages.info(request, f"Your information have been saved.")
             return redirect('show_user_info')
     return render(request, 'users/change_info.html', {'form':form})
 
@@ -64,6 +67,7 @@ def change_user_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
+            messages.info(request, f"Password changed successfully.")
             return redirect('show_user_info')
     return render(request, 'users/change_password.html', {'form':form})
 

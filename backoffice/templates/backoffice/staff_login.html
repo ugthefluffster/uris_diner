@@ -2,11 +2,25 @@
 {% block title %}Staff Login{% endblock title %}
 {% block backoffice-content %}
 
-<form action="{% url 'backoffice_login' %}" method="POST" novalidate>
-    {% csrf_token %}
-    {{form}}
-    <input type="hidden" name="next" value="{{request.GET.next}}">
-    <input type="submit" value="Enter">
-</form>
+<div class="col l4 offset-l4">
+  <div class="section">
+    <div class="card">
+      <div class="card-content">
+        <div class="center-align">
+          <strong class="card-title">Staff Login</strong>
+        </div>
+        <form action="{% url 'backoffice_login' %}" method="POST" novalidate>
+          {% csrf_token %}
+          {{form}}
+          <input type="hidden" name="next" value="{{request.GET.next}}">
+          <div class="row center-align">
+            <input class="btn" type="submit" value="Enter">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock backoffice-content %}
 

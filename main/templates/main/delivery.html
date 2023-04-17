@@ -1,9 +1,10 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Delivery{% endblock title %}
 {% block main-content %}
-
-<h4>Your active orders information</h4>
-{% for order in open_orders %}
-    {% include 'common/order_details.html' %}
-{% endfor %}
+<div class="container">
+  <h4>Your active orders information</h4>
+  {% for order in open_orders %}
+  {% include 'common/order_details.html' %}
+  {% endfor %}
+</div>
 {% endblock main-content %}
