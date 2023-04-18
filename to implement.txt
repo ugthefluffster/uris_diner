@@ -1,2 +1,9 @@
-1. replace 'all_dishes' with something better
-2. add open orders alert+counter to backoffice navbar  
+* improve cart look
+* improve categories menu look
+* improve category menu look
+* improve my history look
+* improve my orders look
+* improve landing page look and hide 'for staff only'
+* improve backoffice orders history look
+* improve manage dishes look
+* improve manage categories look

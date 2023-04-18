@@ -3,16 +3,19 @@
     <a href="{% url 'main' %}" class="brand-logo">Uri's Diner</a>
     <ul class="right">
       {% if request.user.username %}
-      <li><a href="{% url 'all_dishes' %}">Menu</a></li>
+      <li><a href="{% url 'menu_all_categories' %}">Menu</a></li>
       {% if request.user.is_staff == True %}
-      <li><a href="{% url 'manage_orders' %}">Open Orders {{}}</a></li>
+      <li><a href="{% url 'manage_orders' %}">Open Orders
+          ({{open_orders_number}})</a></li>
       <li><a href="{% url 'show_orders_history' %}">Orders History</a></li>
       <li><a href="{% url 'show_categories' %}">Manage Categories</a></li>
       <li><a href="{% url 'show_dishes' %}">Manage Dishes</a></li>
       {% else %}
       <li><a href="{% url 'show_cart' %}">My Cart
-          ({{request.user.cart_set.last.item_set.all|length}})</a></li>
-      <li><a href="{% url 'show_delivery' %}">My Orders</a></li>
+          ({{my_cart_items_number}})</a></li>
+      <li><a href="{% url 'show_delivery' %}">My Orders
+          ({{my_open_orders_number}})
+        </a></li>
       <li><a href="{% url 'user_history' %}">My History</a></li>
       {% endif %}
       <li><a class="dropdown-trigger" href="#!"

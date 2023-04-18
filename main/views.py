@@ -7,22 +7,22 @@ from main.forms import *
 def main(request):
     return render(request, 'main/landing.html')
 
-def all_dishes(request):
+def menu_all_categories(request):
     categories_list = Category.objects.filter(is_deleted=False)
     form = ItemAmountForm()
-    return render(request, 'main/all_dishes.html', {
+    return render(request, 'main/menu_all_categories.html', {
         'categories_list':categories_list, 
         'form':form})
 
-def category_dishes(request, category_id):
+def menu_category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)
     try:
       category = Category.objects.get(id=category_id)
     except:
-        return redirect('all_dishes')
+        return redirect('menu_all_categories')
     show_dishes = Dish.objects.filter(category=category, is_deleted=False)
     form = ItemAmountForm()
-    return render(request, 'main/category_dishes.html', {
+    return render(request, 'main/menu_category_dishes.html', {
         'categories_list':categories_list, 
         'show_dishes':show_dishes, 
         'category': category,
@@ -61,7 +61,7 @@ def add_to_cart(request):
             try:
                 dish = Dish.objects.get(id=request.POST['dish_id'])
             except:
-                return redirect('all_dishes')
+                return redirect('menu_all_categories')
             amount = request.POST['amount']
             cart = request.user.cart_set.last()
             new_item = Item(
@@ -70,7 +70,7 @@ def add_to_cart(request):
                 amount = amount)
             new_item.save()
             messages.info(request, f'{amount} X {dish.name} added to cart')
-    return redirect('all_dishes')
+    return redirect('menu_all_categories')
 
 @login_required(login_url='user_login')
 def show_cart(request):

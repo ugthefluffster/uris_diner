@@ -7,7 +7,7 @@ from main.forms import *
 
 def user_signup(request):
     if request.user.is_authenticated:
-        return redirect('all_dishes')
+        return redirect('menu_all_categories')
     form = CustomUserCreationForm()
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -20,12 +20,12 @@ def user_signup(request):
             new_user_cart.save()
             login(request, new_user)
             messages.info(request, f"User '{new_user.username}' created! You can now place orders.")
-            return redirect('all_dishes')
+            return redirect('menu_all_categories')
     return render(request, 'users/signup.html', {'form':form})
 
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect('all_dishes')
+        return redirect('menu_all_categories')
     form = CustomAuthenticationForm()
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
@@ -34,7 +34,7 @@ def user_login(request):
             login(request, user)
             if request.POST['next']:
                 return redirect(request.POST['next'])
-            return redirect('all_dishes')
+            return redirect('menu_all_categories')
     return render(request, 'users/login.html', {'form':form})
 
 @login_required(login_url='user_login')

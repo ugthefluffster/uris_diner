@@ -21,11 +21,11 @@
 <div class="row">
   <div class="col l3">
     <ul class="collection">
-      <a class="collection-item" href="{% url 'all_dishes' %}">All
+      <a class="collection-item" href="{% url 'menu_all_categories' %}">All
         Categories</a>
       {% for category in categories_list %}
       <a class="collection-item"
-        href="{% url 'category_dishes' category_id=category.id %}">{{category}}
+        href="{% url 'menu_category_dishes' category_id=category.id %}">{{category}}
       </a>
       {% endfor %}
     </ul>
