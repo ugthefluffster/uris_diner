@@ -7,3 +7,4 @@
 * improve backoffice orders history look
 * improve manage dishes look
 * improve manage categories look
+* add ability to determine category/dish order in menu (position field in models?)
