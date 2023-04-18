@@ -10,7 +10,7 @@
         <img class="category-img" {% if category.image_file %}
           src="{{category.image_file.url}}" {% else %}
           src="{{category.image_Url}}" {% endif %} alt="{{category.name}}">
-        <span class="card-title">{{category.name}} </span>
+        <span class="card-title category-title">{{category.name}} </span>
       </div>
     </a>
   </div>

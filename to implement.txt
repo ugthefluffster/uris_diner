@@ -1,0 +1,2 @@
+1. replace 'all_dishes' with something better
+2. add open orders alert+counter to backoffice navbar  
