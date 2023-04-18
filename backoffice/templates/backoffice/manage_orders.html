@@ -1,18 +1,83 @@
 {% extends 'layouts/backoffice.html' %}
 {% block title %}Manage Orders{% endblock title %}
 {% block backoffice-content %}
-<h3>{{page}}</h3>
-{% for order in orders_list %}
-    {% include 'common/order_details.html' %}
-    {% if order.delivery.is_delivered is False %}
-    
-    <form action="{% url 'manage_orders' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">
-        <input type="submit" value="fulfill">
-    </form>
-    {% endif %}
-{% endfor %}
 
+<div class="center-align">
+  <h3>Open Orders</h3>
+</div>
+
+<div class="row">
+  <div class="col l8 offset-l2">
+
+    <div class="row no-bottom-margin">
+      <div class="col l10">
+        <div class="row no-bottom-margin">
+          <div class="col l2">
+            <h5>No.</h5>
+          </div>
+          <div class="col l4">
+            <h5>Made in</h5>
+          </div>
+          <div class="col">
+            <h5>Address</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% for order in orders_list %}
+    <div class="row valign-wrapper no-bottom-margin">
+      <div class="col l10">
+        <ul class="collapsible no-bottom-margin">
+          <li>
+            <div class="collapsible-header not-flex">
+              <div class="row no-bottom-margin">
+                <div class="col l2">
+                  <p><strong>{{order.delivery.order_id}}</strong></p>
+                </div>
+                <div class="col l4">
+                  <p>{{order.delivery.created}}</p>
+                </div>
+                <div class="col">
+                  <p>{{order.delivery.address}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="collapsible-body">
+              <div><strong>Made by:</strong>
+                {{order.user.first_name|title}}
+                {{order.user.last_name|title}}
+              </div>
+              <div>
+                <strong>items:</strong>
+                <ol>
+                  {% for item in order.item_set.all %}
+                  <li>
+                    {{item.dish.name}} X {{item.amount}} -
+                    {{item.item_total}}₪
+                  </li>
+                  {% endfor %}
+                </ol>
+              </div>
+              <div><strong>Total:</strong> {{order.total_to_pay}}₪</div>
+              <div><strong>Comments:</strong> {{order.delivery.comment}}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col l2">
+        <form action="{% url 'manage_orders' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="order_id"
+            value="{{order.delivery.order_id}}">
+          <input class="btn btn-large" type="submit" value="fulfill">
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
 {% endblock backoffice-content %}
-

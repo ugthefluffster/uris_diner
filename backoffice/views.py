@@ -31,9 +31,9 @@ def manage_orders(request):
         fulfilled_order.is_delivered = True
         fulfilled_order.save()
         return redirect('manage_orders')
-    return render(request, 'backoffice/manage_orders.html', {'orders_list':orders_list, 'page':'Open Orders'})
+    return render(request, 'backoffice/manage_orders.html', {'orders_list':orders_list})
 
 @staff_member_required(login_url='backoffice_login')
 def show_orders_history(request):
     orders_list = sorted(Cart.objects.filter(delivery__is_delivered=True), key=lambda order: order.delivery.created, reverse=True)
-    return render(request, 'backoffice/manage_orders.html', {'orders_list':orders_list, 'page':'Orders History'})
+    return render(request, 'backoffice/orders_history.html', {'orders_list':orders_list})

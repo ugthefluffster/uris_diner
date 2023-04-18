@@ -13,10 +13,8 @@
     <div class="col l6 offset-l3">
       <ul class="collection">
         {% for item in cart.item_set.all %}
-
         <li class="collection-item">
           <strong>{{item.dish.name}}</strong> X {{item.amount}}
-
           <form class="secondary-content" action="{% url 'delete_cart_item' %}"
             method="POST">
             {% csrf_token %}
@@ -24,7 +22,6 @@
             {{item.item_total}}₪
             <button class="btn-small btn-flat" type="submit">Remove</button>
           </form>
-
           <form action="{% url 'change_cart_item' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="item_id" value="{{item.id}}">

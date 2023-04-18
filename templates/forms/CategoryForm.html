@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col l4">
+    <div class="input-field">
+      {{form.name.label_tag}}{{form.name}}
+      {% for error in form.name.errors %}
+      <div class="red-text">{{error}}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% if form.instance.id != None %}
+<div class="row">
+  <div class="col l12">
+    <div>
+      <h6>Dishes in this category:</h6>
+      <ol>
+      {% for dish in form.instance.dish_set.all %}
+      {% if dish.is_deleted == False %}
+      <li><a href="{% url 'edit_dish' id=dish.id %}">{{dish.name}}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="row">
+  <div class="col l12">
+    {% if form.instance.id != None %}
+    <div class="section">
+      <p>Current image:</p>
+    </div>
+    <div>
+      {% if form.instance.image_file %}
+      <img class="category-img" src="{{form.instance.image_file.url}}" alt="">
+      {% else %}
+      <img class="category-img" src="{{form.instance.image_Url}}" alt="">
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="file-field input-field">
+      <div class="btn"><span>{{form.image_file.label}}</span></div>
+      {{form.image_file}}
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    {% for error in form.image_file.errors %}
+    <div class="red-text">{{error}}</div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col l12">
+    <div class="input-field tooltipped" data-position="bottom"
+      data-tooltip="{{form.image_Url.help_text}}">
+      {{form.image_Url.label_tag}} {{form.image_Url}}
+      {% for error in form.image_Url.errors %}
+      <div class="red-text">{{error}}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% for error in form.non_field_errors %}
+<div class="red-text">{{error}}</div>
+{% endfor %}

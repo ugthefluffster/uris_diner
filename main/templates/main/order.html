@@ -6,12 +6,18 @@
   <div class="col s4 offset-s4">
     <div class="section">
       <div class="card">
-        <div class="card-content center-align">
-          <strong class="card-title">Order information</strong>
+        <div class="card-content">
+          <div class="center-align">
+            <strong class="card-title">Order information</strong>
+          </div>
           <form action="{% url 'fill_order' %}" method="POST" novalidate>
             {% csrf_token %}
             {{form}}
-            <input class="btn" type="submit" value="Send">
+            <div class="row">
+              <div class="col l12 center-align">
+                <input class="btn" type="submit" value="Send">
+              </div>
+            </div>
           </form>
         </div>
       </div>

@@ -21,7 +21,10 @@ def add_dish(request):
 
 @staff_member_required(login_url='backoffice_login')
 def edit_dish(request, id):
-    dish = Dish.objects.get(id=id)
+    try:
+        dish = Dish.objects.get(id=id)
+    except:
+        return redirect('show_dishes')
     form = DishForm(instance=dish)
     if request.method == 'POST':
         form = DishForm(request.POST, request.FILES, instance=dish)
@@ -32,7 +35,10 @@ def edit_dish(request, id):
 
 @staff_member_required(login_url='backoffice_login')
 def delete_dish(request, id):
-    dish = Dish.objects.get(id=id)
+    try:
+        dish = Dish.objects.get(id=id)
+    except:
+        return redirect('show_dishes')
     if request.method == 'POST':
         dish.is_deleted = True
         dish.save()

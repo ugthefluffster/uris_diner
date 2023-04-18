@@ -16,7 +16,10 @@ def all_dishes(request):
 
 def category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)
-    category = Category.objects.get(id=category_id)
+    try:
+      category = Category.objects.get(id=category_id)
+    except:
+        return redirect('all_dishes')
     show_dishes = Dish.objects.filter(category=category, is_deleted=False)
     form = ItemAmountForm()
     return render(request, 'main/category_dishes.html', {
@@ -55,7 +58,10 @@ def add_to_cart(request):
     if request.method == 'POST':
         form = ItemAmountForm(request.POST)
         if form.is_valid():
-            dish = Dish.objects.get(id=request.POST['dish_id'])
+            try:
+                dish = Dish.objects.get(id=request.POST['dish_id'])
+            except:
+                return redirect('all_dishes')
             amount = request.POST['amount']
             cart = request.user.cart_set.last()
             new_item = Item(
@@ -76,7 +82,10 @@ def change_cart_item(request):
     if request.method == 'POST':
         form = ItemAmountForm(request.POST)
         if form.is_valid():
-            item = Item.objects.get(id=request.POST['item_id'])
+            try:
+                item = Item.objects.get(id=request.POST['item_id'])
+            except:
+                return redirect('show_cart')
             item.amount = request.POST['amount']
             item.save()
             messages.info(request, f'{item.dish.name} amount changed to {item.amount}')
@@ -85,7 +94,10 @@ def change_cart_item(request):
 @login_required(login_url='user_login')
 def delete_cart_item(request):
     if request.method == 'POST':
-        item = Item.objects.get(id=request.POST['item_id'])
+        try:
+            item = Item.objects.get(id=request.POST['item_id'])
+        except:
+            return redirect('show_cart')
         item.delete()
         messages.info(request, f'{item.dish.name} X {item.amount} removed from cart')
     return redirect('show_cart')

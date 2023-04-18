@@ -20,7 +20,10 @@ def add_category(request):
 
 @staff_member_required(login_url='backoffice_login')
 def edit_category(request, id):
-    category = Category.objects.get(id=id)
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('show_categories')
     form = CategoryForm(instance=category)
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES, instance=category)
@@ -31,7 +34,10 @@ def edit_category(request, id):
 
 @staff_member_required(login_url='backoffice_login')
 def delete_category(request, id):
-    category = Category.objects.get(id=id)
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('show_categories')
     if request.method == 'POST':
         category.is_deleted = True
         category.save()

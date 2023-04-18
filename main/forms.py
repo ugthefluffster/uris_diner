@@ -5,9 +5,7 @@ from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
     template_name = "forms/CustomAuthenticationForm.html"
-    pass
 
-    
 class CustomUserCreationForm(UserCreationForm):
     template_name = "forms/CustomUserCreationForm.html"
     first_name = forms.CharField(label="First name", max_length=150, required=True)
@@ -29,7 +27,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
   template_name = "forms/CustomPasswordChangeForm.html"
 
 class OrderForm(ModelForm):
-    template_name = "forms/general.html"
+    template_name = "forms/OrderForm.html"
     class Meta:
         model = Delivery
         fields = ['address', 'comment']
@@ -53,7 +51,7 @@ class DishForm(ModelForm):
         }
 
 class CategoryForm(ModelForm):
-    template_name = "forms/general.html"
+    template_name = "forms/CategoryForm.html"
     class Meta:
         model = Category
         fields = ['name', 'image_file', 'image_Url']
@@ -65,5 +63,4 @@ class CategoryForm(ModelForm):
         }
 
 class ItemAmountForm(forms.Form):
-    template_name = "forms/ItemAmountForm.html"
     amount = forms.IntegerField(max_value=99, min_value=1, initial=1)

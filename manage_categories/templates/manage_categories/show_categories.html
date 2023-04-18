@@ -1,17 +1,38 @@
 {% extends 'layouts/manage_categories.html' %}
 {% block categories-content %}
-<a href="{% url 'add_category' %}">add category</a>
-{% for category in all_categories %}
-    <p>Name: {{category.name}}</p>
-    <div>
-        {% if category.image_file %}
-            <img src="{{category.image_file.url}}" alt="{{category.name}}">
-        {% else %}
-            <img src="{{category.image_Url}}" alt="{{category.name}}">
-        {% endif %}
+
+<a class="btn" href="{% url 'add_category' %}">add category</a>
+
+<ul class="collection">
+  {% for category in all_categories %}
+  <div class="collection-item">
+    <h5>{{category.name}}</h5>
+    <div >
+      <a class="btn" href="{% url 'edit_category' id=category.id %}">Edit</a>
+      <a class="btn" href="{% url 'delete_category' id=category.id %}">Delete</a>
     </div>
-    <a href="{% url 'edit_category' id=category.id %}">edit category</a>
-    <a href="{% url 'delete_category' id=category.id %}">delete category</a>
-{% endfor %}
+  </div>
+  {% endfor %}
+</ul>
+
 {% endblock categories-content %}
 
+
+<div class="row">
+  <div class="col l3">
+    <ul class="collection">
+      <a class="collection-item" href="{% url 'all_dishes' %}">All
+        Categories</a>
+      {% for category in categories_list %}
+      <a class="collection-item"
+        href="{% url 'category_dishes' category_id=category.id %}">{{category}}
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <li class="collection-item">
+    <div>Alvin
+      <a href="#!" class="secondary-content"></a>
+    </div>
+  </li>

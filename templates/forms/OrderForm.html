@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col l12">
+    <div class="input-field">
+      {{form.address.label_tag}} {{form.address}}
+      {% for error in form.address.errors %}
+      <div class="red-text">{{error}}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col l12">
+    <div class="input-field">
+      {{form.comment.label_tag}} {{form.comment}}
+      {% for error in form.comment.errors %}
+      <div class="red-text">{{error}}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% for error in form.non_field_errors %}
+<div class="red-text">{{error}}</div>
+{% endfor %}
+
