@@ -67,6 +67,15 @@
   margin-bottom: 5px;
 }
 
+.tag {
+  color: white;
+  font-size: 10px;
+  margin: 3px;
+  display: inline-block;
+  padding: 2px 4px 0px 4px;
+  border-radius: 5px;
+}
+
 /* .bg {
   background-image: url("../images/background.jpg");
 } */

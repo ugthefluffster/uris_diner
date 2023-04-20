@@ -7,7 +7,7 @@ def category_image_path(instance, filename):
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=False, unique=True)
     is_deleted = models.BooleanField(default=False)
-    image_Url = models.CharField(max_length=1000, null=True, blank=True)
+    image_Url = models.TextField(null=True, blank=True)
     image_file = models.ImageField(upload_to=category_image_path, null=True, blank=True)
 
     def __str__(self):
@@ -17,14 +17,14 @@ def dish_image_path(instance, filename):
     return f'dishes/{instance.category.name}/{instance.name}.{filename.split(".")[-1]}'
 
 class Dish(models.Model):
-    name = models.CharField(max_length=200, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=False)
-    description = models.TextField(blank=False)
+    description = models.CharField(max_length=500, blank=False)
     is_gluten_free = models.BooleanField(default=False)
     is_vegeterian = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, limit_choices_to={'is_deleted':False})
     is_deleted = models.BooleanField(default=False)
-    image_Url = models.CharField(max_length=1000, null=True, blank=True)
+    image_Url = models.TextField(null=True, blank=True)
     image_file = models.ImageField(upload_to=dish_image_path, null=True, blank=True)
 
     def __str__(self):

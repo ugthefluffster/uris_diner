@@ -1,17 +1,18 @@
 {% extends 'layouts/manage_dishes.html' %}
 {% block dishes-content %}
 
-<a href="{% url 'add_dish' %}">add dish</a>
+<a class="btn" href="{% url 'add_dish' %}">add dish</a>
 {% for category in all_categories %}
-    <h4>{{category.name}}:</h4>
-    {% for dish in category.dish_set.all %}
-        {% if dish.is_deleted == False %}
-            {% include 'common/dish_details.html' %}
-            <a href="{% url 'edit_dish' id=dish.id %}">edit dish</a>
-            <a href="{% url 'delete_dish' id=dish.id %}">delete dish</a>
-        {% endif %}
-    {% endfor %}
+<h4>{{category.name}}:</h4>
+{% for dish in category.dish_set.all %}
+{% if dish.is_deleted == False %}
+<div>
+  {% include 'common/dish_details.html' %}
+  <a class="btn" href="{% url 'edit_dish' id=dish.id %}">edit dish</a>
+  <a class="btn" href="{% url 'delete_dish' id=dish.id %}">delete dish</a>
+</div>
+{% endif %}
+{% endfor %}
 {% endfor %}
 
 {% endblock dishes-content %}
-

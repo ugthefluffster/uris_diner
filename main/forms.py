@@ -47,7 +47,8 @@ class DishForm(ModelForm):
         }
         widgets = {
             'description': forms.Textarea(attrs={'class':'materialize-textarea'}),
-            'image_file': forms.FileInput()
+            'image_file': forms.FileInput(),
+            'image_Url': forms.TextInput()
         }
 
 class CategoryForm(ModelForm):
@@ -59,7 +60,8 @@ class CategoryForm(ModelForm):
             'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
         }
         widgets = {
-            'image_file': forms.FileInput()
+            'image_file': forms.FileInput(),
+            'image_Url': forms.TextInput()
         }
 
 class ItemAmountForm(forms.Form):

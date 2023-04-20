@@ -3,7 +3,6 @@
 {% block menu-content %}
 
 <div>
-  <h4>{{category.name}}</h4>
   <ul class="collection">
     {% for dish in show_dishes %}
     <a class="modal-trigger collection-item" href="#{{dish.name}}">
@@ -14,13 +13,11 @@
         <h5>{{dish.name}}</h5>
         <p>{{dish.price}}₪</p>
         <div>
-          {% if dish.is_gluten_free %}
-          <span class="new badge orange" data-badge-caption="Gluten free"><i
-              class="tiny material-icons">do_not_disturb</i></span>
-          {% endif %}
           {% if dish.is_vegeterian %}
-          <span class="new badge green" data-badge-caption="Vegeterian"><i
-              class="tiny material-icons">spa</i></span>
+          {% include 'common/tag_vegeterian.html' %}
+          {% endif %}
+          {% if dish.is_gluten_free %}
+          {% include 'common/tag_gluten_free.html' %}
           {% endif %}
         </div>
       </div>
@@ -35,13 +32,11 @@
           <h5>{{dish.name}}</h5>
           <p>{{dish.price}}₪</p>
           <div>
-            {% if dish.is_gluten_free %}
-            <span class="new badge orange" data-badge-caption="Gluten free"><i
-                class="tiny material-icons">do_not_disturb</i></span>
-            {% endif %}
             {% if dish.is_vegeterian %}
-            <span class="new badge green" data-badge-caption="Vegeterian"><i
-                class="tiny material-icons">spa</i></span>
+            {% include 'common/tag_vegeterian.html' %}
+            {% endif %}
+            {% if dish.is_gluten_free %}
+            {% include 'common/tag_gluten_free.html' %}
             {% endif %}
           </div>
           <p>{{dish.description}}</p>
