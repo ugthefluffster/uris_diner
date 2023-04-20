@@ -19,6 +19,11 @@
 
 .dish-text {
   display: inline-block;
+  margin-left: 10px;
+}
+
+.dish-text-in-modal {
+  max-width: 55%;
 }
 
 .dish-text h5, p {
@@ -76,6 +81,9 @@
   border-radius: 5px;
 }
 
+.add-dish-btn {
+  width: 200px;
+}
 /* .bg {
   background-image: url("../images/background.jpg");
 } */
