@@ -27,20 +27,20 @@
 
 
     {% for order in orders_list %}
-    <div class="row valign-wrapper no-bottom-margin">
+    <div class="row no-bottom-margin">
       <div class="col l10">
-        <ul class="collapsible no-bottom-margin">
+        <ul class="collapsible no-bottom-margin fulfill-item">
           <li>
             <div class="collapsible-header not-flex">
               <div class="row no-bottom-margin">
                 <div class="col l2">
-                  <p><strong>{{order.delivery.order_id}}</strong></p>
+                  <div><strong>{{order.delivery.order_id}}</strong></div>
                 </div>
                 <div class="col l4">
-                  <p>{{order.delivery.created}}</p>
+                  <div>{{order.delivery.created}}</div>
                 </div>
                 <div class="col">
-                  <p>{{order.delivery.address}}</p>
+                  <div>{{order.delivery.address}}</div>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
         </ul>
       </div>
       <div class="col l2">
-        <form action="{% url 'manage_orders' %}" method="POST">
+        <form class="fulfill-item" action="{% url 'manage_orders' %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="order_id"
             value="{{order.delivery.order_id}}">

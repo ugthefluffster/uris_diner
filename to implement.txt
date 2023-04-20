@@ -1,10 +1,7 @@
 * improve cart look
 * improve categories menu look
 * improve category menu look
-* improve my history look
-* improve my orders look
 * improve landing page look and hide 'for staff only'
-* improve backoffice orders history look
 * improve manage dishes look
 * improve manage categories look
 * add ability to determine category/dish order in menu (position field in models?)
