@@ -1,7 +1,7 @@
 * improve cart look
+* improve category dishes menu look
 * improve categories menu look
-* improve category menu look
-* improve landing page look and hide 'for staff only'
 * improve manage dishes look
 * improve manage categories look
+* improve landing page look and hide 'for staff only' (add slider?)
 * add ability to determine category/dish order in menu (position field in models?)
