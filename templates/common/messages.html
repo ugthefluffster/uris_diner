@@ -1,7 +1,7 @@
 {% if messages %}
-<div class="card-panel yellow z-depth-0 center-align">
   {% for message in messages %}
-  <span>{{ message }}</span>
+  <script>
+    M.toast({ html: "{{message}}" });
+  </script>
   {% endfor %}
-</div>
 {% endif %}

@@ -9,10 +9,8 @@ def main(request):
 
 def menu_all_categories(request):
     categories_list = Category.objects.filter(is_deleted=False)
-    form = ItemAmountForm()
     return render(request, 'main/menu_all_categories.html', {
-        'categories_list':categories_list, 
-        'form':form})
+        'categories_list':categories_list})
 
 def menu_category_dishes(request, category_id):
     categories_list = Category.objects.filter(is_deleted=False)
@@ -69,7 +67,7 @@ def add_to_cart(request):
                 amount = amount)
             new_item.save()
             messages.info(request, f'{amount} X {dish.name} added to cart')
-    return redirect('menu_all_categories')
+    return redirect('menu_category_dishes', category_id=dish.category.id)
 
 @login_required(login_url='user_login')
 def show_cart(request):
@@ -79,15 +77,14 @@ def show_cart(request):
 @login_required(login_url='user_login')
 def change_cart_item(request):
     if request.method == 'POST':
-        form = ItemAmountForm(request.POST)
-        if form.is_valid():
-            try:
-                item = Item.objects.get(id=request.POST['item_id'])
-            except:
-                return redirect('show_cart')
-            item.amount = request.POST['amount']
+        try:
+            item = Item.objects.get(id=request.POST['item_id'])
+        except:
+            return redirect('show_cart')
+        print(request.POST)
+        item.amount += int(request.POST['amount'])
+        if item.amount > 0:
             item.save()
-            messages.info(request, f'{item.dish.name} amount changed to {item.amount}')
     return redirect('show_cart')
 
 @login_required(login_url='user_login')
@@ -98,5 +95,4 @@ def delete_cart_item(request):
         except:
             return redirect('show_cart')
         item.delete()
-        messages.info(request, f'{item.dish.name} X {item.amount} removed from cart')
     return redirect('show_cart')
