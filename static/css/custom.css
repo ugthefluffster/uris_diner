@@ -117,3 +117,7 @@ p {
 .more-right-margin {
   margin-right: 30px;
 }
+
+.display-inline-block {
+  display: inline-block;
+}

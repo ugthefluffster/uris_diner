@@ -44,7 +44,10 @@ def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            new_category = form.save()
+            category_list = Category.objects.filter(is_deleted=False)
+            new_category.position = len(category_list) - 1
+            new_category.save()
             return redirect('menu_all_categories')
     return render(request, 'backoffice/add_category.html', {'form':form})
 
@@ -63,6 +66,34 @@ def edit_category(request, id):
     return render(request, 'backoffice/edit_category.html', {'form':form, 'category':category})
 
 @staff_member_required(login_url='backoffice_login')
+def category_up(request, id):
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
+    prev = category_list[category.position-1]
+    if request.method == 'POST':
+        category.position, prev.position = prev.position, category.position
+        category.save()
+        prev.save()
+    return redirect('menu_all_categories')
+
+@staff_member_required(login_url='backoffice_login')
+def category_down(request, id):
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
+    prev = category_list[category.position+1]
+    if request.method == 'POST':
+        category.position, prev.position = prev.position, category.position
+        category.save()
+        prev.save()
+    return redirect('menu_all_categories')
+
+@staff_member_required(login_url='backoffice_login')
 def delete_category(request, id):
     try:
         category = Category.objects.get(id=id)
@@ -70,10 +101,17 @@ def delete_category(request, id):
         return redirect('menu_all_categories')
     if request.method == 'POST':
         category.is_deleted = True
+        category.position = -1
         category.save()
         for dish in category.dish_set.all():
             dish.is_deleted = True
             dish.save()
+        category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
+        new_position = 0
+        for category_obj in category_list:
+            category_obj.position = new_position
+            category_obj.save()
+            new_position += 1
         return redirect('menu_all_categories')
     return render(request, 'backoffice/delete_category.html', {'category':category})
 
@@ -112,3 +150,4 @@ def delete_dish(request, id):
         dish.save()
         return redirect('menu_category_dishes', category_id=dish.category.id)
     return render(request, 'backoffice/delete_dish.html', {'dish':dish})
+

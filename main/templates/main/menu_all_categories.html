@@ -16,15 +16,34 @@
     </div>
     {% if request.user.is_staff %}
     <div class="card-action">
-      <a class="btn" href="#"><i class="material-icons">arrow_upward</i></a>
-      <a class="btn" href="#"><i class="material-icons">arrow_downward</i></a>
+      {% if forloop.first %}
+      <a class="btn disabled" href="#"><i
+          class="material-icons">arrow_upward</i></a>
+      {% else %}
+      <form class="display-inline-block"
+        action="{% url 'category_up' id=category.id%}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn"><i
+            class="material-icons">arrow_upward</i></button>
+      </form>
+      {% endif %}
+      {% if forloop.last %}
+      <a class="btn disabled" href="#"><i
+          class="material-icons">arrow_downward</i></a>
+      {% else %}
+      <form class="display-inline-block"
+        action="{% url 'category_down' id=category.id%}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn"><i
+            class="material-icons">arrow_downward</i></button>
+      </form>
+      {% endif %}
       <a class="btn" href="{% url 'edit_category' id=category.id %}">Edit</a>
-      <a class="btn" href="{% url 'delete_category' id=category.id %}">Delete</a>
+      <a class="btn"
+        href="{% url 'delete_category' id=category.id %}">Delete</a>
     </div>
     {% endif %}
-
   </div>
-
   {% endfor %}
 </div>
 

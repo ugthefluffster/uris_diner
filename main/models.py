@@ -9,6 +9,7 @@ class Category(models.Model):
     is_deleted = models.BooleanField(default=False)
     image_Url = models.TextField(null=True, blank=True)
     image_file = models.ImageField(upload_to=category_image_path, null=True, blank=True)
+    position = models.IntegerField(blank=False, default=0)
 
     def __str__(self):
         return self.name

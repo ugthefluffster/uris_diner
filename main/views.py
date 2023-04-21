@@ -8,7 +8,7 @@ def main(request):
     return render(request, 'main/landing.html')
 
 def menu_all_categories(request):
-    categories_list = Category.objects.filter(is_deleted=False)
+    categories_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
     return render(request, 'main/menu_all_categories.html', {
         'categories_list':categories_list})
 
