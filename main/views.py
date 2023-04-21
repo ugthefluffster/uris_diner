@@ -13,7 +13,7 @@ def menu_all_categories(request):
         'categories_list':categories_list})
 
 def menu_category_dishes(request, category_id):
-    categories_list = Category.objects.filter(is_deleted=False)
+    categories_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
     try:
       category = Category.objects.get(id=category_id)
     except:
