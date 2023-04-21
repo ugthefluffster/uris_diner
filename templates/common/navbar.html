@@ -8,8 +8,6 @@
       <li><a href="{% url 'manage_orders' %}">Open Orders
           ({{open_orders_number}})</a></li>
       <li><a href="{% url 'show_orders_history' %}">Orders History</a></li>
-      <li><a href="{% url 'show_categories' %}">Manage Categories</a></li>
-      <li><a href="{% url 'show_dishes' %}">Manage Dishes</a></li>
       {% else %}
       <li><a href="{% url 'show_cart' %}">My Cart
           ({{my_cart_items_number}})</a></li>

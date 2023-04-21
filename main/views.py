@@ -59,14 +59,17 @@ def add_to_cart(request):
                 dish = Dish.objects.get(id=request.POST['dish_id'])
             except:
                 return redirect('menu_all_categories')
-            amount = request.POST['amount']
-            cart = request.user.cart_set.last()
-            new_item = Item(
-                dish = dish, 
-                cart = cart,
-                amount = amount)
-            new_item.save()
-            messages.info(request, f'{amount} X {dish.name} added to cart')
+            if request.user.is_staff:
+                messages.info(request, f'Staff cannot place orders.')
+            else:
+                amount = request.POST['amount']
+                cart = request.user.cart_set.last()
+                new_item = Item(
+                    dish = dish, 
+                    cart = cart,
+                    amount = amount)
+                new_item.save()
+                messages.info(request, f'{amount} X {dish.name} added to cart')
     return redirect('menu_category_dishes', category_id=dish.category.id)
 
 @login_required(login_url='user_login')

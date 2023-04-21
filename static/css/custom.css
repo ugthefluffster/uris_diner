@@ -109,3 +109,11 @@ p {
 .toast {
   display: inline;
 }
+
+.no-bottom-border {
+  border-bottom: none !important;
+}
+
+.more-right-margin {
+  margin-right: 30px;
+}

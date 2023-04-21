@@ -6,7 +6,13 @@
 
   <div class="row center-align">
     <h4>Delivery Menu</h4>
+    {% if request.user.is_staff %}
+    <a class="btn" href="{% url 'add_dish' %}">add dish</a>
+    <a class="btn" href="{% url 'add_category' %}">add category</a>
+    {% endif %}
   </div>
+
+
 
   <div class="row">
     <div class="col l3">

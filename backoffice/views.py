@@ -37,3 +37,78 @@ def manage_orders(request):
 def show_orders_history(request):
     orders_list = sorted(Cart.objects.filter(delivery__is_delivered=True), key=lambda order: order.delivery.created, reverse=True)
     return render(request, 'backoffice/orders_history.html', {'orders_list':orders_list})
+
+@staff_member_required(login_url='backoffice_login')
+def add_category(request):
+    form = CategoryForm()
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('menu_all_categories')
+    return render(request, 'backoffice/add_category.html', {'form':form})
+
+@staff_member_required(login_url='backoffice_login')
+def edit_category(request, id):
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    form = CategoryForm(instance=category)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('menu_all_categories')
+    return render(request, 'backoffice/edit_category.html', {'form':form, 'category':category})
+
+@staff_member_required(login_url='backoffice_login')
+def delete_category(request, id):
+    try:
+        category = Category.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    if request.method == 'POST':
+        category.is_deleted = True
+        category.save()
+        for dish in category.dish_set.all():
+            dish.is_deleted = True
+            dish.save()
+        return redirect('menu_all_categories')
+    return render(request, 'backoffice/delete_category.html', {'category':category})
+
+@staff_member_required(login_url='backoffice_login')
+def add_dish(request):
+    form = DishForm()
+    if request.method == 'POST':
+        form = DishForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('menu_category_dishes', category_id=form.instance.category.id)
+    return render(request, 'backoffice/add_dish.html', {'form':form})
+
+@staff_member_required(login_url='backoffice_login')
+def edit_dish(request, id):
+    try:
+        dish = Dish.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    form = DishForm(instance=dish)
+    if request.method == 'POST':
+        form = DishForm(request.POST, request.FILES, instance=dish)
+        if form.is_valid():
+            form.save()
+            return redirect('menu_category_dishes', category_id=dish.category.id)
+    return render(request, 'backoffice/edit_dish.html', {'form':form, 'dish':dish})
+
+@staff_member_required(login_url='backoffice_login')
+def delete_dish(request, id):
+    try:
+        dish = Dish.objects.get(id=id)
+    except:
+        return redirect('menu_all_categories')
+    if request.method == 'POST':
+        dish.is_deleted = True
+        dish.save()
+        return redirect('menu_category_dishes', category_id=dish.category.id)
+    return render(request, 'backoffice/delete_dish.html', {'dish':dish})

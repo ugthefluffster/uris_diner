@@ -5,7 +5,8 @@
 <div>
   <ul class="collection">
     {% for dish in show_dishes %}
-    <a class="modal-trigger collection-item" href="#{{dish.name}}">
+    <a class="modal-trigger collection-item {% if request.user.is_staff %} no-bottom-border {% endif %}"
+      href="#{{dish.name}}">
       <img class="dish-img" {% if dish.image_file %}
         src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
         {% endif %} alt="{{dish.name}}">
@@ -22,6 +23,15 @@
         </div>
       </div>
     </a>
+
+    {% if request.user.is_staff %}
+    <div class="collection-item">
+      <a class="btn" href="#"><i class="material-icons">arrow_upward</i></a>
+      <a class="btn" href="#"><i class="material-icons">arrow_downward</i></a>
+      <a class="btn" href="{% url 'edit_dish' id=dish.id %}">edit</a>
+      <a class="btn" href="{% url 'delete_dish' id=dish.id %}">delete</a>
+    </div>
+    {% endif %}
 
     <div id="{{dish.name}}" class="modal">
       <div class="modal-content">

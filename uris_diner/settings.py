@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'users',
     'main',
     'backoffice',
-    'manage_categories',
-    'manage_dishes',
     'django.forms'
 ]
 
