@@ -1,2 +1,1 @@
 * improve navbar logo
-* improve landing page look and hide 'for staff only' (add slider?)
