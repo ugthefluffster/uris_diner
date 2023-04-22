@@ -84,7 +84,6 @@ def change_cart_item(request):
             item = Item.objects.get(id=request.POST['item_id'])
         except:
             return redirect('show_cart')
-        print(request.POST)
         item.amount += int(request.POST['amount'])
         if item.amount > 0:
             item.save()
