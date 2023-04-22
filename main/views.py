@@ -54,11 +54,11 @@ def show_delivery(request):
 def add_to_cart(request):
     if request.method == 'POST':
         form = ItemAmountForm(request.POST)
+        try:
+            dish = Dish.objects.get(id=request.POST['dish_id'])
+        except:
+            return redirect('menu_all_categories')
         if form.is_valid():
-            try:
-                dish = Dish.objects.get(id=request.POST['dish_id'])
-            except:
-                return redirect('menu_all_categories')
             if request.user.is_staff:
                 messages.info(request, f'Staff cannot place orders.')
             else:

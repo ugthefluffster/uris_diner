@@ -1,1 +1,2 @@
 * improve navbar logo
+* add images to landing page slider

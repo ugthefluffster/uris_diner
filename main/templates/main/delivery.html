@@ -9,6 +9,8 @@
     </div>
   </div>
 
+  {% if open_orders %}
+
   {% for order in open_orders %}
 
   <div class="row">
@@ -46,6 +48,14 @@
   </div>
 
   {% endfor %}
+
+  {% else %}
+  <div class="row center-align">
+    <div class="section">
+      <h6>You have no active orders.</h6>
+    </div>
+  </div>
+  {% endif %}
 
 </div>
 

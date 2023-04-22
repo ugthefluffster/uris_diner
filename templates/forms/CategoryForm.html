@@ -15,12 +15,12 @@
     <div>
       <h6>Dishes in this category:</h6>
       <ol>
-      {% for dish in form.instance.dish_set.all %}
-      {% if dish.is_deleted == False %}
-      <li><a href="{% url 'edit_dish' id=dish.id %}">{{dish.name}}</a></li>
-      {% endif %}
-      {% endfor %}
-    </ol>
+        {% for dish in form.instance.dish_set.all %}
+        {% if dish.is_deleted == False %}
+        <li><a href="{% url 'edit_dish' id=dish.id %}">{{dish.name}}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ol>
     </div>
   </div>
 </div>
@@ -34,9 +34,17 @@
     </div>
     <div>
       {% if form.instance.image_file %}
-      <img class="category-img" src="{{form.instance.image_file.url}}" alt="">
+      <div>
+        <img class="category-img" src="{{form.instance.image_file.url}}" alt="">
+      </div>
+      Uploaded file: {{form.instance.image_file.name}}
       {% else %}
-      <img class="category-img" src="{{form.instance.image_Url}}" alt="">
+      <div>
+        <img class="category-img" src="{{form.instance.image_Url}}" alt="">
+      </div>
+      <p style="overflow-wrap: break-word">
+        Image URL: {{form.instance.image_Url}}
+      </p>
       {% endif %}
     </div>
     {% endif %}
@@ -51,6 +59,10 @@
     <div class="red-text">{{error}}</div>
     {% endfor %}
   </div>
+</div>
+
+<div>
+  Or
 </div>
 
 <div class="row">

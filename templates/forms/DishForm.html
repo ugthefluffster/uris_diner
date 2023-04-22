@@ -18,7 +18,7 @@
   <div class="col l4">
     <div class="input-field">
       {{form.category}} {{form.category.label_tag}}
-      {% for error in form.price.errors %}
+      {% for error in form.category.errors %}
       <div class="red-text">{{error}}</div>
       {% endfor %}
     </div>
@@ -64,12 +64,22 @@
 <div class="row">
   <div class="col l12">
     {% if form.instance.id != None %}
-    <div class="section"><p>Current image:</p></div>
+    <div class="section">
+      <p>Current image:</p>
+    </div>
     <div>
       {% if form.instance.image_file %}
-      <img class="dish-img big" src="{{form.instance.image_file.url}}" alt="">
+      <div>
+        <img class="dish-img big" src="{{form.instance.image_file.url}}" alt="">
+      </div>
+      Uploaded file: {{form.instance.image_file.name}}
       {% else %}
-      <img class="dish-img big" src="{{form.instance.image_Url}}" alt="">
+      <div>
+        <img class="dish-img big" src="{{form.instance.image_Url}}" alt="">
+      </div>
+      <p style="overflow-wrap: break-word">
+        Image URL: {{form.instance.image_Url}}
+      </p>
       {% endif %}
     </div>
     {% endif %}
@@ -86,10 +96,14 @@
   </div>
 </div>
 
+<div>
+  Or
+</div>
+
 <div class="row">
   <div class="col l12">
     <div class="input-field tooltipped" data-position="bottom"
-    data-tooltip="{{form.image_Url.help_text}}">
+      data-tooltip="{{form.image_Url.help_text}}">
       {{form.image_Url.label_tag}} {{form.image_Url}}
       {% for error in form.image_Url.errors %}
       <div class="red-text">{{error}}</div>

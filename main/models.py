@@ -7,7 +7,7 @@ def category_image_path(instance, filename):
 class Category(models.Model):
     name = models.CharField(max_length=20, blank=False, unique=True)
     is_deleted = models.BooleanField(default=False)
-    image_Url = models.TextField(null=True, blank=True)
+    image_Url = models.URLField(null=True, blank=True)
     image_file = models.ImageField(upload_to=category_image_path, null=True, blank=True)
     position = models.IntegerField(blank=False, default=0)
 
@@ -25,7 +25,7 @@ class Dish(models.Model):
     is_vegeterian = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, limit_choices_to={'is_deleted':False})
     is_deleted = models.BooleanField(default=False)
-    image_Url = models.TextField(null=True, blank=True)
+    image_Url = models.URLField(null=True, blank=True)
     image_file = models.ImageField(upload_to=dish_image_path, null=True, blank=True)
 
     def __str__(self):

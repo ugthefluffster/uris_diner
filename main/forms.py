@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.core.validators import *
 from main.models import *
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -40,7 +41,9 @@ class DishForm(ModelForm):
         fields = ['name', 'price', 'description', 'is_gluten_free', 'is_vegeterian', 'category', 'image_file', 'image_Url']
         labels = {
             'is_gluten_free': 'Gluten free',
-            'is_vegeterian': 'Vegeterian'
+            'is_vegeterian': 'Vegeterian',
+            'image_file': 'Upload image file',
+            'image_Url': 'Enter image URL'
         }
         help_texts = {
             'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
@@ -48,7 +51,6 @@ class DishForm(ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'class':'materialize-textarea'}),
             'image_file': forms.FileInput(),
-            'image_Url': forms.TextInput()
         }
 
 class CategoryForm(ModelForm):
@@ -56,12 +58,15 @@ class CategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'image_file', 'image_Url']
+        labels = {
+            'image_file': 'Upload image file',
+            'image_Url': 'Enter image URL'
+        }
         help_texts = {
             'image_Url': 'Image upload is preferred and will take precedence if both an image URL and a file is supplied.'
         }
         widgets = {
             'image_file': forms.FileInput(),
-            'image_Url': forms.TextInput()
         }
 
 class ItemAmountForm(forms.Form):

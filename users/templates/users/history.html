@@ -9,6 +9,7 @@
   </div>
 </div>
 
+{% if past_orders %}
 
 <div class="row">
   <div class="col l6 offset-l3">
@@ -55,6 +56,14 @@
       </div>
     </div>
     {% endfor %}
+
+    {% else %}
+    <div class="row center-align">
+      <div class="section">
+        <h6>You have yet to recieve any order.</h6>
+      </div>
+    </div>
+    {% endif %}  
 
   </div>
 
