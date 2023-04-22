@@ -50,6 +50,10 @@ def add_category(request):
     form = CategoryForm()
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES)
+        print('1', form.data.get('image_file'), '2', form.data.get('image_Url'))
+        if not form.data.get('image_file') and not form.data.get('image_Url'):
+            print('********************')
+            form.add_error(field=None, error=ValidationError('Please upload an image file or enter an image URL'))
         if form.is_valid():
             new_category = form.save()
             category_list = Category.objects.filter(is_deleted=False)
