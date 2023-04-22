@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout, update_session_auth
 from django.contrib import messages
 from main.models import *
 from main.forms import *
+from django.core.exceptions import ValidationError
 
 def user_signup(request):
     if request.user.is_authenticated:
@@ -32,12 +33,12 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             if user.is_staff:
-                messages.info(request, f"Please use the staff login")
-                return redirect('main')
-            login(request, user)
-            if request.POST['next']:
-                return redirect(request.POST['next'])
-            return redirect('menu_all_categories')
+                form.add_error(field=None, error=ValidationError('Please use staff login'))
+            else:
+                login(request, user)
+                if request.POST['next']:
+                    return redirect(request.POST['next'])
+                return redirect('menu_all_categories')
     return render(request, 'users/login.html', {'form':form})
 
 @login_required(login_url='user_login')
