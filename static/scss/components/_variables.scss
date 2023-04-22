@@ -34,14 +34,14 @@
 // 1. Colors
 // ==========================================================================
 
-$primary-color: color("materialize-red", "lighten-2") !default;
+$primary-color: #c92e3f !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-$secondary-color: color("blue", "darken-2") !default;
+$secondary-color: #3090d9!default; 
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
-$link-color: black !default;
+$link-color: rgba(0, 0, 0, 0.87) !default;
 
 
 // 2. Badges
@@ -155,7 +155,7 @@ $timepicker-clock-plate-bg: #eee !default;
 
 $dropdown-bg-color: #fff !default;
 $dropdown-hover-bg-color: #eee !default;
-$dropdown-color: $secondary-color !default;
+$dropdown-color: rgba(0, 0, 0, 0.87) !default;
 $dropdown-item-height: 50px !default;
 
 
@@ -267,7 +267,7 @@ $sidenav-line-height: $sidenav-item-height !default;
 
 $slider-bg-color: color('grey', 'base') !default;
 $slider-bg-color-light: color('grey', 'lighten-2') !default;
-$slider-indicator-color: color('green', 'base') !default;
+$slider-indicator-color: $primary-color !default;
 
 
 // 16. Spinners | Loaders

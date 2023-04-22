@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container center-align">
-  <h1>Welcome to Uri's Diner</h1>
+  <h1 class="welcome-text">Welcome to Uri's Diner</h1>
 
   <div class="row">
     {% if request.user.username %}
@@ -37,7 +37,8 @@
           <img src="{% static 'images/sitting-area.jpg' %}">
           <div class="caption left-align">
             <h3>Homey atmosphere</h3>
-            <h5 class="light grey-text text-lighten-3">Classic diner experience.
+            <h5 class="light grey-text text-lighten-3">Classic diner
+              experience.
             </h5>
           </div>
         </li>
