@@ -31,6 +31,9 @@ def user_login(request):
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
+            if user.is_staff:
+                messages.info(request, f"Please use the staff login")
+                return redirect('main')
             login(request, user)
             if request.POST['next']:
                 return redirect(request.POST['next'])

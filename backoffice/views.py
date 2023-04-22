@@ -3,19 +3,26 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import login, logout
 from main.models import *
 from main.forms import *
+from django.core.exceptions import ValidationError
 
 def backoffice_login(request):
-    if request.user.is_authenticated and request.user.is_staff==True:
-        return redirect('manage_orders')
+    if request.user.is_authenticated:
+        if request.user.is_staff==True:
+            return redirect('manage_orders')
+        else:
+            return redirect('menu_all_categories')
     form = CustomAuthenticationForm()
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
-            if request.POST['next']:
-                return redirect(request.POST['next'])
-            return redirect('manage_orders')
+            if user.is_staff:
+                login(request, user)
+                if request.POST['next']:
+                    return redirect(request.POST['next'])
+                return redirect('manage_orders')
+            else:
+                form.add_error(field=None, error=ValidationError('Only staff can log in'))
     return render(request, 'backoffice/staff_login.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
