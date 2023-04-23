@@ -3022,7 +3022,7 @@ td, th {
   border-bottom: none;
 }
 .collection .collection-item.active {
-  background-color: #3090d9;
+  background-color: #c92e3f;
   color: white;
 }
 .collection .collection-item.active .secondary-content {
@@ -7503,7 +7503,7 @@ input[type=range]::-ms-thumb {
   border-radius: 50%;
 }
 .slider .indicators .indicator-item.active {
-  background-color: #c92e3f;
+  background-color: #3090d9;
 }
 
 .carousel {

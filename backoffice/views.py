@@ -26,11 +26,6 @@ def backoffice_login(request):
     return render(request, 'backoffice/staff_login.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
-def backoffice_logout(request):
-    logout(request)
-    return redirect('main')
-
-@staff_member_required(login_url='backoffice_login')
 def manage_orders(request):
     orders_list = sorted(Cart.objects.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created)
     if request.method == 'POST':
@@ -78,9 +73,9 @@ def category_up(request, id):
         category = Category.objects.get(id=id)
     except:
         return redirect('menu_all_categories')
-    category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
-    prev = category_list[category.position-1]
     if request.method == 'POST':
+        category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
+        prev = category_list[category.position-1]
         category.position, prev.position = prev.position, category.position
         category.save()
         prev.save()
@@ -92,9 +87,9 @@ def category_down(request, id):
         category = Category.objects.get(id=id)
     except:
         return redirect('menu_all_categories')
-    category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
-    prev = category_list[category.position+1]
     if request.method == 'POST':
+        category_list = sorted(Category.objects.filter(is_deleted=False), key=lambda category: category.position)
+        prev = category_list[category.position+1]
         category.position, prev.position = prev.position, category.position
         category.save()
         prev.save()
