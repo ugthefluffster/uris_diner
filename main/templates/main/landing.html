@@ -53,12 +53,15 @@
   </div>
 </div>
 
+{% if not request.user.id %}
 <div class="section to-bottom" style="width: 100%;">
   <div class="center-align">
     <a class="btn btn-flat" href="{% url 'backoffice_login' %}">For staff
       only</a>
   </div>
 </div>
+{% endif %}
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
