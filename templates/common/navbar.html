@@ -1,8 +1,10 @@
 {% load static %}
 <nav>
   <div class="nav-wrapper">
-
-    <a href="{% url 'main' %}" class="brand-logo" style="left: 50px"> Uri's Diner</a>
+    <a href="{% url 'main' %}" class="brand-logo" style="left: 80px">
+      <img class="logo-icon" src="{% static 'images/icon.webp' %}">
+       Uri's Diner
+      </a>
     <ul class="right">
       <li><a href="{% url 'menu_all_categories' %}">Menu</a></li>
       {% if request.user.username %}

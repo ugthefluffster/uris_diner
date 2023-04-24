@@ -1,5 +1,1 @@
-* improve navbar logo (with icon like favicon?)
-* add images to landing page slider
-* add favicon
-* expand menu
 * clean database for submission
