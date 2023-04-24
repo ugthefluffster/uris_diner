@@ -1,0 +1,15 @@
+jon smith (customer)
+username: jonsmith
+pass: 76Ws8iO!Z#k$
+
+alice borwn (customer)
+username: alicebrown
+pass: dR12*Jt2nJH&
+
+staffmember (staff member)
+username: staffmember
+password: staffmember
+
+dineradmin (superuser)
+username: dineradmin
+password: dineradmin#123

@@ -1,2 +1,0 @@
-username: dineradmin
-password: dineradmin#123

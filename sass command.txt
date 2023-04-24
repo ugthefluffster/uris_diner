@@ -1,1 +1,2 @@
+to use when working with scss
 sass --watch static/scss/materialize.scss static/css/materialize.css
