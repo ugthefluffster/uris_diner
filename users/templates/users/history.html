@@ -2,7 +2,6 @@
 {% block title %}History{% endblock title %}
 {% block users-content %}
 
-
 <div class="row">
   <div class="col l12 center-align">
     <h4>Your orders history</h4>
@@ -10,62 +9,61 @@
 </div>
 
 {% if past_orders %}
-
-<div class="row">
-  <div class="col l6 offset-l3">
-    {% for order in past_orders %}
-    <div class="row valign-wrapper no-bottom-margin">
-      <div class="col l12">
-        <ul class="collapsible no-bottom-margin">
-          <li>
-            <div class="collapsible-header not-flex">
-              <div class="row no-bottom-margin">
-                <div class="col l4">
-                  <div><strong>Order number:</strong> {{order.delivery.order_id}}
+  <div class="row">
+    <div class="col l6 offset-l3">
+      {% for order in past_orders %}
+        <div class="row valign-wrapper no-bottom-margin">
+          <div class="col l12">
+            <ul class="collapsible no-bottom-margin">
+              <li>
+                <div class="collapsible-header not-flex">
+                  <div class="row no-bottom-margin">
+                    <div class="col l4">
+                      <div>
+                        <strong>Order number:</strong> {{order.delivery.order_id}}
+                      </div>
+                    </div>
+                    <div class="col l8">
+                      <div>
+                        <strong>Made in:</strong> {{order.delivery.created}}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col l8">
-                  <div><strong>Made in:</strong> {{order.delivery.created}}</div>
+                <div class="collapsible-body">
+                  <div class="more-bottom-margin">
+                    <strong>Address:</strong> {{order.delivery.address}}
+                  </div>
+                  <strong>items:</strong>
+                  <ol class="no-top-bottom-margin">
+                    {% for item in order.item_set.all %}
+                      <li>
+                        {{item.dish.name}} X {{item.amount}} -
+                        {{item.item_total}}₪
+                      </li>
+                    {% endfor %}
+                  </ol>
+                  <div class="more-top-bottom-margin">
+                    <strong>Total:</strong> {{order.total_to_pay}}₪
+                  </div>
+                  <div>
+                    <strong>Comments:</strong> {{order.delivery.comment}}
+                  </div>
                 </div>
-
-              </div>
-            </div>
-            <div class="collapsible-body">
-              <div>
-                <div class="more-bottom-margin"><strong>Address:</strong>
-                  {{order.delivery.address}}
-                </div>
-                <strong>items:</strong>
-                <ol class="no-top-bottom-margin">
-                  {% for item in order.item_set.all %}
-                  <li>
-                    {{item.dish.name}} X {{item.amount}} -
-                    {{item.item_total}}₪
-                  </li>
-                  {% endfor %}
-                </ol>
-              </div>
-              <div class="more-top-bottom-margin"><strong>Total:</strong>
-                {{order.total_to_pay}}₪
-              </div>
-              <div><strong>Comments:</strong> {{order.delivery.comment}}
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-
-    {% else %}
-    <div class="row center-align">
-      <div class="section">
-        <h6>You have yet to recieve any order.</h6>
-      </div>
-    </div>
-    {% endif %}  
-
   </div>
 
+{% else %}
+  <div class="row center-align">
+    <div class="section">
+      <h6>You have yet to recieve any orders.</h6>
+    </div>
+  </div>
+{% endif %}  
 
-  {% endblock users-content %}
+{% endblock users-content %}

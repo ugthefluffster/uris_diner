@@ -1,10 +1,10 @@
-from django.urls import path, include
+from django.urls import path
 from . import views 
 
 urlpatterns = [
     path('login/', views.backoffice_login, name="backoffice_login"),
     path('orders/', views.manage_orders, name="manage_orders"),
-    path('orders/history', views.show_orders_history, name="show_orders_history"),
+    path('orders/history/', views.show_orders_history, name="show_orders_history"),
     path('categories/add/', views.add_category, name="add_category"),
     path('categories/edit/<int:id>', views.edit_category, name="edit_category"),
     path('categories/up/<int:id>', views.category_up, name="category_up"),

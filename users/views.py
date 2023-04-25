@@ -33,7 +33,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             if user.is_staff:
-                form.add_error(field=None, error=ValidationError('Please use staff login'))
+                form.add_error(field=None, error=ValidationError('Please use staff login.'))
             else:
                 login(request, user)
                 if request.POST['next']:

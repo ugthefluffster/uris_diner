@@ -1,14 +1,13 @@
 {% extends 'layouts/backoffice.html' %}
-{% block title %}Manage Orders{% endblock title %}
+{% block title %}Open Orders{% endblock title %}
 {% block backoffice-content %}
 
 <div class="center-align">
-  <h3>Open Orders</h3>
+  <h4>Open Orders</h4>
 </div>
 
 <div class="row">
   <div class="col l8 offset-l2">
-
     <div class="row no-bottom-margin">
       <div class="col l10">
         <div class="row no-bottom-margin">
@@ -24,60 +23,60 @@
         </div>
       </div>
     </div>
-
-
     {% for order in orders_list %}
-    <div class="row no-bottom-margin">
-      <div class="col l10">
-        <ul class="collapsible no-bottom-margin fulfill-item">
-          <li>
-            <div class="collapsible-header not-flex">
-              <div class="row no-bottom-margin">
-                <div class="col l2">
-                  <div><strong>{{order.delivery.order_id}}</strong></div>
+      <div class="row no-bottom-margin">
+        <div class="col l10">
+          <ul class="collapsible no-bottom-margin fulfill-item">
+            <li>
+              <div class="collapsible-header not-flex">
+                <div class="row no-bottom-margin">
+                  <div class="col l2">
+                    <div>
+                      <strong>{{order.delivery.order_id}}</strong>
+                    </div>
+                  </div>
+                  <div class="col l4">
+                    <div>{{order.delivery.created}}</div>
+                  </div>
+                  <div class="col">
+                    <div>{{order.delivery.address}}</div>
+                  </div>
                 </div>
-                <div class="col l4">
-                  <div>{{order.delivery.created}}</div>
+              </div>
+              <div class="collapsible-body">
+                <div>
+                  <strong>Made by:</strong> {{order.user.first_name|title}} {{order.user.last_name|title}}
                 </div>
-                <div class="col">
-                  <div>{{order.delivery.address}}</div>
+                <div>
+                  <strong>items:</strong>
+                  <ol>
+                    {% for item in order.item_set.all %}
+                      <li>
+                        {{item.dish.name}} X {{item.amount}} - {{item.item_total}}₪
+                      </li>
+                    {% endfor %}
+                  </ol>
+                </div>
+                <div>
+                  <strong>Total:</strong> {{order.total_to_pay}}₪
+                </div>
+                <div>
+                  <strong>Comments:</strong> {{order.delivery.comment}}
                 </div>
               </div>
-            </div>
-            <div class="collapsible-body">
-              <div><strong>Made by:</strong>
-                {{order.user.first_name|title}}
-                {{order.user.last_name|title}}
-              </div>
-              <div>
-                <strong>items:</strong>
-                <ol>
-                  {% for item in order.item_set.all %}
-                  <li>
-                    {{item.dish.name}} X {{item.amount}} -
-                    {{item.item_total}}₪
-                  </li>
-                  {% endfor %}
-                </ol>
-              </div>
-              <div><strong>Total:</strong> {{order.total_to_pay}}₪</div>
-              <div><strong>Comments:</strong> {{order.delivery.comment}}
-              </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col l2">
+          <form class="fulfill-item" action="{% url 'manage_orders' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">
+            <input class="btn btn-large" type="submit" value="fulfill">
+          </form>
+        </div>
       </div>
-      <div class="col l2">
-        <form class="fulfill-item" action="{% url 'manage_orders' %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="order_id"
-            value="{{order.delivery.order_id}}">
-          <input class="btn btn-large" type="submit" value="fulfill">
-        </form>
-      </div>
-    </div>
     {% endfor %}
-
   </div>
 </div>
+
 {% endblock backoffice-content %}

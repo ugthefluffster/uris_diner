@@ -5,43 +5,47 @@
 <div>
   {% for category in categories_list %}
   <div class="card hoverable">
-
     <div class="card-image">
       <a href="{% url 'menu_category_dishes' category_id=category.id %}">
-        <img class="category-img" {% if category.image_file %}
-          src="{{category.image_file.url}}" {% else %}
-          src="{{category.image_Url}}" {% endif %} alt="{{category.name}}">
-        <span class="card-title category-title">{{category.name}} </span>
+        <img class="category-img" 
+          {% if category.image_file %}
+            src="{{category.image_file.url}}" 
+          {% else %}
+            src="{{category.image_Url}}" 
+          {% endif %} 
+          alt="{{category.name}}">
+        <span class="card-title category-title">{{category.name}}</span>
       </a>
     </div>
     {% if request.user.is_staff %}
-    <div class="card-action">
-      {% if forloop.first %}
-      <a class="btn disabled" href="#"><i
-          class="material-icons">arrow_upward</i></a>
-      {% else %}
-      <form class="display-inline-block"
-        action="{% url 'category_up' id=category.id%}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn"><i
-            class="material-icons">arrow_upward</i></button>
-      </form>
-      {% endif %}
-      {% if forloop.last %}
-      <a class="btn disabled" href="#"><i
-          class="material-icons">arrow_downward</i></a>
-      {% else %}
-      <form class="display-inline-block"
-        action="{% url 'category_down' id=category.id%}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn"><i
-            class="material-icons">arrow_downward</i></button>
-      </form>
-      {% endif %}
-      <a class="btn" href="{% url 'edit_category' id=category.id %}">Edit</a>
-      <a class="btn"
-        href="{% url 'delete_category' id=category.id %}">Delete</a>
-    </div>
+      <div class="card-action">
+        {% if forloop.first %}
+          <a class="btn disabled"><i class="material-icons">arrow_upward</i></a>
+        {% else %}
+          <form class="display-inline-block"
+          action="{% url 'category_up' id=category.id%}" 
+          method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">
+              <i class="material-icons">arrow_upward</i>
+            </button>
+          </form>
+        {% endif %}
+        {% if forloop.last %}
+          <a class="btn disabled"><i class="material-icons">arrow_downward</i></a>
+        {% else %}
+          <form class="display-inline-block"
+          action="{% url 'category_down' id=category.id%}" 
+          method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">
+              <i class="material-icons">arrow_downward</i>
+            </button>
+          </form>
+        {% endif %}
+        <a class="btn" href="{% url 'edit_category' id=category.id %}">Edit</a>
+        <a class="btn" href="{% url 'delete_category' id=category.id %}">Delete</a>
+      </div>
     {% endif %}
   </div>
   {% endfor %}

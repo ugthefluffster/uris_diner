@@ -1,6 +1,6 @@
 jon smith (customer)
 username: jonsmith
-pass: 76Ws8iO!Z#k$
+pass: 76Ws8iO!Z#k1
 
 alice borwn (customer)
 username: alicebrown

@@ -23,32 +23,7 @@ def menu_category_dishes(request, category_id):
     return render(request, 'main/menu_category_dishes.html', {
         'categories_list':categories_list, 
         'show_dishes':show_dishes, 
-        'category': category,
         'form':form})
-
-@login_required(login_url='user_login')
-def fill_order(request):
-    form = OrderForm()
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            cart = request.user.cart_set.last()
-            new_delivery = Delivery(
-                address = form.cleaned_data['address'],
-                comment = form.cleaned_data['comment'],
-                order = cart)
-            new_delivery.save()
-            new_cart = Cart(user = request.user)
-            new_cart.save()
-            messages.info(request, 
-                f'Thank you {request.user.first_name.title()}! Your order number {new_delivery.order_id} have been recieved and is on its way.')
-            return redirect('show_delivery')
-    return render(request, 'main/order.html', {'form':form})
-
-@login_required(login_url='user_login')
-def show_delivery(request): 
-    open_orders = sorted(request.user.cart_set.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created, reverse=True)   
-    return render(request, 'main/delivery.html', {'open_orders':open_orders})
 
 @login_required(login_url='user_login')
 def add_to_cart(request):
@@ -70,7 +45,9 @@ def add_to_cart(request):
                     amount = amount)
                 new_item.save()
                 messages.info(request, f'{amount} X {dish.name} added to cart')
-    return redirect('menu_category_dishes', category_id=dish.category.id)
+        return redirect('menu_category_dishes', category_id=dish.category.id)
+    else:
+        return redirect('menu_all_categories')
 
 @login_required(login_url='user_login')
 def show_cart(request):
@@ -98,3 +75,27 @@ def delete_cart_item(request):
             return redirect('show_cart')
         item.delete()
     return redirect('show_cart')
+
+@login_required(login_url='user_login')
+def fill_order(request):
+    form = OrderForm()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            cart = request.user.cart_set.last()
+            new_delivery = Delivery(
+                address = form.cleaned_data['address'],
+                comment = form.cleaned_data['comment'],
+                order = cart)
+            new_delivery.save()
+            new_cart = Cart(user = request.user)
+            new_cart.save()
+            messages.info(request, 
+                f'Thank you {request.user.first_name.title()}! Your order number {new_delivery.order_id} have been recieved and is on its way.')
+            return redirect('show_delivery')
+    return render(request, 'main/order.html', {'form':form})
+
+@login_required(login_url='user_login')
+def show_delivery(request): 
+    open_orders = sorted(request.user.cart_set.filter(delivery__is_delivered=False), key=lambda order: order.delivery.created, reverse=True)   
+    return render(request, 'main/delivery.html', {'open_orders':open_orders})

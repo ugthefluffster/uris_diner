@@ -1,5 +1,5 @@
 {% extends 'layouts/main.html' %}
-{% block title %}Delivery{% endblock title %}
+{% block title %}Orders{% endblock title %}
 {% block main-content %}
 
 <div class="container">
@@ -8,55 +8,51 @@
       <h4>Your active orders information</h4>
     </div>
   </div>
-
   {% if open_orders %}
-
-  {% for order in open_orders %}
-
-  <div class="row">
-    <div class="col l6 offset-l3">
-      <div class="card">
-        <div class="card-content">
-          <h5 class="center-align no-top-margin">Order number: {{order.delivery.order_id}}
-          </h5>
-          <div class="divider"></div>
-          <div>
-            <div class="more-top-bottom-margin"><strong>Made in:</strong>
-              {{order.delivery.created}}
+    {% for order in open_orders %}
+      <div class="row">
+        <div class="col l6 offset-l3">
+          <div class="card">
+            <div class="card-content">
+              <h5 class="center-align no-top-margin">
+                Order number: {{order.delivery.order_id}}
+              </h5>
+              <div class="divider"></div>
+              <div>
+                <div class="more-top-bottom-margin">
+                  <strong>Made in:</strong> {{order.delivery.created}}
+                </div>
+                <div class="more-top-bottom-margin">
+                  <strong>Address:</strong> {{order.delivery.address}}
+                </div>
+                <strong>items:</strong>
+                <ol class="no-top-bottom-margin">
+                  {% for item in order.item_set.all %}
+                    <li>
+                      {{item.dish.name}} X {{item.amount}} -
+                      {{item.item_total}}₪
+                    </li>
+                  {% endfor %}
+                </ol>
+              </div>
+              <div class="more-top-bottom-margin">
+                <strong>Total:</strong> {{order.total_to_pay}}₪
+              </div>
+              <div>
+                <strong>Comments:</strong> {{order.delivery.comment}}
+              </div>
             </div>
-            <div class="more-top-bottom-margin"><strong>Address:</strong>
-              {{order.delivery.address}}
-            </div>
-            <strong>items:</strong>
-            <ol class="no-top-bottom-margin">
-              {% for item in order.item_set.all %}
-              <li>
-                {{item.dish.name}} X {{item.amount}} -
-                {{item.item_total}}₪
-              </li>
-              {% endfor %}
-            </ol>
-          </div>
-          <div class="more-top-bottom-margin"><strong>Total:</strong>
-            {{order.total_to_pay}}₪
-          </div>
-          <div><strong>Comments:</strong> {{order.delivery.comment}}
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  {% endfor %}
-
+    {% endfor %}
   {% else %}
-  <div class="row center-align">
-    <div class="section">
-      <h6>You have no active orders.</h6>
+    <div class="row center-align">
+      <div class="section">
+        <h6>You have no active orders.</h6>
+      </div>
     </div>
-  </div>
   {% endif %}
-
 </div>
 
 {% endblock main-content %}

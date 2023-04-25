@@ -15,6 +15,9 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(label="Email address", required=True)
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields +("email", "first_name", "last_name")
+        help_texts = {
+            'username': 'Letters, digits and @/./+/-/_ only. Cannot be altered after creation!'
+        }
 
 class ChangeInfoForm(forms.ModelForm):
     template_name = "forms/ChangeInfoForm.html"
@@ -26,7 +29,7 @@ class ChangeInfoForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email"]
 
 class CustomPasswordChangeForm(PasswordChangeForm):
-  template_name = "forms/CustomPasswordChangeForm.html"
+    template_name = "forms/CustomPasswordChangeForm.html"
 
 class OrderForm(ModelForm):
     template_name = "forms/OrderForm.html"

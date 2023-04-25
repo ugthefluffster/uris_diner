@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 from main.models import *
 from main.forms import *
 from django.core.exceptions import ValidationError
@@ -22,7 +22,7 @@ def backoffice_login(request):
                     return redirect(request.POST['next'])
                 return redirect('manage_orders')
             else:
-                form.add_error(field=None, error=ValidationError('Only staff can log in'))
+                form.add_error(field=None, error=ValidationError('Only staff can log in.'))
     return render(request, 'backoffice/staff_login.html', {'form':form})
 
 @staff_member_required(login_url='backoffice_login')
