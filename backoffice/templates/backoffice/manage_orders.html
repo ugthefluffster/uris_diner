@@ -48,7 +48,7 @@
                   <strong>Made by:</strong> {{order.user.first_name|title}} {{order.user.last_name|title}}
                 </div>
                 <div>
-                  <strong>items:</strong>
+                  <strong>Items:</strong>
                   <ol>
                     {% for item in order.item_set.all %}
                       <li>
