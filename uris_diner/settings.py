@@ -25,11 +25,11 @@ SECRET_KEY = 'django-insecure-mg(#7o+kb3!suuzjk!)d)*5oblh!r&or2aur+@cc(k922crdrg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CLOUD_URL = ''
+CLOUD_URL = 'uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io'
 
 ALLOWED_HOSTS = ['127.0.0.1', CLOUD_URL]
 
-CSRF_TRUSTED_ORIGINS = ['https://'+CLOUD_URL]
+CSRF_TRUSTED_ORIGINS = ['https://' + CLOUD_URL]
 
 # Application definition
 
