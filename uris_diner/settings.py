@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-mg(#7o+kb3!suuzjk!)d)*5oblh!r&or2aur+@cc(k922crdrg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CLOUD_URL = ''
 
+ALLOWED_HOSTS = ['127.0.0.1', CLOUD_URL]
+
+CSRF_TRUSTED_ORIGINS = ['https://'+CLOUD_URL]
 
 # Application definition
 
@@ -80,11 +83,14 @@ WSGI_APPLICATION = 'uris_diner.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'urisdinerdbadmin',
+        'PASSWORD': 'ern598&rgbn0',
+        'HOST': 'uris-diner-db.postgres.database.azure.com',
+        'PORT': ''
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -122,8 +128,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -134,3 +138,8 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+AZURE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=urisdinerstorage;AccountKey=8bAlZz2N4FbcSpnqe92gPNEoroz7tzvRov0M7YbkfQdhwvA774xyW09Hxris4ZYg4cPljY3LgN60+ASt5Bctog==;EndpointSuffix=core.windows.net'
+AZURE_CONTAINER = 'uris-diner-storage-container'
