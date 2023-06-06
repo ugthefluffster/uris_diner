@@ -1,6 +1,6 @@
-<!-- make responsive -->
+<!-- is responsive -->
 <div class="row">
-  <div class="col s6">
+  <div class="col s12 m6">
     <div class="input-field">
       {{form.first_name.label_tag}} {{form.first_name}}
       {% for error in form.first_name.errors %}
@@ -8,7 +8,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="col s6">
+  <div class="col s12 m6">
     <div class="input-field">
       {{form.last_name.label_tag}} {{form.last_name}}
       {% for error in form.last_name.errors %}
@@ -42,7 +42,7 @@
 </div>
 
 <div class="row">
-  <div class="col s6">
+  <div class="col s12 l6">
     <div class="input-field tooltipped" data-position="bottom"
     data-tooltip="{{form.password1.help_text}}">
       {{form.password1.label_tag}} {{form.password1}}
@@ -51,7 +51,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="col s6">
+  <div class="col s12 l6">
     <div class="input-field tooltipped" data-position="bottom"
     data-tooltip="{{form.password2.help_text}}">
       {{form.password2.label_tag}} {{form.password2}}
