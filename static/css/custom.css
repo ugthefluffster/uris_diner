@@ -3,13 +3,20 @@ body {
 }
 
 .logo-icon {
-  height: 50px;
-  position: absolute;
-  top: 8px;
-  left: -65px;
-  /* border: 1px solid #fffbf4; */
+  height: 45px;
   box-shadow: 0px 0px 20px #fffbf4;
   border-radius: 20%;
+  margin-right: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .category-img {
@@ -138,7 +145,7 @@ p {
 
 .welcome-text {
   text-shadow: 6px 8px 6px rgba(0, 0, 0, 0.226);
-  color:#c92e3f
+  color: #c92e3f;
 }
 
 .slider-text-shadow {
