@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
+import os
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mg(#7o+kb3!suuzjk!)d)*5oblh!r&or2aur+@cc(k922crdrg'
+# SECRET_KEY = 'django-insecure-mg(#7o+kb3!suuzjk!)d)*5oblh!r&or2aur+@cc(k922crdrg' # old
+
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'urisdinerdbadmin',
-        'PASSWORD': 'ern598&rgbn0',
+        'USER': os.environ["DATABASE_USER"],
+        'PASSWORD': os.environ["DATABASE_PASSWORD"],
         'HOST': 'uris-diner-db.postgres.database.azure.com',
         'PORT': ''
     }
@@ -141,5 +146,5 @@ FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-AZURE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=urisdinerstorage;AccountKey=8bAlZz2N4FbcSpnqe92gPNEoroz7tzvRov0M7YbkfQdhwvA774xyW09Hxris4ZYg4cPljY3LgN60+ASt5Bctog==;EndpointSuffix=core.windows.net'
+AZURE_CONNECTION_STRING = os.environ["AZURE_CONNECTION_STRING"]
 AZURE_CONTAINER = 'uris-diner-storage-container'
