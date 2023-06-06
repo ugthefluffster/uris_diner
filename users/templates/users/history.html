@@ -4,27 +4,27 @@
 {% block users-content %}
 
 <div class="row">
-  <div class="col l12 center-align">
+  <div class="col s12 center-align">
     <h4>Your orders history</h4>
   </div>
 </div>
 
 {% if past_orders %}
   <div class="row">
-    <div class="col l6 offset-l3">
+    <div class="col s6 offset-s3">
       {% for order in past_orders %}
         <div class="row valign-wrapper no-bottom-margin">
-          <div class="col l12">
+          <div class="col s12">
             <ul class="collapsible no-bottom-margin">
               <li>
                 <div class="collapsible-header not-flex">
                   <div class="row no-bottom-margin">
-                    <div class="col l4">
+                    <div class="col s4">
                       <div>
                         <strong>Order number:</strong> {{order.delivery.order_id}}
                       </div>
                     </div>
-                    <div class="col l8">
+                    <div class="col s8">
                       <div>
                         <strong>Made in:</strong> {{order.delivery.created}}
                       </div>

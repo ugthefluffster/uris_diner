@@ -11,18 +11,18 @@
 
   {% if cart.total_to_pay > 0 %}
     <div class="row">
-      <div class="col l8 offset-l2">
+      <div class="col s8 offset-s2">
         <ul class="collection">
           {% for item in cart.item_set.all %}
             <li class="collection-item">
               <div class="row no-bottom-margin">
-                <div class="col l6">
+                <div class="col s6">
                   <a class="modal-trigger" href="#{{item.dish.name}}">
                     <strong>{{item.dish.name}}</strong> X {{item.amount}}
                   </a>
                 </div>
-                <div class="col l2">{{item.item_total}}₪</div>
-                <div class="col l2">
+                <div class="col s2">{{item.item_total}}₪</div>
+                <div class="col s2">
                   <form class="change-item-btn"
                   action="{% url 'change_cart_item' %}" 
                   method="POST">
@@ -50,7 +50,7 @@
                     </div>
                   {% endif %}
                 </div>
-                <div class="col l1">
+                <div class="col s1">
                   <form action="{% url 'delete_cart_item' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="item_id" value="{{item.id}}">
@@ -89,7 +89,7 @@
       </div>
     </div>
   <div class="row">
-    <div class="col l6 offset-l3 center-align">
+    <div class="col s6 offset-s3 center-align">
       <h5>Total: {{cart.total_to_pay}}₪</h5>
       <div class="section">
         <a class="btn btn-large" href="{% url 'fill_order' %}">Place order</a>

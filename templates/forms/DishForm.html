@@ -1,5 +1,6 @@
+<!-- make responsive -->
 <div class="row">
-  <div class="col l6">
+  <div class="col s6">
     <div class="input-field">
       {{form.name.label_tag}} {{form.name}}
       {% for error in form.name.errors %}
@@ -7,7 +8,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="col l2">
+  <div class="col s2">
     <div class="input-field">
       {{form.price.label_tag}} {{form.price}}
       {% for error in form.price.errors %}
@@ -15,7 +16,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="col l4">
+  <div class="col s4">
     <div class="input-field">
       {{form.category}} {{form.category.label_tag}}
       {% for error in form.category.errors %}
@@ -26,7 +27,7 @@
 </div>
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     <div class="input-field">
       {{form.description.label_tag}}{{form.description}}
       {% for error in form.description.errors %}
@@ -37,7 +38,7 @@
 </div>
 
 <div class="row">
-  <div class="col l2">
+  <div class="col s2">
     <p>
       <label>
         <input type="checkbox" class="filled-in"
@@ -48,7 +49,7 @@
       </label>
     </p>
   </div>
-  <div class="col l2">
+  <div class="col s2">
     <p>
       <label>
         <input type="checkbox" class="filled-in"
@@ -62,7 +63,7 @@
 </div>
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     {% if form.instance.id != None %}
     <div class="section">
       <p>Current image:</p>
@@ -101,7 +102,7 @@
 </div>
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     <div class="input-field tooltipped" data-position="bottom"
       data-tooltip="{{form.image_Url.help_text}}">
       {{form.image_Url.label_tag}} {{form.image_Url}}

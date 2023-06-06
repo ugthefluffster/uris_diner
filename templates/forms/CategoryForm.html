@@ -1,5 +1,6 @@
+<!-- make responsive -->
 <div class="row">
-  <div class="col l4">
+  <div class="col s4">
     <div class="input-field">
       {{form.name.label_tag}}{{form.name}}
       {% for error in form.name.errors %}
@@ -11,7 +12,7 @@
 
 {% if form.instance.id != None %}
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     <div>
       <h6>Dishes in this category:</h6>
       <ol>
@@ -27,7 +28,7 @@
 {% endif %}
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     {% if form.instance.id != None %}
     <div class="section">
       <p>Current image:</p>
@@ -66,7 +67,7 @@
 </div>
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     <div class="input-field tooltipped" data-position="bottom"
       data-tooltip="{{form.image_Url.help_text}}">
       {{form.image_Url.label_tag}} {{form.image_Url}}

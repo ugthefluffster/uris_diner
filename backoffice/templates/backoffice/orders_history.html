@@ -8,14 +8,14 @@
 </div>
 
 <div class="row">
-  <div class="col l6 offset-l3">
+  <div class="col s6 offset-s3">
     <div class="row no-bottom-margin">
-      <div class="col l10">
+      <div class="col s10">
         <div class="row no-bottom-margin">
-          <div class="col l3">
+          <div class="col s3">
             <h5>No.</h5>
           </div>
-          <div class="col l5">
+          <div class="col s5">
             <h5>Made in</h5>
           </div>
           <div class="col">
@@ -26,17 +26,17 @@
     </div>
     {% for order in orders_list %}
       <div class="row valign-wrapper no-bottom-margin">
-        <div class="col l12">
+        <div class="col s12">
           <ul class="collapsible no-bottom-margin">
             <li>
               <div class="collapsible-header not-flex">
                 <div class="row no-bottom-margin">
-                  <div class="col l2">
+                  <div class="col s2">
                     <div>
                       <strong>{{order.delivery.order_id}}</strong>
                     </div>
                   </div>
-                  <div class="col l5">
+                  <div class="col s5">
                     <div>{{order.delivery.created}}</div>
                   </div>
                   <div class="col">

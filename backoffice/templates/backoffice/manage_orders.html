@@ -8,14 +8,14 @@
 </div>
 
 <div class="row">
-  <div class="col l8 offset-l2">
+  <div class="col s8 offset-s2">
     <div class="row no-bottom-margin">
-      <div class="col l10">
+      <div class="col s10">
         <div class="row no-bottom-margin">
-          <div class="col l2">
+          <div class="col s2">
             <h5>No.</h5>
           </div>
-          <div class="col l4">
+          <div class="col s4">
             <h5>Made in</h5>
           </div>
           <div class="col">
@@ -26,17 +26,17 @@
     </div>
     {% for order in orders_list %}
       <div class="row no-bottom-margin">
-        <div class="col l10">
+        <div class="col s10">
           <ul class="collapsible no-bottom-margin fulfill-item">
             <li>
               <div class="collapsible-header not-flex">
                 <div class="row no-bottom-margin">
-                  <div class="col l2">
+                  <div class="col s2">
                     <div>
                       <strong>{{order.delivery.order_id}}</strong>
                     </div>
                   </div>
-                  <div class="col l4">
+                  <div class="col s4">
                     <div>{{order.delivery.created}}</div>
                   </div>
                   <div class="col">
@@ -68,7 +68,7 @@
             </li>
           </ul>
         </div>
-        <div class="col l2">
+        <div class="col s2">
           <form class="fulfill-item" action="{% url 'manage_orders' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">
