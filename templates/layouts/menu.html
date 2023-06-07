@@ -38,18 +38,18 @@
     <div class="col s12 hide-on-large-only">
       <ul class="collection" style="display: flex; overflow-x: scroll;">
         {% url 'menu_all_categories' as url %}
-        <a class="collection-item
+        <a class="collection-item horizontal-collection-item
         {% if request.path == url %}
           active active-page
-        {% endif %}" href="{{url}}" style="white-space:nowrap">
+        {% endif %}" href="{{url}}">
           All Categories
         </a>
         {% for category in categories_list %}
         {% url 'menu_category_dishes' category_id=category.id as url %}
-        <a class="collection-item 
+        <a class="collection-item horizontal-collection-item
           {% if request.path == url %}
             active active-page
-          {% endif %}" href="{{ url }}" style="white-space:nowrap">
+          {% endif %}" href="{{ url }}">
           {{category}}
         </a>
         {% endfor %}

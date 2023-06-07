@@ -31,17 +31,6 @@ body {
   font-weight: 500 !important;
 }
 
-@media (max-width: 600px) {
-  .category-img {
-    height: 100px;
-  }
-  .category-title {
-    font-size: 45px !important;
-    padding-left: 10px !important;
-    padding-bottom: 4px !important;
-  }
-}
-
 .dish-img {
   height: 100px;
   width: 100px;
@@ -52,6 +41,29 @@ body {
 .dish-img.big {
   height: 300px;
   width: 300px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+  .dish-img.big {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .category-img {
+    height: 100px;
+  }
+  .category-title {
+    font-size: 45px !important;
+    padding-left: 10px !important;
+    padding-bottom: 4px !important;
+  }
+  .dish-img.big {
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .dish-text {
@@ -60,7 +72,14 @@ body {
 }
 
 .dish-text-in-modal {
-  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-dish-btn {
+  width: 12vw;
+  min-width: fit-content;
 }
 
 .dish-text h5,
@@ -126,10 +145,13 @@ p {
   display: inline-block;
   padding: 2px 4px 0px 4px;
   border-radius: 5px;
+  width: fit-content;
 }
 
-.add-dish-btn {
-  width: 200px;
+@media (max-width: 600px) {
+  .less-padding-on-small {
+    padding-right: 0px !important;
+  }
 }
 
 #toast-container {
@@ -174,4 +196,10 @@ p {
 
 .btn.red:hover {
   background-color: rgb(231, 0, 0) !important;
+}
+
+.horizontal-collection-item {
+  white-space: nowrap;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: none;
 }

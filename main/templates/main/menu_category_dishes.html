@@ -6,72 +6,67 @@
 <div>
   <ul class="collection">
     {% for dish in show_dishes %}
-      <a class="modal-trigger collection-item 
+    <a class="modal-trigger collection-item less-padding-on-small
       {% if request.user.is_staff %} 
         no-bottom-border 
-      {% endif %}"
-      href="#{{dish.name}}">
-        <img class="dish-img" 
-        {% if dish.image_file %}
-          src="{{dish.image_file.url}}"
-        {% else %} 
-          src="{{dish.image_Url}}"
+      {% endif %}" href="#{{dish.name}}" style="display: flex;">
+      <img class="dish-img" {% if dish.image_file %}
+        src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
         {% endif %} alt="{{dish.name}}">
-        <div class="dish-text">
-          <h5>{{dish.name}}</h5>
-          <p>{{dish.price}}₪</p>
-          <div>
-            {% if dish.is_vegeterian %}
-              {% include 'common/tag_vegeterian.html' %}
-            {% endif %}
-            {% if dish.is_gluten_free %}
-              {% include 'common/tag_gluten_free.html' %}
-            {% endif %}
-          </div>
+      <div class="dish-text">
+        <h5 class="hide-on-small-only">{{dish.name}}</h5>
+        <h6 class="hide-on-med-and-up">{{dish.name}}</h6>
+        <p>{{dish.price}}₪</p>
+        <div>
+          {% if dish.is_vegeterian %}
+          {% include 'common/tag_vegeterian.html' %}
+          {% endif %}
+          {% if dish.is_gluten_free %}
+          {% include 'common/tag_gluten_free.html' %}
+          {% endif %}
         </div>
-      </a>
-      {% if request.user.is_staff %}
-        <div class="collection-item">
-          <a class="btn" href="{% url 'edit_dish' id=dish.id %}">edit</a>
-          <a class="btn" href="{% url 'delete_dish' id=dish.id %}">delete</a>
-        </div>
-      {% endif %}
+      </div>
+    </a>
+    {% if request.user.is_staff %}
+    <div class="collection-item">
+      <a class="btn" href="{% url 'edit_dish' id=dish.id %}">edit</a>
+      <a class="btn" href="{% url 'delete_dish' id=dish.id %}">delete</a>
+    </div>
+    {% endif %}
 
-      <div id="{{dish.name}}" class="modal">
-        <div class="modal-content">
-          <img class="dish-img big" 
-          {% if dish.image_file %}
-            src="{{dish.image_file.url}}" 
-          {% else %} 
-            src="{{dish.image_Url}}"
-          {% endif %} 
-          alt="{{dish.name}}">
-          <div class="dish-text dish-text-in-modal">
+    <div id="{{dish.name}}" class="modal">
+      <div class="modal-content" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <img class="dish-img big" {% if dish.image_file %}
+          src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
+          {% endif %} alt="{{dish.name}}">
+        <div class="dish-text dish-text-in-modal">
+          <div>
             <h5>{{dish.name}}</h5>
             <p>{{dish.price}}₪</p>
             <p>
               {% if dish.is_vegeterian %}
-                {% include 'common/tag_vegeterian.html' %}
+              {% include 'common/tag_vegeterian.html' %}
               {% endif %}
               {% if dish.is_gluten_free %}
-                {% include 'common/tag_gluten_free.html' %}
+              {% include 'common/tag_gluten_free.html' %}
               {% endif %}
             </p>
-            <p>{{dish.description}}</p>
-            <div class="to-bottom">
-              <form action="{% url 'add_to_cart' %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="dish_id" value="{{dish.id}}">
-                <strong>Amount</strong>:
-                <div class="input-field inline">
-                  {{form.amount}}
-                </div>
-                <input class="btn add-dish-btn" type="submit" value="add">
-              </form>
-            </div>
+          </div>
+          <p>{{dish.description}}</p>
+          <div>
+            <form action="{% url 'add_to_cart' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="dish_id" value="{{dish.id}}">
+              <strong>Amount</strong>:
+              <div class="input-field inline">
+                {{form.amount}}
+              </div>
+              <input class="btn add-dish-btn" type="submit" value="add">
+            </form>
           </div>
         </div>
       </div>
+    </div>
     {% endfor %}
   </ul>
 </div>
