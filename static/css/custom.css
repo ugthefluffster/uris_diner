@@ -189,11 +189,12 @@ p {
 
 .menu-btn {
   transition-duration: 0.5s;
+  text-shadow: 3px 4px 5px rgba(0, 0, 0, 0.253)
 }
 
 .menu-btn:hover {
   font-size: 3.2rem;
-  text-shadow: 0px 6px 8px rgba(0, 0, 0, 0.384);
+  text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.384);
 }
 
 .btn.red:hover {
