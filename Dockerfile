@@ -9,4 +9,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
+RUN py manage.py collectstatic
+
 CMD python manage.py runserver 0.0.0.0:8000
