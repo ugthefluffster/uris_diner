@@ -1,3 +1,4 @@
+<!-- is responsive -->
 {% extends 'layouts/main.html' %}
 {% block title %}Menu{% endblock title %}
 {% block main-content %}
@@ -7,40 +8,64 @@
   <div class="row center-align">
     <h4>Delivery Menu</h4>
     {% if request.user.is_staff %}
-      <a class="btn" href="{% url 'add_dish' %}">add dish</a>
-      <a class="btn" href="{% url 'add_category' %}">add category</a>
+    <a class="btn" href="{% url 'add_dish' %}">add dish</a>
+    <a class="btn" href="{% url 'add_category' %}">add category</a>
     {% endif %}
   </div>
 
   <div class="row">
-    <div class="col l3">
+    <div class="col l3 hide-on-med-and-down">
       <ul class="collection">
         {% url 'menu_all_categories' as url %}
         <a class="collection-item
         {% if request.path == url %}
           active 
-        {% endif %}"
-        href="{{url}}">
+        {% endif %}" href="{{url}}">
           <h5 class="no-top-bottom-margin">All Categories</h5>
         </a>
         {% for category in categories_list %}
-          {% url 'menu_category_dishes' category_id=category.id as url %}
-          <a class="collection-item 
+        {% url 'menu_category_dishes' category_id=category.id as url %}
+        <a class="collection-item 
           {% if request.path == url %}
             active 
-          {% endif %}"
-          href="{{ url }}">
-            <h5 class="no-top-bottom-margin">{{category}}</h5>
-          </a>
+          {% endif %}" href="{{ url }}">
+          <h5 class="no-top-bottom-margin">{{category}}</h5>
+        </a>
         {% endfor %}
       </ul>
     </div>
 
-    <div class="col l9">
+    <div class="col s12 hide-on-large-only">
+      <ul class="collection" style="display: flex; overflow-x: scroll;">
+        {% url 'menu_all_categories' as url %}
+        <a class="collection-item horizontal-collection-item
+        {% if request.path == url %}
+          active active-page
+        {% endif %}" href="{{url}}">
+          All Categories
+        </a>
+        {% for category in categories_list %}
+        {% url 'menu_category_dishes' category_id=category.id as url %}
+        <a class="collection-item horizontal-collection-item
+          {% if request.path == url %}
+            active active-page
+          {% endif %}" href="{{ url }}">
+          {{category}}
+        </a>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col s12 l9">
       {% block menu-content %}
       {% endblock menu-content %}
     </div>
   </div>
 </div>
+
+<script>
+  let activePage = document.getElementsByClassName("active-page")[0]
+  activePage.scrollIntoView(false)
+</script>
 
 {% endblock main-content %}

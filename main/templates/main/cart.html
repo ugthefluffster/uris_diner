@@ -1,3 +1,4 @@
+<!-- is responsive -->
 {% extends 'layouts/main.html' %}
 {% block title %}Cart{% endblock title %}
 {% block main-content %}
@@ -9,86 +10,82 @@
   </div>
 
   {% if cart.total_to_pay > 0 %}
-    <div class="row">
-      <div class="col l8 offset-l2">
-        <ul class="collection">
-          {% for item in cart.item_set.all %}
-            <li class="collection-item">
-              <div class="row no-bottom-margin">
-                <div class="col l6">
-                  <a class="modal-trigger" href="#{{item.dish.name}}">
-                    <strong>{{item.dish.name}}</strong> X {{item.amount}}
-                  </a>
-                </div>
-                <div class="col l2">{{item.item_total}}₪</div>
-                <div class="col l2">
-                  <form class="change-item-btn"
-                  action="{% url 'change_cart_item' %}" 
-                  method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="item_id" value="{{item.id}}">
-                    <input type="hidden" name="amount" value="1">
-                    <button class="btn btn-small plus-minus-btn" type="submit">
-                      <i class="material-icons">exposure_plus_1</i>
-                    </button>
-                  </form>
-                  {% if item.amount > 1 %}
-                    <form class="change-item-btn"
-                    action="{% url 'change_cart_item' %}" 
-                    method="POST">
-                      {% csrf_token %}
-                      <input type="hidden" name="item_id" value="{{item.id}}">
-                      <input type="hidden" name="amount" value="-1">
-                      <button class="btn btn-small plus-minus-btn" type="submit">
-                        <i class="material-icons">exposure_neg_1</i>
-                      </button>
-                    </form>
-                  {% else %}
-                    <div class="btn btn-small disabled plus-minus-btn">
-                      <i class="material-icons">exposure_neg_1</i>
-                    </div>
-                  {% endif %}
-                </div>
-                <div class="col l1">
-                  <form action="{% url 'delete_cart_item' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="item_id" value="{{item.id}}">
-                    <button class="btn-small btn-flat" type="submit">Remove</button>
-                  </form>
-                </div>
-              </div>
-            </li>
-
-            <div id="{{item.dish.name}}" class="modal">
-              <div class="modal-content">
-                <img class="dish-img big" 
-                {% if item.dish.image_file %}
-                  src="{{item.dish.image_file.url}}" 
-                {% else %}
-                  src="{{item.dish.image_Url}}"
-                {% endif %}
-                alt="{{item.dish.name}}">
-                <div class="dish-text dish-text-in-modal">
-                  <h5>{{item.dish.name}}</h5>
-                  <p>{{item.dish.price}}₪</p>
-                  <p>
-                    {% if item.dish.is_vegeterian %}
-                      {% include 'common/tag_vegeterian.html' %}
-                    {% endif %}
-                    {% if item.dish.is_gluten_free %}
-                      {% include 'common/tag_gluten_free.html' %}
-                    {% endif %}
-                  </p>
-                  <p>{{item.dish.description}}</p>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
   <div class="row">
-    <div class="col l6 offset-l3 center-align">
+    <div class="col s12 l10 offset-l1 xl8 offset-xl2">
+      <ul class="collection">
+        {% for item in cart.item_set.all %}
+        <li class="collection-item">
+          <div class="row no-bottom-margin">
+            <div class="col s5 m6 xl7">
+              <a class="modal-trigger" href="#{{item.dish.name}}">
+                <strong>{{item.dish.name}}</strong> X {{item.amount}}
+              </a>
+            </div>
+            <div class="col s2">{{item.item_total}}₪</div>
+            <div class="col s4 m3 xl2">
+              <form class="change-item-btn"
+                action="{% url 'change_cart_item' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{item.id}}">
+                <input type="hidden" name="amount" value="1">
+                <button class="btn btn-small plus-minus-btn" type="submit">
+                  <i class="material-icons">exposure_plus_1</i>
+                </button>
+              </form>
+              {% if item.amount > 1 %}
+              <form class="change-item-btn"
+                action="{% url 'change_cart_item' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{item.id}}">
+                <input type="hidden" name="amount" value="-1">
+                <button class="btn btn-small plus-minus-btn" type="submit">
+                  <i class="material-icons">exposure_neg_1</i>
+                </button>
+              </form>
+              {% else %}
+              <div class="btn btn-small disabled plus-minus-btn">
+                <i class="material-icons">exposure_neg_1</i>
+              </div>
+              {% endif %}
+            </div>
+            <div class="col s1" style="padding: 0px;">
+              <form action="{% url 'delete_cart_item' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{item.id}}">
+                <button class="btn btn-small red" type="submit"
+                  style="padding-left: 10px; padding-right: 10px">✕</button>
+              </form>
+            </div>
+          </div>
+        </li>
+
+        <div id="{{item.dish.name}}" class="modal">
+          <div class="modal-content">
+            <img class="dish-img big" {% if item.dish.image_file %}
+              src="{{item.dish.image_file.url}}" {% else %}
+              src="{{item.dish.image_Url}}" {% endif %}
+              alt="{{item.dish.name}}">
+            <div class="dish-text dish-text-in-modal">
+              <h5>{{item.dish.name}}</h5>
+              <p>{{item.dish.price}}₪</p>
+              <p>
+                {% if item.dish.is_vegeterian %}
+                {% include 'common/tag_vegeterian.html' %}
+                {% endif %}
+                {% if item.dish.is_gluten_free %}
+                {% include 'common/tag_gluten_free.html' %}
+                {% endif %}
+              </p>
+              <p>{{item.dish.description}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6 offset-s3 center-align">
       <h5>Total: {{cart.total_to_pay}}₪</h5>
       <div class="section">
         <a class="btn btn-large" href="{% url 'fill_order' %}">Place order</a>
@@ -97,11 +94,11 @@
   </div>
 
   {% else %}
-    <div class="row center-align">
-      <div class="section">
-        <h6>Your cart is empty.</h6>
-      </div>
+  <div class="row center-align">
+    <div class="section">
+      <h6>Your cart is empty.</h6>
     </div>
+  </div>
   {% endif %}
 </div>
 

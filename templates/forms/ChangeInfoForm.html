@@ -1,5 +1,6 @@
+<!-- is responsive -->
 <div class="row">
-  <div class="col l6">
+  <div class="col s12 m6">
     <div class="input-field">
       {{form.first_name.label_tag}} {{form.first_name}}
       {% for error in form.first_name.errors %}
@@ -7,7 +8,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="col l6">
+  <div class="col s12 m6">
     <div class="input-field">
       {{form.last_name.label_tag}} {{form.last_name}}
       {% for error in form.last_name.errors %}
@@ -18,7 +19,7 @@
 </div>
 
 <div class="row">
-  <div class="col l12">
+  <div class="col s12">
     <div class="input-field">
       {{form.email.label_tag}} {{form.email}}
       {% for error in form.email.errors %}

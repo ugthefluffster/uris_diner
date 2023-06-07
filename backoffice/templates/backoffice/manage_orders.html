@@ -1,3 +1,4 @@
+<!-- is responsive -->
 {% extends 'layouts/backoffice.html' %}
 {% block title %}Open Orders{% endblock title %}
 {% block backoffice-content %}
@@ -7,53 +8,59 @@
 </div>
 
 <div class="row">
-  <div class="col l8 offset-l2">
+  <!-- whole page -->
+  <div class="col s12 xl10 offset-xl1">
     <div class="row no-bottom-margin">
-      <div class="col l10">
+      <!-- list left -->
+      <div class="col s11 l10">
         <div class="row no-bottom-margin">
-          <div class="col l2">
+          <div class="col s2 m1">
             <h5>No.</h5>
           </div>
-          <div class="col l4">
+          <div class="col s4 m4">
             <h5>Made in</h5>
           </div>
-          <div class="col">
+          <div class="col s6 m7">
             <h5>Address</h5>
           </div>
         </div>
       </div>
     </div>
     {% for order in orders_list %}
-      <div class="row no-bottom-margin">
-        <div class="col l10">
+    <div class="row no-bottom-margin">
+      <div class="valign-wrapper">
+        <!-- list left -->
+        <div class="col s11 l10">
           <ul class="collapsible no-bottom-margin fulfill-item">
             <li>
               <div class="collapsible-header not-flex">
                 <div class="row no-bottom-margin">
-                  <div class="col l2">
+                  <div class="col s2 m1">
                     <div>
                       <strong>{{order.delivery.order_id}}</strong>
                     </div>
                   </div>
-                  <div class="col l4">
+                  <div class="col s4 m4">
                     <div>{{order.delivery.created}}</div>
                   </div>
-                  <div class="col">
+                  <div class="col s6 m7">
                     <div>{{order.delivery.address}}</div>
                   </div>
                 </div>
               </div>
               <div class="collapsible-body">
                 <div>
-                  <strong>Made by:</strong> {{order.user.first_name|title}} {{order.user.last_name|title}}
+                  <strong>Made by:</strong> {{order.user.first_name|title}}
+                  {{order.user.last_name|title}}
                 </div>
                 <div>
                   <strong>Items:</strong>
                   <ol>
                     {% for item in order.item_set.all %}
-                      <li>
-                        {{item.dish.name}} X {{item.amount}} - {{item.item_total}}₪
-                      </li>
+                    <li>
+                      {{item.dish.name}} X {{item.amount}} -
+                      {{item.item_total}}₪
+                    </li>
                     {% endfor %}
                   </ol>
                 </div>
@@ -67,14 +74,21 @@
             </li>
           </ul>
         </div>
-        <div class="col l2">
-          <form class="fulfill-item" action="{% url 'manage_orders' %}" method="POST">
+        <!-- list right -->
+        <div class="col s1 l2">
+          <form class="fulfill-item" action="{% url 'manage_orders' %}"
+            method="POST">
             {% csrf_token %}
-            <input type="hidden" name="order_id" value="{{order.delivery.order_id}}">
-            <input class="btn btn-large" type="submit" value="fulfill">
+            <input type="hidden" name="order_id"
+              value="{{order.delivery.order_id}}">
+            <input class="btn btn-large hide-on-med-and-down" type="submit"
+              value="✓ fulfill">
+            <input class="btn btn-small hide-on-large-only" type="submit"
+              value="✓" style="margin-left: -10px;">
           </form>
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
 </div>
