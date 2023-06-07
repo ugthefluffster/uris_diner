@@ -2,12 +2,11 @@
 {% load static %}
 <nav>
   <div class="nav-wrapper">
-    <a href="#" data-target="sidenav-content" class="sidenav-trigger"><i
-        class="material-icons">menu</i></a>
+    <a href="#" data-target="sidenav-content" class="sidenav-trigger">
+      <i class="material-icons">menu</i></a>
     <a href="{% url 'main' %}" class="brand-logo">
-      <div class="logo-container">
-        <img class="logo-icon hide-on-small-only"
-          src="{% static 'images/icon.webp' %}">
+      <div class="logo-container" style="white-space: nowrap;">
+        <img class="logo-icon" src="{% static 'images/icon.webp' %}">
         Uri's Diner
       </div>
     </a>

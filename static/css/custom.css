@@ -156,16 +156,6 @@ p {
   }
 }
 
-#toast-container {
-  top: 5%;
-  width: 100% !important;
-  text-align: center !important;
-}
-
-.toast {
-  display: inline;
-}
-
 .no-bottom-border {
   border-bottom: none !important;
 }
