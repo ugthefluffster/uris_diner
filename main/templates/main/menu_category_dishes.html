@@ -1,4 +1,4 @@
-<!-- make responsive -->
+<!-- is responsive -->
 {% extends 'layouts/menu.html' %}
 
 {% block menu-content %}
@@ -35,7 +35,8 @@
     {% endif %}
 
     <div id="{{dish.name}}" class="modal">
-      <div class="modal-content" style="display: flex; flex-wrap: wrap; justify-content: center;">
+      
+      <div class="modal-content dish-modal-content">
         <img class="dish-img big" {% if dish.image_file %}
           src="{{dish.image_file.url}}" {% else %} src="{{dish.image_Url}}"
           {% endif %} alt="{{dish.name}}">
@@ -61,11 +62,12 @@
               <div class="input-field inline">
                 {{form.amount}}
               </div>
-              <input class="btn add-dish-btn" type="submit" value="add">
+              <input class="btn" type="submit" value="add">
             </form>
           </div>
         </div>
       </div>
+
     </div>
     {% endfor %}
   </ul>

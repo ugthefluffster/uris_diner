@@ -1,4 +1,4 @@
-/* 07/06/2023 12:18 */
+/* ver1 */
 
 body {
   background-color: #fffbf4;
@@ -46,6 +46,10 @@ body {
   margin-bottom: 10px;
 }
 
+.dish-modal-content {
+  display: flex;
+}
+
 @media (max-width: 992px) {
   .dish-img.big {
     height: 200px;
@@ -63,8 +67,11 @@ body {
     padding-bottom: 4px !important;
   }
   .dish-img.big {
-    height: 150px;
-    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dish-modal-content {
+    flex-wrap: wrap;
   }
 }
 
@@ -79,19 +86,9 @@ body {
   justify-content: space-between;
 }
 
-.add-dish-btn {
-  width: 12vw;
-  min-width: fit-content;
-}
-
 .dish-text h5,
 p {
   margin-top: 0px;
-}
-
-.to-bottom {
-  position: absolute;
-  bottom: 0;
 }
 
 .not-flex {
@@ -179,7 +176,7 @@ p {
 
 .menu-btn {
   transition-duration: 0.5s;
-  text-shadow: 3px 4px 5px rgba(0, 0, 0, 0.253)
+  text-shadow: 3px 4px 5px rgba(0, 0, 0, 0.253);
 }
 
 .menu-btn:hover {
