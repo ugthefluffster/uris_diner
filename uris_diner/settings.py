@@ -20,12 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-mg(#7o+kb3!suuzjk!)d)*5oblh!r&or2aur+@cc(k922crdrg' # old
 
 SECRET_KEY = "-yufb&x4_^t%22d#x+&ii0&8tq%b12ev)oik(b)ai%52x(7$e86y22c0)0hkcm^nz6m@cr@gi7n1=9tydh*ht(z$b_clp-40&9e)"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 CLOUD_URL = 'uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io'
 
