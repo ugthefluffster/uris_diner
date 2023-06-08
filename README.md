@@ -16,8 +16,7 @@ A full stack Django web app that simulates a restaurant's takeout website. Check
 - Designed using [Materialize CSS](https://materializecss.com) and customized with Sass
 - Fully responsive design:
 
-<img src="https://raw.githubusercontent.com/ugthefluffster/uris_diner/main/example-images/menu-tablet.png" height="200">
-<img src="https://raw.githubusercontent.com/ugthefluffster/uris_diner/main/example-images/menu-phone.png" height="200">
+<img src="https://raw.githubusercontent.com/ugthefluffster/uris_diner/main/example-images/menu-tablet.png" height="200"><img src="https://raw.githubusercontent.com/ugthefluffster/uris_diner/main/example-images/menu-phone.png" height="200">
 
   ---
 ## Running locally (Windows):
