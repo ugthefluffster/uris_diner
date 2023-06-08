@@ -89,4 +89,4 @@ class DishForm(ModelForm):
             raise ValidationError('Please upload an image file or enter an image URL.')
 
 class ItemAmountForm(forms.Form):
-    amount = forms.IntegerField(max_value=99, min_value=1, initial=1)
+    amount = forms.IntegerField(max_value=99, min_value=1, initial=1, step_size=1)

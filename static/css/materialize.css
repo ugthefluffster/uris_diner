@@ -4595,15 +4595,15 @@ small {
 }
 @media only screen and (min-width : 601px) and (max-width : 992px) {
   #toast-container {
-    left: 5%;
-    bottom: 7%;
+    top: 70px;
+    right: 20px;
     max-width: 90%;
   }
 }
 @media only screen and (min-width : 993px) {
   #toast-container {
-    top: 10%;
-    right: 7%;
+    top: 70px;
+    right: 20px;
     max-width: 86%;
   }
 }
@@ -4618,7 +4618,7 @@ small {
   height: auto;
   min-height: 48px;
   line-height: 1.5em;
-  background-color: #323232;
+  background-color: #3090d9;
   padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
@@ -5069,7 +5069,7 @@ button.btn-floating {
 }
 
 .dropdown-content {
-  background-color: #fff;
+  background-color: #8b202b;
   margin: 0;
   display: none;
   min-width: 100px;
@@ -5094,7 +5094,7 @@ button.btn-floating {
   text-align: left;
 }
 .dropdown-content li:hover, .dropdown-content li.active {
-  background-color: #eee;
+  background-color: #dc6774;
 }
 .dropdown-content li:focus {
   outline: none;
@@ -5105,7 +5105,7 @@ button.btn-floating {
 }
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.87);
   display: block;
   line-height: 22px;
   padding: 14px 16px;
@@ -5124,7 +5124,7 @@ button.btn-floating {
 }
 
 body.keyboard-focused .dropdown-content li:focus {
-  background-color: #dadada;
+  background-color: #d54656;
 }
 
 .input-field.col .dropdown-content [type=checkbox] + label {
@@ -6557,7 +6557,7 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
 }
 
 .select-dropdown li.optgroup {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #dc6774;
 }
 .select-dropdown li.optgroup.selected > span {
   color: rgba(0, 0, 0, 0.7);
@@ -6795,7 +6795,7 @@ input[type=range]::-ms-thumb {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #fff;
+  background-color: #c92e3f;
   z-index: 999;
   overflow-y: auto;
   will-change: transform;
@@ -6819,7 +6819,7 @@ input[type=range]::-ms-thumb {
   background-color: rgba(0, 0, 0, 0.05);
 }
 .sidenav li > a {
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.87);
   display: block;
   font-size: 14px;
   font-weight: 500;
@@ -6851,7 +6851,7 @@ input[type=range]::-ms-thumb {
   line-height: 48px;
   margin: 0 32px 0 0;
   width: 24px;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(255, 255, 255, 0.87);
 }
 .sidenav .divider {
   margin: 8px 0 0 0;
@@ -6950,7 +6950,7 @@ input[type=range]::-ms-thumb {
 }
 .sidenav .collapsible-body > ul:not(.collapsible) > li.active a,
 .sidenav.sidenav-fixed .collapsible-body > ul:not(.collapsible) > li.active a {
-  color: #fff;
+  color: #c92e3f;
 }
 
 .sidenav .collapsible-body {

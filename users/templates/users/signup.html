@@ -1,8 +1,9 @@
+<!-- is responsive -->
 {% extends 'layouts/users.html' %}
 {% block title %}Signup{% endblock title %}
 {% block users-content %}
 
-<div class="col l6 offset-l3">
+<div class="col s12 m8 offset-m2 xl6 offset-xl3">
   <div class="section">
     <div class="card">
       <div class="card-content">
@@ -13,7 +14,7 @@
           {% csrf_token %}
           {{form}}
           <div class="row">
-            <div class="col l12 center-align">
+            <div class="col s12 center-align">
               <input class="btn" type="submit" value="Create user" />
             </div>
           </div>
