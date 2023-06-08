@@ -1,6 +1,6 @@
 # Uri's Diner
 
-This is a full stack Django web app that simulates a restaurant's takeout website. Check out the [live website](https://uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io/) or [run locally](#running-locally).
+A full stack Django web app that simulates a restaurant's takeout website. Check out the [live website](https://uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io/) or [run locally](#running-locally).
 
 ## Features:
 - Creating a user
@@ -11,7 +11,7 @@ This is a full stack Django web app that simulates a restaurant's takeout websit
 
 ## Frameworks and capabilities:
 - Backend, templating and models built purely with Django
-- PostgreSQL database
+- PostgreSQL database on Azure (SQLite on local version)
 - Images are uploaded using [Azure storage](https://django-storages.readthedocs.io/en/latest/backends/azure.html) (on local version, images are saved to `/media` ). Image processing capabilities provided by [Pillow](https://pypi.org/project/Pillow/)
 - Designed using [Materialize CSS](https://materializecss.com) and customized with Sass
 - Fully responsive design:
@@ -20,5 +20,12 @@ This is a full stack Django web app that simulates a restaurant's takeout websit
 <img src="https://raw.githubusercontent.com/ugthefluffster/uris_diner/main/example-images/menu-phone.png" height="250">
 
   ---
-## Running locally:
-After installing [python](https://www.python.org/downloads/) and cloning repository, 
+## Running locally (Windows):
+Install [python](https://www.python.org/downloads/) and clone repository, then install requirements:  
+`pip install -r requirements.txt`  
+
+Switch to local-db-version branch:  
+`git checkout local-db-version`
+
+Run the server:  
+`py manage.py runserver`
