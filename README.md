@@ -1,6 +1,6 @@
 # Uri's Diner
 
-A full stack Django web app that simulates a restaurant's takeout website. Check out the [live website](https://uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io/) or [run locally](#running-locally).
+A full stack Django web app that simulates a restaurant's takeout website. Check out the [live website](https://uris-diner-site.wittywave-70237434.germanywestcentral.azurecontainerapps.io/) or [run locally](#running-locally-windows).
 
 ## Features:
 - Creating a user
