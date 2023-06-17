@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
+import os
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = "-yufb&x4_^t%22d#x+&ii0&8tq%b12ev)oik(b)ai%52x(7$e86y22c0)0hkcm^nz6m@cr@gi7n1=9tydh*ht(z$b_clp-40&9e)"
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -86,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'urisdinerdbadmin',
-        'PASSWORD': 'ern598&rgbn0',
+        'USER': os.environ["DATABASE_USER"],
+        'PASSWORD': os.environ["DATABASE_PASSWORD"],
         'HOST': 'uris-diner-db.postgres.database.azure.com',
         'PORT': ''
     }
@@ -97,15 +100,15 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
@@ -144,5 +147,5 @@ FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-AZURE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=urisdinerstorage;AccountKey=8bAlZz2N4FbcSpnqe92gPNEoroz7tzvRov0M7YbkfQdhwvA774xyW09Hxris4ZYg4cPljY3LgN60+ASt5Bctog==;EndpointSuffix=core.windows.net'
+AZURE_CONNECTION_STRING = os.environ["AZURE_CONNECTION_STRING"]
 AZURE_CONTAINER = 'uris-diner-storage-container'
