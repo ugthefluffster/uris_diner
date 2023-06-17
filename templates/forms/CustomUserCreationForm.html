@@ -31,7 +31,7 @@
 <div class="row">
   <div class="col s12">
     <div class="input-field tooltipped" data-position="bottom"
-    data-tooltip="{{form.username.help_text}}">
+      data-tooltip="{{form.username.help_text}}">
       {{form.username.label_tag}} {{form.username}}
       {% for error in form.username.errors %}
       <div class="red-text">{{error}}</div>
@@ -42,8 +42,8 @@
 
 <div class="row">
   <div class="col s12 l6">
-    <div class="input-field tooltipped" data-position="bottom"
-    data-tooltip="{{form.password1.help_text}}">
+    <div class="input-field tooltipped" data-position="bottom" id="password1"
+      data-tooltip="{{form.password1.help_text}}">
       {{form.password1.label_tag}} {{form.password1}}
       {% for error in form.password1.errors %}
       <div class="red-text">{{error}}</div>
@@ -51,8 +51,8 @@
     </div>
   </div>
   <div class="col s12 l6">
-    <div class="input-field tooltipped" data-position="bottom"
-    data-tooltip="{{form.password2.help_text}}">
+    <div class="input-field tooltipped" data-position="bottom" id="password2"
+      data-tooltip="{{form.password2.help_text}}">
       {{form.password2.label_tag}} {{form.password2}}
       {% for error in form.password2.errors %}
       <div class="red-text">{{error}}</div>
@@ -71,3 +71,12 @@
 </div>
 {% endif %}
 
+<script>
+  let isMobile = window.matchMedia("(max-width: 600px)").matches
+  let password1 = document.getElementById("password1");
+  let password2 = document.getElementById("password2");
+  if (isMobile) {
+    password1.dataset.position = "top";
+    password2.dataset.position = "top";
+  }
+</script>

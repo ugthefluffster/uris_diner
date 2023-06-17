@@ -6,6 +6,9 @@ alice borwn (customer)
 username: alicebrown
 pass: dR12*Jt2nJH&
 
+
+### For local version only! ###
+
 staffmember (staff member)
 username: staffmember
 password: staffmember
